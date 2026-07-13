@@ -76,13 +76,13 @@ func _process(delta):
 
 func handle_input():
 	var dir = Vector2i.ZERO
-	if Input.is_action_just_pressed("ui_up"):
+	if Input.is_action_just_pressed("snake_up"):
 		dir = Vector2i(0, -1)
-	elif Input.is_action_just_pressed("ui_down"):
+	elif Input.is_action_just_pressed("snake_down"):
 		dir = Vector2i(0, 1)
-	elif Input.is_action_just_pressed("ui_left"):
+	elif Input.is_action_just_pressed("snake_left"):
 		dir = Vector2i(-1, 0)
-	elif Input.is_action_just_pressed("ui_right"):
+	elif Input.is_action_just_pressed("snake_right"):
 		dir = Vector2i(1, 0)
 	
 	if dir != Vector2i.ZERO:

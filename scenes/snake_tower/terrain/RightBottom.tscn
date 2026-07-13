@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://l6r1iao6t5ef"]
+
+[ext_resource type="Script" uid="uid://chf2oardehrwr" path="res://scripts/snake_tower/level/TerrainBlock.gd" id="1_pgoxc"]
+[ext_resource type="Texture2D" uid="uid://c41gpbo555sn4" path="res://assets/snake_tower/snaketower_tileset.png" id="2_lweni"]
+
+[node name="TerrainBlock" type="Node2D" unique_id=680654080]
+script = ExtResource("1_pgoxc")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1712120059]
+scale = Vector2(1, 0.999)
+texture = ExtResource("2_lweni")
+centered = false
+region_enabled = true
+region_rect = Rect2(47.98483, 47.989883, 16.005299, 16.002228)
