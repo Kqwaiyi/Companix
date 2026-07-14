@@ -4,7 +4,7 @@ class_name Box
 var grid_pos: Vector2i
 var is_falling: bool = false
 var fall_timer: float = 0.0
-var fall_interval: float = 0.15
+var fall_interval: float = 0.07
 
 func _ready():
 	grid_pos = Vector2i((position / float(Globals.TILE_SIZE)).round())

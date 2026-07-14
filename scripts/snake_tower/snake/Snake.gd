@@ -8,7 +8,7 @@ var visual_nodes: Array[Node2D] = []
 
 var is_falling: bool = false
 var fall_timer: float = 0.0
-var fall_interval: float = 0.15
+var fall_interval: float = 0.07
 
 func _ready():
 	# If placed manually in editor, initialize at current grid position
