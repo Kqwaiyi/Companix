@@ -1,8 +1,10 @@
 extends Node2D
 class_name Snake
 
+@export var tail_scene: PackedScene
+
 var segments: Array[Vector2i] = []
-var visual_nodes: Array[Sprite2D] = []
+var visual_nodes: Array[Node2D] = []
 
 var is_falling: bool = false
 var fall_timer: float = 0.0
@@ -21,7 +23,33 @@ func _ready():
 		call_deferred("_deferred_init", grid_pos)
 
 func _deferred_init(grid_pos: Vector2i):
-	var arr: Array[Vector2i] = [grid_pos]
+	var head_pos = grid_pos
+	var current_pos = head_pos
+	var arr: Array[Vector2i] = [head_pos]
+	
+	var tail_nodes = get_tree().get_nodes_in_group("snake_tail")
+	var tail_dict = {}
+	for t in tail_nodes:
+		tail_dict[t.grid_position] = t
+		
+	var prev_pos = head_pos
+	while true:
+		var found_next = false
+		var directions = [Vector2i(1, 0), Vector2i(-1, 0), Vector2i(0, 1), Vector2i(0, -1)]
+		for dir in directions:
+			var next_pos = current_pos + dir
+			if next_pos != prev_pos and tail_dict.has(next_pos):
+				arr.append(next_pos)
+				prev_pos = current_pos
+				current_pos = next_pos
+				found_next = true
+				
+				var tail_node = tail_dict[next_pos]
+				tail_node.queue_free()
+				break
+		if not found_next:
+			break
+			
 	init_snake(arr)
 
 func init_snake(start_positions: Array[Vector2i]):
@@ -34,16 +62,26 @@ func init_snake(start_positions: Array[Vector2i]):
 
 func add_segment(pos: Vector2i):
 	segments.append(pos)
-	var sprite = Sprite2D.new()
-	sprite.texture = preload("res://icon.svg")
-	sprite.centered = false
-	sprite.scale = Vector2(Globals.TILE_SIZE / 128.0, Globals.TILE_SIZE / 128.0)
+	var node: Node2D
 	if segments.size() == 1:
+		var sprite = Sprite2D.new()
+		sprite.texture = preload("res://icon.svg")
+		sprite.centered = false
+		sprite.scale = Vector2(Globals.TILE_SIZE / 128.0, Globals.TILE_SIZE / 128.0)
 		sprite.modulate = Color(0.1, 0.4, 0.8) # Head
+		node = sprite
 	else:
-		sprite.modulate = Color(0.2, 0.6, 1.0) # Body
-	add_child(sprite)
-	visual_nodes.append(sprite)
+		if tail_scene:
+			node = tail_scene.instantiate()
+		else:
+			var sprite = Sprite2D.new()
+			sprite.texture = preload("res://icon.svg")
+			sprite.centered = false
+			sprite.scale = Vector2(Globals.TILE_SIZE / 128.0, Globals.TILE_SIZE / 128.0)
+			sprite.modulate = Color(0.2, 0.6, 1.0) # Body fallback
+			node = sprite
+	add_child(node)
+	visual_nodes.append(node)
 	update_visuals()
 
 func update_visuals():
@@ -135,13 +173,18 @@ func move_segments(target: Vector2i, grow: bool):
 	segments = new_segments
 	
 	if grow:
-		var sprite = Sprite2D.new()
-		sprite.texture = preload("res://icon.svg")
-		sprite.centered = false
-		sprite.scale = Vector2(Globals.TILE_SIZE / 128.0, Globals.TILE_SIZE / 128.0)
-		sprite.modulate = Color(0.2, 0.6, 1.0)
-		add_child(sprite)
-		visual_nodes.append(sprite)
+		var node: Node2D
+		if tail_scene:
+			node = tail_scene.instantiate()
+		else:
+			var sprite = Sprite2D.new()
+			sprite.texture = preload("res://icon.svg")
+			sprite.centered = false
+			sprite.scale = Vector2(Globals.TILE_SIZE / 128.0, Globals.TILE_SIZE / 128.0)
+			sprite.modulate = Color(0.2, 0.6, 1.0)
+			node = sprite
+		add_child(node)
+		visual_nodes.append(node)
 
 func check_gravity():
 	if LevelManager.check_support(segments):
