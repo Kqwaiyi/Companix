@@ -9,6 +9,30 @@ radius = 12.0
 [sub_resource type="CircleShape2D" id="2_catch_shape"]
 radius = 20.0
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_tmpp7"]
+atlas = ExtResource("2_tmpp7")
+region = Rect2(10, 270, 59, 51)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tqpmi"]
+atlas = ExtResource("2_tmpp7")
+region = Rect2(69, 270, 59, 51)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3eitd"]
+atlas = ExtResource("2_tmpp7")
+region = Rect2(128, 270, 59, 51)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tjsxu"]
+atlas = ExtResource("2_tmpp7")
+region = Rect2(187, 270, 59, 51)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0jjre"]
+atlas = ExtResource("2_tmpp7")
+region = Rect2(263, 270, 57, 51)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pq4rx"]
+atlas = ExtResource("2_tmpp7")
+region = Rect2(320, 270, 57, 51)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_3qeib"]
 atlas = ExtResource("2_tmpp7")
 region = Rect2(0, 321, 59, 51)
@@ -29,8 +53,40 @@ region = Rect2(194, 321, 58, 51)
 atlas = ExtResource("2_tmpp7")
 region = Rect2(252, 321, 58, 51)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_o1u6y"]
+atlas = ExtResource("2_tmpp7")
+region = Rect2(315, 321, 58, 51)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_fm8fw"]
 animations = [{
+"frames": [],
+"loop": 1,
+"name": &"new_animation",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tmpp7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tqpmi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3eitd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tjsxu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0jjre")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pq4rx")
+}],
+"loop": 1,
+"name": &"walk_left",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_3qeib")
@@ -46,9 +102,12 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_qnwkp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o1u6y")
 }],
-"loop": 1,
-"name": &"default",
+"loop": 0,
+"name": &"walk_right",
 "speed": 5.0
 }]
 
@@ -72,3 +131,4 @@ shape = SubResource("2_catch_shape")
 
 [node name="Visual" type="AnimatedSprite2D" parent="." unique_id=347858897]
 sprite_frames = SubResource("SpriteFrames_fm8fw")
+animation = &"walk_left"
