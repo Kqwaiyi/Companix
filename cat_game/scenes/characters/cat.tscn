@@ -313,6 +313,6 @@ shape = SubResource("2_catch_shape")
 [node name="CaughtSound" type="AudioStreamPlayer2D" parent="." unique_id=1935401306]
 
 [node name="Visual" type="AnimatedSprite2D" parent="." unique_id=347858897]
-position = Vector2(9, 6)
+position = Vector2(-6, -13)
 sprite_frames = SubResource("SpriteFrames_fm8fw")
-animation = &"walk_left"
+animation = &"run_right"
