@@ -14,3 +14,12 @@ func _on_level_won():
 func _on_level_lost():
 	print("Level Lost! Restarting...")
 	get_tree().reload_current_scene()
+
+func reset_level():
+	print("Manual Reset!")
+	get_tree().reload_current_scene()
+
+func _input(event):
+	if event is InputEventKey and event.pressed and not event.echo:
+		if event.keycode == KEY_R:
+			reset_level()

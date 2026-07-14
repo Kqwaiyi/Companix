@@ -157,3 +157,14 @@ horizontal_alignment = 1
 
 [node name="Box" parent="." unique_id=1829565510 instance=ExtResource("12_lhlay")]
 position = Vector2(512, -80)
+
+[node name="UILayer" type="CanvasLayer" parent="."]
+
+[node name="ResetButton" type="Button" parent="UILayer"]
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 85.0
+offset_bottom = 41.0
+text = "Reset (R)"
+
+[connection signal="pressed" from="UILayer/ResetButton" to="." method="reset_level"]

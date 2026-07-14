@@ -35,6 +35,9 @@ func close_laptop():
 	# Optional: Clear the viewport when closed to free memory and reset state
 	clear_minigame()
 	
+	# Notify all minigame time trackers to pause their timers when laptop closes
+	get_tree().call_group("minigame_time_trackers", "pause_time")
+	
 	closed.emit()
 
 func load_minigame(path: String):
