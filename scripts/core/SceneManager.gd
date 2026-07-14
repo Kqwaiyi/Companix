@@ -11,6 +11,7 @@ var _current_fade_duration: float = 0.5
 var _target_viewport: Node = null
 
 func _ready():
+	process_mode = Node.PROCESS_MODE_ALWAYS
 	color_rect.modulate.a = 0
 	color_rect.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	color_rect.hide()
