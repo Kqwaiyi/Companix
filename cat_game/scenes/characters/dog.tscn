@@ -2,173 +2,13 @@
 
 [ext_resource type="Script" uid="uid://b40vdvjlmot7" path="res://cat_game/scripts/characters/dog.gd" id="1_dog"]
 [ext_resource type="Script" uid="uid://dc83e8ygmgd17" path="res://cat_game/scripts/environment/vision_cone.gd" id="2_cone"]
-[ext_resource type="Texture2D" uid="uid://cqpq0fjvbi1r1" path="res://assets/sprites/dogs/dog1.png" id="3_f0e8s"]
+[ext_resource type="SpriteFrames" uid="uid://bfmuwocr81ve7" path="res://cat_game/scenes/characters/dog_variants/dog5.tres" id="3_f0e8s"]
 
 [sub_resource type="CircleShape2D" id="1_body"]
 radius = 16.0
 
 [sub_resource type="CircleShape2D" id="2_catch"]
 radius = 20.0
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_0rwps"]
-atlas = ExtResource("3_f0e8s")
-region = Rect2(0, 240, 64, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_etl0t"]
-atlas = ExtResource("3_f0e8s")
-region = Rect2(64, 240, 64, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_dwqpu"]
-atlas = ExtResource("3_f0e8s")
-region = Rect2(128, 240, 64, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_tvrro"]
-atlas = ExtResource("3_f0e8s")
-region = Rect2(192, 240, 64, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_3d5oe"]
-atlas = ExtResource("3_f0e8s")
-region = Rect2(256, 240, 64, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_cq482"]
-atlas = ExtResource("3_f0e8s")
-region = Rect2(320, 240, 64, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_yv1t7"]
-atlas = ExtResource("3_f0e8s")
-region = Rect2(384, 240, 64, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_wqc1n"]
-atlas = ExtResource("3_f0e8s")
-region = Rect2(448, 240, 64, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_yyuot"]
-atlas = ExtResource("3_f0e8s")
-region = Rect2(0, 288, 64, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_rdw4a"]
-atlas = ExtResource("3_f0e8s")
-region = Rect2(64, 288, 64, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ag1wb"]
-atlas = ExtResource("3_f0e8s")
-region = Rect2(128, 288, 64, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_j6ril"]
-atlas = ExtResource("3_f0e8s")
-region = Rect2(192, 288, 64, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_dxo7t"]
-atlas = ExtResource("3_f0e8s")
-region = Rect2(256, 288, 64, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_moevv"]
-atlas = ExtResource("3_f0e8s")
-region = Rect2(320, 288, 64, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_sxpg8"]
-atlas = ExtResource("3_f0e8s")
-region = Rect2(384, 288, 64, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ivlxa"]
-atlas = ExtResource("3_f0e8s")
-region = Rect2(448, 288, 64, 48)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_fm8fw"]
-animations = [{
-"frames": [],
-"loop": 1,
-"name": &"Dog1_Bark",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_0rwps")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_etl0t")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_dwqpu")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_tvrro")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_3d5oe")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_cq482")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_yv1t7")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_wqc1n")
-}],
-"loop": 1,
-"name": &"Dog1_Run",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_yyuot")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_rdw4a")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ag1wb")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_j6ril")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_dxo7t")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_moevv")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_sxpg8")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ivlxa")
-}],
-"loop": 1,
-"name": &"Dog1_Walk",
-"speed": 5.0
-}, {
-"frames": [],
-"loop": 1,
-"name": &"Dog2_Bark",
-"speed": 5.0
-}, {
-"frames": [],
-"loop": 1,
-"name": &"Dog2_Run",
-"speed": 5.0
-}, {
-"frames": [],
-"loop": 1,
-"name": &"Dog2_Walk",
-"speed": 5.0
-}, {
-"frames": [],
-"loop": 1,
-"name": &"Dog3_Bark",
-"speed": 5.0
-}, {
-"frames": [],
-"loop": 1,
-"name": &"Dog3_Run",
-"speed": 5.0
-}, {
-"frames": [],
-"loop": 1,
-"name": &"Dog3_Walk",
-"speed": 5.0
-}]
 
 [node name="Dog" type="CharacterBody2D" unique_id=352282334]
 collision_layer = 4
@@ -190,5 +30,5 @@ shape = SubResource("2_catch")
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=109570855]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=189963210]
-sprite_frames = SubResource("SpriteFrames_fm8fw")
-animation = &"Dog3_Walk"
+sprite_frames = ExtResource("3_f0e8s")
+animation = &"Walk"
