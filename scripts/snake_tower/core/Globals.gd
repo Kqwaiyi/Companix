@@ -39,7 +39,10 @@ func _on_scene_loaded() -> void:
 	var loaded_scene: String = SceneManager._next_scene_path
 	# Use dictionary matching or prefix matching for valid minigame scenes
 	if tracked_scenes.has(loaded_scene) or loaded_scene.begins_with("res://scenes/snake_tower/level/"):
-		if loaded_scene == "res://scenes/snake_tower/level/LevelLast.tscn":
+		if loaded_scene == "res://scenes/snake_tower/level/Level1.tscn":
+			_is_time_running = false
+			total_time_elapsed = 0.0
+		elif loaded_scene == "res://scenes/snake_tower/level/LevelLast.tscn":
 			_is_time_running = false
 		else:
 			_is_time_running = true
@@ -50,8 +53,8 @@ func pause_time() -> void:
 	_is_time_running = false
 
 func start_time() -> void:
-	# If we somehow start time explicitly but we are on LevelLast, don't start
-	if SceneManager and SceneManager._next_scene_path == "res://scenes/snake_tower/level/LevelLast.tscn":
+	# If we somehow start time explicitly but we are on LevelLast or Level1, don't start
+	if SceneManager and (SceneManager._next_scene_path == "res://scenes/snake_tower/level/LevelLast.tscn" or SceneManager._next_scene_path == "res://scenes/snake_tower/level/Level1.tscn"):
 		_is_time_running = false
 	else:
 		_is_time_running = true
