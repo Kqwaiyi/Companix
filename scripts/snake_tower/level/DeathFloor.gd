@@ -3,7 +3,8 @@ extends Node2D
 
 func _ready():
 	# Register the y-coordinate (in grid space) to LevelManager
-	LevelManager.death_y = int((position.y / Globals.TILE_SIZE))
+	if not Engine.is_editor_hint():
+		LevelManager.death_y = int((position.y / Globals.TILE_SIZE))
 
 func _draw():
 	if Engine.is_editor_hint():
