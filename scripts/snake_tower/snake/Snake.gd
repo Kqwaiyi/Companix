@@ -103,7 +103,7 @@ func update_grid_registration():
 	for i in range(segments.size()):
 		var cell = LevelManager.get_cell(segments[i])
 		if cell == LevelManager.CellType.SNAKE_HEAD or cell == LevelManager.CellType.SNAKE_BODY:
-			LevelManager.unregister_cell(segments[i])
+			LevelManager.unregister_cell(segments[i], cell)
 	
 	for i in range(segments.size()):
 		if i == 0:
@@ -175,7 +175,7 @@ func move_segments(target: Vector2i, grow: bool):
 	for i in range(segments.size()):
 		var cell = LevelManager.get_cell(segments[i])
 		if cell == LevelManager.CellType.SNAKE_HEAD or cell == LevelManager.CellType.SNAKE_BODY:
-			LevelManager.unregister_cell(segments[i])
+			LevelManager.unregister_cell(segments[i], cell)
 			
 	var new_segments: Array[Vector2i] = []
 	new_segments.append(target)
@@ -214,7 +214,7 @@ func do_fall_step():
 	for i in range(segments.size()):
 		var cell = LevelManager.get_cell(segments[i])
 		if cell == LevelManager.CellType.SNAKE_HEAD or cell == LevelManager.CellType.SNAKE_BODY:
-			LevelManager.unregister_cell(segments[i])
+			LevelManager.unregister_cell(segments[i], cell)
 			
 	for i in range(segments.size()):
 		segments[i] += Vector2i(0, 1)
