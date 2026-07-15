@@ -150,10 +150,12 @@ func try_move(dir: Vector2i):
 		LevelManager.consume_apple(target)
 	elif cell == LevelManager.CellType.SPIKE:
 		move_segments(target, false) # visually move into it
+		set_process(false)
 		LevelManager.trigger_loss()
 		return
 	elif cell == LevelManager.CellType.GOAL:
 		move_segments(target, false)
+		set_process(false)
 		LevelManager.trigger_win()
 		return
 	elif cell == LevelManager.CellType.BOX:
@@ -224,14 +226,17 @@ func do_fall_step():
 	
 	for seg in segments:
 		if seg.y >= LevelManager.death_y:
+			set_process(false)
 			LevelManager.trigger_loss()
 			return
 	
 	if landing_on_spike:
+		set_process(false)
 		LevelManager.trigger_loss()
 		return
 		
 	if landing_on_goal:
+		set_process(false)
 		LevelManager.trigger_win()
 		return
 		
