@@ -9,6 +9,8 @@ signal transition_finished
 var _next_scene_path: String = ""
 var _current_fade_duration: float = 0.5
 var _target_viewport: Node = null
+var _is_viewport_transition: bool = false
+var _custom_fade_rect: ColorRect = null
 
 func _ready():
 	process_mode = Node.PROCESS_MODE_ALWAYS
@@ -18,15 +20,22 @@ func _ready():
 	set_process(false)
 
 func change_scene_to_file(path: String, fade_duration: float = 0.5):
+	if _next_scene_path != "":
+		return
+	
+	_is_viewport_transition = false
+	_custom_fade_rect = null
 	_start_transition(path, fade_duration, null)
 
-func change_scene_in_viewport(path: String, viewport: Node, fade_duration: float = 0.5):
+func change_scene_in_viewport(path: String, viewport: Node, custom_fade_rect: ColorRect, fade_duration: float = 0.5):
+	if _next_scene_path != "":
+		return
+		
+	_is_viewport_transition = true
+	_custom_fade_rect = custom_fade_rect
 	_start_transition(path, fade_duration, viewport)
 
 func _start_transition(path: String, fade_duration: float, viewport: Node):
-	if _next_scene_path != "":
-		return # Already transitioning
-		
 	_next_scene_path = path
 	_current_fade_duration = fade_duration
 	_target_viewport = viewport
@@ -35,13 +44,25 @@ func _start_transition(path: String, fade_duration: float, viewport: Node):
 	# Start loading the scene in the background
 	ResourceLoader.load_threaded_request(path)
 	
-	# Enable blocking interactions
-	color_rect.mouse_filter = Control.MOUSE_FILTER_STOP
-	color_rect.show()
+	var active_rect: ColorRect
 	
-	var tween = create_tween()
-	tween.tween_property(color_rect, "modulate:a", 1.0, fade_duration)
-	tween.finished.connect(_on_fade_out_finished)
+	if _is_viewport_transition and _custom_fade_rect != null:
+		active_rect = _custom_fade_rect
+		active_rect.mouse_filter = Control.MOUSE_FILTER_STOP
+		active_rect.show()
+	else:
+		# Use global transition layer
+		color_rect.mouse_filter = Control.MOUSE_FILTER_STOP
+		color_rect.show()
+		active_rect = color_rect
+	
+	if fade_duration > 0.0:
+		var tween = create_tween()
+		tween.tween_property(active_rect, "modulate:a", 1.0, fade_duration)
+		tween.finished.connect(_on_fade_out_finished)
+	else:
+		active_rect.modulate.a = 0.0
+		_on_fade_out_finished()
 
 func _on_fade_out_finished():
 	var load_status = ResourceLoader.load_threaded_get_status(_next_scene_path)
@@ -70,7 +91,7 @@ func _switch_scene():
 	# Retrieve loaded scene
 	var packed_scene = ResourceLoader.load_threaded_get(_next_scene_path)
 	if packed_scene:
-		if _target_viewport != null:
+		if _is_viewport_transition and _target_viewport != null:
 			for child in _target_viewport.get_children():
 				child.queue_free()
 			var instance = packed_scene.instantiate()
@@ -87,10 +108,16 @@ func _switch_scene():
 	# Wait one frame for the tree to update
 	await get_tree().process_frame
 	
+	var active_rect = _custom_fade_rect if _is_viewport_transition and _custom_fade_rect else color_rect
+	
 	# Start fade in
-	var tween = create_tween()
-	tween.tween_property(color_rect, "modulate:a", 0.0, _current_fade_duration)
-	tween.finished.connect(_on_fade_in_finished)
+	if _current_fade_duration > 0.0:
+		var tween = create_tween()
+		tween.tween_property(active_rect, "modulate:a", 0.0, _current_fade_duration)
+		tween.finished.connect(_on_fade_in_finished)
+	else:
+		active_rect.modulate.a = 0.0
+		_on_fade_in_finished()
 
 func _on_fade_in_finished():
 	_reset_transition()
@@ -98,6 +125,14 @@ func _on_fade_in_finished():
 
 func _reset_transition():
 	_next_scene_path = ""
+	
+	if _custom_fade_rect:
+		_custom_fade_rect.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		_custom_fade_rect.modulate.a = 0.0
+		_custom_fade_rect = null
+	
 	color_rect.modulate.a = 0
 	color_rect.hide()
 	color_rect.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	_is_viewport_transition = false
+	_target_viewport = null

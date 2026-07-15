@@ -27,7 +27,10 @@ func _on_level_won():
 func _switch_level(target_scene: String):
 	var vp = get_viewport()
 	if vp is SubViewport:
-		SceneManager.change_scene_in_viewport(target_scene, vp, 0.5)
+		var custom_rect: ColorRect = null
+		if vp.get_parent() and vp.get_parent().get_parent():
+			custom_rect = vp.get_parent().get_parent().get_node_or_null("TransitionRect")
+		SceneManager.change_scene_in_viewport(target_scene, vp, custom_rect, 0.5)
 	else:
 		SceneManager.change_scene_to_file(target_scene)
 
@@ -44,7 +47,10 @@ func reset_level():
 func _reload_level():
 	var vp = get_viewport()
 	if vp is SubViewport:
-		SceneManager.change_scene_in_viewport(scene_file_path, vp, 0.5)
+		var custom_rect: ColorRect = null
+		if vp.get_parent() and vp.get_parent().get_parent():
+			custom_rect = vp.get_parent().get_parent().get_node_or_null("TransitionRect")
+		SceneManager.change_scene_in_viewport(scene_file_path, vp, custom_rect, 0.5)
 	else:
 		get_tree().reload_current_scene()
 
