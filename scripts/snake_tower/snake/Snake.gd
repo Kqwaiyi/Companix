@@ -56,6 +56,10 @@ func init_snake(start_positions: Array[Vector2i]):
 	check_gravity()
 	if has_node("Camera2D"):
 		$Camera2D.reset_smoothing()
+		var target_y = LevelManager.death_y
+		if LevelManager.camera_limit_y != -1:
+			target_y = LevelManager.camera_limit_y
+		$Camera2D.limit_bottom = (target_y * Globals.TILE_SIZE) + (Globals.TILE_SIZE * 2)
 
 func add_segment(pos: Vector2i):
 	segments.append(pos)
@@ -99,7 +103,7 @@ func update_grid_registration():
 	for i in range(segments.size()):
 		var cell = LevelManager.get_cell(segments[i])
 		if cell == LevelManager.CellType.SNAKE_HEAD or cell == LevelManager.CellType.SNAKE_BODY:
-			LevelManager.unregister_cell(segments[i])
+			LevelManager.unregister_cell(segments[i], cell)
 	
 	for i in range(segments.size()):
 		if i == 0:
@@ -146,10 +150,12 @@ func try_move(dir: Vector2i):
 		LevelManager.consume_apple(target)
 	elif cell == LevelManager.CellType.SPIKE:
 		move_segments(target, false) # visually move into it
+		set_process(false)
 		LevelManager.trigger_loss()
 		return
 	elif cell == LevelManager.CellType.GOAL:
 		move_segments(target, false)
+		set_process(false)
 		LevelManager.trigger_win()
 		return
 	elif cell == LevelManager.CellType.BOX:
@@ -171,7 +177,7 @@ func move_segments(target: Vector2i, grow: bool):
 	for i in range(segments.size()):
 		var cell = LevelManager.get_cell(segments[i])
 		if cell == LevelManager.CellType.SNAKE_HEAD or cell == LevelManager.CellType.SNAKE_BODY:
-			LevelManager.unregister_cell(segments[i])
+			LevelManager.unregister_cell(segments[i], cell)
 			
 	var new_segments: Array[Vector2i] = []
 	new_segments.append(target)
@@ -210,7 +216,7 @@ func do_fall_step():
 	for i in range(segments.size()):
 		var cell = LevelManager.get_cell(segments[i])
 		if cell == LevelManager.CellType.SNAKE_HEAD or cell == LevelManager.CellType.SNAKE_BODY:
-			LevelManager.unregister_cell(segments[i])
+			LevelManager.unregister_cell(segments[i], cell)
 			
 	for i in range(segments.size()):
 		segments[i] += Vector2i(0, 1)
@@ -218,11 +224,19 @@ func do_fall_step():
 	update_grid_registration()
 	update_visuals()
 	
+	for seg in segments:
+		if seg.y >= LevelManager.death_y:
+			set_process(false)
+			LevelManager.trigger_loss()
+			return
+	
 	if landing_on_spike:
+		set_process(false)
 		LevelManager.trigger_loss()
 		return
 		
 	if landing_on_goal:
+		set_process(false)
 		LevelManager.trigger_win()
 		return
 		

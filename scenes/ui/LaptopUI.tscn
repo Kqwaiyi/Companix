@@ -1,45 +1,51 @@
-[gd_scene load_steps=2 format=3 uid="uid://cxab321y7zxq9"]
+[gd_scene format=3 uid="uid://cxab321y70xra"]
 
-[ext_resource type="Script" path="res://scripts/ui/LaptopUI.gd" id="1_laptop"]
+[ext_resource type="Script" uid="uid://2nsxw3i5jl14" path="res://scripts/ui/LaptopUI.gd" id="1_laptop"]
 
-[node name="LaptopUI" type="CanvasLayer"]
+[node name="LaptopUI" type="CanvasLayer" unique_id=450819383]
 layer = 90
 script = ExtResource("1_laptop")
 
-[node name="BackgroundTint" type="ColorRect" parent="."]
+[node name="BackgroundTint" type="ColorRect" parent="." unique_id=1776936497]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 0.705882)
+color = Color(0, 0, 0, 0.25490198)
 
-[node name="CenterContainer" type="CenterContainer" parent="."]
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=344186582]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Panel" type="Panel" parent="CenterContainer"]
+[node name="Panel" type="Panel" parent="CenterContainer" unique_id=777034364]
 custom_minimum_size = Vector2(1000, 600)
 layout_mode = 2
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="CenterContainer/Panel"]
+[node name="SubViewportContainer" type="SubViewportContainer" parent="CenterContainer/Panel" unique_id=2016133423]
+texture_filter = 1
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = 8.0
+offset_right = 4.0
+offset_bottom = 8.0
 grow_horizontal = 2
 grow_vertical = 2
 stretch = true
 
-[node name="SubViewport" type="SubViewport" parent="CenterContainer/Panel/SubViewportContainer"]
+[node name="SubViewport" type="SubViewport" parent="CenterContainer/Panel/SubViewportContainer" unique_id=468416810]
 handle_input_locally = false
+canvas_item_default_texture_filter = 0
 size = Vector2i(1000, 600)
 render_target_update_mode = 4
 
-[node name="CloseButton" type="Button" parent="CenterContainer/Panel"]
+[node name="CloseButton" type="Button" parent="CenterContainer/Panel" unique_id=722675414]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
