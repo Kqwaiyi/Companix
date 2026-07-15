@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://results_scene"]
 
-[ext_resource type="Script" path="res://cat_game/scripts/ui/results_screen.gd" id="1_results"]
+[ext_resource type="Script" path="res://scripts/cat_game/ui/results_screen.gd" id="1_results"]
 
 [node name="ResultsScreen" type="CanvasLayer"]
 script = ExtResource("1_results")

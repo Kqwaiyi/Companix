@@ -15,7 +15,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 [application]
 
 config/name="Emberborne"
-run/main_scene="res://cat_game/scenes/core/main.tscn"
+run/main_scene="res://scenes/cat_game/core/main.tscn"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 

@@ -1,8 +1,8 @@
 [gd_scene load_steps=43 format=3 uid="uid://b2qxfiflox5xx"]
 
-[ext_resource type="Script" uid="uid://c5kcqc1ewjkpc" path="res://cat_game/scripts/characters/cat.gd" id="1_catscript"]
+[ext_resource type="Script" uid="uid://c5kcqc1ewjkpc" path="res://scripts/cat_game/characters/cat.gd" id="1_catscript"]
 [ext_resource type="Texture2D" uid="uid://3c11ac21823c" path="res://assets/sprites/cat/Cat.png" id="2_tmpp7"]
-[ext_resource type="Script" uid="uid://dh2avewhkna3e" path="res://cat_game/scripts/characters/cat_animator.gd" id="3_catanim"]
+[ext_resource type="Script" uid="uid://dh2avewhkna3e" path="res://scripts/cat_game/characters/cat_animator.gd" id="3_catanim"]
 
 [sub_resource type="CircleShape2D" id="1_body_shape"]
 radius = 12.0

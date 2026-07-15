@@ -1,9 +1,9 @@
 [gd_scene load_steps=7 format=3 uid="uid://p2tgovs3wppl"]
 
-[ext_resource type="Script" uid="uid://b40vdvjlmot7" path="res://cat_game/scripts/characters/dog.gd" id="1_dog"]
-[ext_resource type="Script" uid="uid://dc83e8ygmgd17" path="res://cat_game/scripts/environment/vision_cone.gd" id="2_cone"]
-[ext_resource type="SpriteFrames" uid="uid://bfmuwocr81ve7" path="res://cat_game/scenes/characters/dog_variants/dog5.tres" id="3_f0e8s"]
-[ext_resource type="Script" uid="uid://dskuwaluiv83h" path="res://cat_game/scripts/characters/dog_animator.gd" id="4_doganim"]
+[ext_resource type="Script" uid="uid://b40vdvjlmot7" path="res://scripts/cat_game/characters/dog.gd" id="1_dog"]
+[ext_resource type="Script" uid="uid://dc83e8ygmgd17" path="res://scripts/cat_game/environment/vision_cone.gd" id="2_cone"]
+[ext_resource type="SpriteFrames" uid="uid://bfmuwocr81ve7" path="res://scenes/cat_game/characters/dog_variants/dog5.tres" id="3_f0e8s"]
+[ext_resource type="Script" uid="uid://dskuwaluiv83h" path="res://scripts/cat_game/characters/dog_animator.gd" id="4_doganim"]
 
 [sub_resource type="CircleShape2D" id="1_body"]
 radius = 16.0

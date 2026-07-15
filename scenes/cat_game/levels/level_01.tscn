@@ -1,14 +1,14 @@
 [gd_scene load_steps=24 format=3 uid="uid://level_01"]
 
-[ext_resource type="Script"      path="res://cat_game/scripts/levels/level_01.gd"             id="1_level"]
-[ext_resource type="PackedScene" path="res://cat_game/scenes/characters/cat.tscn"              id="2_cat"]
-[ext_resource type="PackedScene" path="res://cat_game/scenes/characters/human.tscn"            id="3_human"]
-[ext_resource type="PackedScene" path="res://cat_game/scenes/characters/dog.tscn"              id="4_dog"]
-[ext_resource type="PackedScene" path="res://cat_game/scenes/characters/mouse.tscn"            id="5_mouse"]
-[ext_resource type="PackedScene" path="res://cat_game/scenes/environment/hiding_spot.tscn"     id="6_hide"]
-[ext_resource type="PackedScene" path="res://cat_game/scenes/environment/exit_door.tscn"       id="7_door"]
-[ext_resource type="PackedScene" path="res://cat_game/scenes/ui/hud.tscn"                      id="8_hud"]
-[ext_resource type="PackedScene" path="res://cat_game/scenes/ui/results_screen.tscn"           id="9_results"]
+[ext_resource type="Script"      path="res://scripts/cat_game/levels/level_01.gd"             id="1_level"]
+[ext_resource type="PackedScene" path="res://scenes/cat_game/characters/cat.tscn"              id="2_cat"]
+[ext_resource type="PackedScene" path="res://scenes/cat_game/characters/human.tscn"            id="3_human"]
+[ext_resource type="PackedScene" path="res://scenes/cat_game/characters/dog.tscn"              id="4_dog"]
+[ext_resource type="PackedScene" path="res://scenes/cat_game/characters/mouse.tscn"            id="5_mouse"]
+[ext_resource type="PackedScene" path="res://scenes/cat_game/environment/hiding_spot.tscn"     id="6_hide"]
+[ext_resource type="PackedScene" path="res://scenes/cat_game/environment/exit_door.tscn"       id="7_door"]
+[ext_resource type="PackedScene" path="res://scenes/cat_game/ui/hud.tscn"                      id="8_hud"]
+[ext_resource type="PackedScene" path="res://scenes/cat_game/ui/results_screen.tscn"           id="9_results"]
 
 ; ── Wall / furniture shapes ───────────────────────────────────────────────────
 [sub_resource type="RectangleShape2D" id="sh_outer_h"]
