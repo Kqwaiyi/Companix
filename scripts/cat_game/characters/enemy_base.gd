@@ -17,7 +17,7 @@ extends CharacterBody2D
 
 # ── Timing ────────────────────────────────────────────────────────────────────
 @export var lost_sight_delay: float  = 0
-@export var alert_duration: float    = 0.7   # pause before chasing (smooth transition)
+@export var alert_duration: float    = 0.3   # pause before chasing (smooth transition)
 @export var bark_duration: float     = 1.0   # stop + bark after tagging cat
 
 # ── Signals ───────────────────────────────────────────────────────────────────
@@ -160,6 +160,11 @@ func _tick_chase(delta: float) -> void:
 	else:
 		velocity = Vector2.ZERO
 
+	# Hiding spot = instant concealment; don't wait out the lost_sight_delay timer
+	if _player.is_hidden:
+		_enter_return()
+		return
+
 	if not _can_see_player():
 		_lost_timer += delta
 		if _lost_timer >= lost_sight_delay:
@@ -209,7 +214,7 @@ func _enter_return() -> void:
 # ── Bark ──────────────────────────────────────────────────────────────────────
 
 func _on_self_catch_entered(body: Node) -> void:
-	if body.is_in_group("player"):
+	if body.is_in_group("player") and not _player.is_hidden:
 		_bark_timer = bark_duration
 		var vis := get_node_or_null("Visual")
 		if vis != null and vis.has_method("set_barking"):
