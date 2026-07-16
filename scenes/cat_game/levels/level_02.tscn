@@ -5085,6 +5085,8 @@ scale = Vector2(2.031249, 1.7812493)
 texture = ExtResource("6_wuvb2")
 
 [node name="enviroment (for map making)" type="Node2D" parent="."]
+position = Vector2(1327, 1283)
+metadata/_edit_group_ = true
 
 [node name="Chairs" type="Node2D" parent="enviroment (for map making)"]
 position = Vector2(1399, -907)

@@ -2470,14 +2470,14 @@ visible = false
 position = Vector2(220, 752)
 patrol_route = NodePath("../../Patrol Routes/Dog01Route")
 
-[node name="VisionCone" parent="Characters/Dog01" index="1"]
+[node name="VisionCone" parent="Characters/Dog01" index="2"]
 ray_count = 20
 
-[node name="Visual" parent="Characters/Dog01" index="4"]
+[node name="Visual" parent="Characters/Dog01" index="5"]
 sprite_frames = ExtResource("112_af4dh")
 animation = &"Bark"
 
-[node name="AlertIcon" parent="Characters/Dog01" index="5"]
+[node name="AlertIcon" parent="Characters/Dog01" index="6"]
 offset_left = -6.0
 offset_top = -52.0
 offset_right = -6.0
@@ -2487,14 +2487,14 @@ offset_bottom = -52.0
 position = Vector2(-215, 606)
 patrol_route = NodePath("../../Patrol Routes/Dog03Route")
 
-[node name="VisionCone" parent="Characters/Dog03" index="1"]
+[node name="VisionCone" parent="Characters/Dog03" index="2"]
 ray_count = 20
 
-[node name="Visual" parent="Characters/Dog03" index="4"]
+[node name="Visual" parent="Characters/Dog03" index="5"]
 sprite_frames = ExtResource("113_i0vt7")
 animation = &"Bark"
 
-[node name="AlertIcon" parent="Characters/Dog03" index="5"]
+[node name="AlertIcon" parent="Characters/Dog03" index="6"]
 offset_left = -6.0
 offset_top = -52.0
 offset_right = -6.0
@@ -4690,10 +4690,6 @@ collision_mask = 0
 position = Vector2(396, 752)
 shape = SubResource("RectangleShape2D_rnfd2")
 
-[node name="TopWallLeft" type="CollisionShape2D" parent="map3/WallCollision"]
-position = Vector2(-110, 242.5)
-shape = SubResource("wall_top_left")
-
 [node name="InnerLeftWall" type="CollisionShape2D" parent="map3/WallCollision"]
 position = Vector2(172, 600)
 shape = SubResource("RectangleShape2D_od75w")
@@ -4705,10 +4701,6 @@ shape = SubResource("RectangleShape2D_ldp3s")
 [node name="InnerRightWall" type="CollisionShape2D" parent="map3/WallCollision"]
 position = Vector2(716, 527.625)
 shape = SubResource("RectangleShape2D_go5qf")
-
-[node name="TopWallRight" type="CollisionShape2D" parent="map3/WallCollision"]
-position = Vector2(74, 282.25)
-shape = SubResource("wall_top_right")
 
 [node name="RightWall" type="CollisionShape2D" parent="map3/WallCollision"]
 position = Vector2(716, 764.25)
