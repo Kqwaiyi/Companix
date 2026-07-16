@@ -24,7 +24,7 @@ func _ready():
 
 func _process(_delta):
 	if time_label != null:
-		var total_seconds = Globals.total_time_elapsed
+		var total_seconds = Globals.total_time_elapsed + Globals.current_level_time
 		var minutes = int(total_seconds) / 60
 		var seconds = int(total_seconds) % 60
 		var milliseconds = int((total_seconds - int(total_seconds)) * 100)
@@ -34,6 +34,7 @@ func _on_level_won():
 	if _is_transitioning: return
 	_is_transitioning = true
 	print("Level Won!")
+	Globals.commit_time()
 	var next_level = Globals.get_next_level(scene_file_path)
 	if next_level != "":
 		Globals.update_minigame_level(next_level)

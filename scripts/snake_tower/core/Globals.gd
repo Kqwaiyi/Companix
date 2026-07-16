@@ -3,6 +3,7 @@ extends Node
 const TILE_SIZE: int = 16
 
 var total_time_elapsed: float = 0.0
+var current_level_time: float = 0.0
 var _is_time_running: bool = false
 var current_minigame_level: String = "res://scenes/snake_tower/level/Level1.tscn"
 
@@ -33,15 +34,21 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	if _is_time_running:
-		total_time_elapsed += delta
+		current_level_time += delta
+
+func commit_time() -> void:
+	total_time_elapsed += current_level_time
+	current_level_time = 0.0
 
 func _on_scene_loaded() -> void:
 	var loaded_scene: String = SceneManager._next_scene_path
+	current_level_time = 0.0 # reset attempt timer whenever scene reloads/switches
 	# Use dictionary matching or prefix matching for valid minigame scenes
 	if tracked_scenes.has(loaded_scene) or loaded_scene.begins_with("res://scenes/snake_tower/level/"):
 		if loaded_scene == "res://scenes/snake_tower/level/Level1.tscn":
 			_is_time_running = false
 			total_time_elapsed = 0.0
+			current_level_time = 0.0
 		elif loaded_scene == "res://scenes/snake_tower/level/LevelLast.tscn":
 			_is_time_running = false
 		else:

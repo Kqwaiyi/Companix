@@ -76,9 +76,15 @@ The `Snake.gd` is the most complex entity, handling input, multi-segment movemen
 
 ## 5. Global State & Timers (`Globals.gd`)
 
-`Globals.gd` is an Autoload singleton dedicated to tracking persistence across level changes. It handles the **Total Time Elapsed**, tracks the **Furthest Unlocked Level**, and prevents level regression.
+`Globals.gd` is an Autoload singleton dedicated to tracking persistence across level changes. It handles the **Total Time Elapsed**, tracks the **Furthest Unlocked Level**, prevents level regression, and provides a **Save-Scum Timer System**.
 
 *   **Process Mode:** Set to `Node.PROCESS_MODE_ALWAYS` so it continues to calculate delta time even when the main game tree is paused.
+*   **Save-Scum Timer System:** To prevent penalizing players for trying to figure out a puzzle, the timer uses a save-scum mechanic.
+    *   `current_level_time`: A temporary variable tracking the time spent on the current attempt. This is incremented every frame during active gameplay.
+    *   `total_time_elapsed`: A persistent datastore of accumulated time across all completed levels.
+    *   When the player wins a level (touches the goal), `Globals.commit_time()` is called, moving the temporary time into the persistent datastore.
+    *   When a level is reset, restarted due to death, or the player closes/opens the laptop, `Globals._on_scene_loaded` triggers and instantly resets the `current_level_time` to `0.0`. This discards any time spent on a failed attempt.
+*   **Dynamic Real-Time UI (`Level.gd`):** The total elapsed time is dynamically displayed on screen (from Level 2 onwards). Rather than manually editing each `.tscn` file, `Level.gd` instantiates a `Label` on `_ready()`, aligns it beneath the physical reset button, and seamlessly sums `total_time_elapsed` and `current_level_time` every frame.
 *   **Scene Hook:** Connects to `SceneManager.scene_loaded`. When a scene finishes loading, it checks if the scene path is within a valid minigame directory (`res://scenes/snake_tower/level/`) or explicitly listed in a dictionary. If valid, the timer runs; if it is the final end screen (`LevelLast.tscn`) or invalid, it pauses.
 *   **Level Tracking (`current_minigame_level`):** Maintains the path to the highest level the player has reached. Upon winning a level, it calculates the next level and updates this variable.
 *   **Anti-Regression (`get_resume_level(path)`):** A helper function exposed to callers who want to launch the minigame. It intercepts requests for early levels and forcefully returns the furthest unlocked level instead, allowing players to safely "resume" their progress after closing the laptop.
