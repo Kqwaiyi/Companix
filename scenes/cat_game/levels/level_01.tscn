@@ -1,4 +1,4 @@
-[gd_scene load_steps=155 format=3 uid="uid://cajixu3dagc23"]
+[gd_scene load_steps=158 format=3 uid="uid://cajixu3dagc23"]
 
 [ext_resource type="Texture2D" uid="uid://chvlnk4siv40s" path="res://assets/sprites/environment/Sample.png" id="1_fa1h0"]
 [ext_resource type="Texture2D" uid="uid://c8qnum6m38yjg" path="res://assets/sprites/environment/output/tile_0_0.png" id="3_yy7jo"]
@@ -135,14 +135,23 @@ size = Vector2(31.500345, 39.00038)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l1b3u"]
 size = Vector2(32.000336, 40.000397)
 
-[sub_resource type="RectangleShape2D" id="bed_h2"]
-size = Vector2(20, 15.25)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hakft"]
+size = Vector2(57.000526, 45.00047)
 
-[sub_resource type="RectangleShape2D" id="bed_2x2"]
-size = Vector2(30, 30)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t8y25"]
+size = Vector2(57.000515, 45.00047)
 
-[sub_resource type="RectangleShape2D" id="bed_v2"]
-size = Vector2(14, 29.75)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tm7uy"]
+size = Vector2(89.2508, 89.25087)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0pbsn"]
+size = Vector2(88.50081, 89.25087)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_okm8u"]
+size = Vector2(43.500385, 89.250885)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cm8sk"]
+size = Vector2(43.50038, 89.250885)
 
 [sub_resource type="RectangleShape2D" id="sf_counter_v"]
 size = Vector2(10.000004, 47.75)
@@ -242,16 +251,6 @@ texture = ExtResource("1_fa1h0")
 
 [node name="enviroment (for map making)" type="Node2D" parent="."]
 
-[node name="Door" type="Node2D" parent="enviroment (for map making)"]
-
-[node name="Door" type="Sprite2D" parent="enviroment (for map making)/Door"]
-position = Vector2(-346, 302.00006)
-scale = Vector2(2.031249, 1.7812493)
-texture = ExtResource("6_wuvb2")
-
-[node name="ExitDoor" parent="enviroment (for map making)/Door" instance=ExtResource("201_door")]
-position = Vector2(-344, 300)
-
 [node name="Chairs" type="Node2D" parent="enviroment (for map making)"]
 position = Vector2(1399, -907)
 scale = Vector2(3, 3)
@@ -320,14 +319,18 @@ texture = ExtResource("12_g7bok")
 position = Vector2(-36.5, 1.5)
 texture = ExtResource("13_rx134")
 
-[node name="Collision" type="StaticBody2D" parent="enviroment (for map making)/beds/Gbed1"]
-position = Vector2(-35, 1.5)
-collision_layer = 65
-collision_mask = 0
+[node name="BedHide" parent="enviroment (for map making)/beds/Gbed1" instance=ExtResource("200_hide")]
+position = Vector2(-32.25, 2.75)
+scale = Vector2(0.33333, 0.33333)
+metadata/_edit_group_ = true
 
-[node name="Shape" type="CollisionShape2D" parent="enviroment (for map making)/beds/Gbed1/Collision"]
-position = Vector2(0, -0.375)
-shape = SubResource("bed_h2")
+[node name="HideCollision" parent="enviroment (for map making)/beds/Gbed1/BedHide/HideArea" index="0"]
+position = Vector2(-9.000061, -3)
+shape = SubResource("RectangleShape2D_hakft")
+
+[node name="VisionCollision" parent="enviroment (for map making)/beds/Gbed1/BedHide/VisionBlocker" index="0"]
+position = Vector2(-9.000061, -3)
+shape = SubResource("RectangleShape2D_t8y25")
 
 [node name="Rbed1" type="Node2D" parent="enviroment (for map making)/beds"]
 position = Vector2(8.75, 16.25)
@@ -341,13 +344,17 @@ texture = ExtResource("14_elyfg")
 position = Vector2(12, -1)
 texture = ExtResource("12_g7bok")
 
-[node name="Collision" type="StaticBody2D" parent="enviroment (for map making)/beds/Rbed1"]
-position = Vector2(-3, -1)
-collision_layer = 65
-collision_mask = 0
+[node name="BedHide" parent="enviroment (for map making)/beds/Rbed1" instance=ExtResource("200_hide")]
+scale = Vector2(0.33333, 0.33333)
+metadata/_edit_group_ = true
 
-[node name="Shape" type="CollisionShape2D" parent="enviroment (for map making)/beds/Rbed1/Collision"]
-shape = SubResource("bed_h2")
+[node name="HideCollision" parent="enviroment (for map making)/beds/Rbed1/BedHide/HideArea" index="0"]
+position = Vector2(-9.000061, -3)
+shape = SubResource("RectangleShape2D_hakft")
+
+[node name="VisionCollision" parent="enviroment (for map making)/beds/Rbed1/BedHide/VisionBlocker" index="0"]
+position = Vector2(-9.000061, -3)
+shape = SubResource("RectangleShape2D_t8y25")
 
 [node name="Gbed2" type="Node2D" parent="enviroment (for map making)/beds"]
 position = Vector2(11.75, -6.5)
@@ -371,14 +378,18 @@ position = Vector2(-30, -13)
 rotation = -3.1415925
 texture = ExtResource("18_veuw3")
 
-[node name="Collision" type="StaticBody2D" parent="enviroment (for map making)/beds/Gbed2"]
-position = Vector2(-21.5, -20.5)
-collision_layer = 65
-collision_mask = 0
+[node name="BedHide" parent="enviroment (for map making)/beds/Gbed2" instance=ExtResource("200_hide")]
+position = Vector2(-23.75, -26.5)
+scale = Vector2(0.33333, 0.33333)
+metadata/_edit_group_ = true
 
-[node name="Shape" type="CollisionShape2D" parent="enviroment (for map making)/beds/Gbed2/Collision"]
-position = Vector2(0.25, 0)
-shape = SubResource("bed_2x2")
+[node name="HideCollision" parent="enviroment (for map making)/beds/Gbed2/BedHide/HideArea" index="0"]
+position = Vector2(7.125061, 19.125206)
+shape = SubResource("RectangleShape2D_tm7uy")
+
+[node name="VisionCollision" parent="enviroment (for map making)/beds/Gbed2/BedHide/VisionBlocker" index="0"]
+position = Vector2(6.750122, 19.125206)
+shape = SubResource("RectangleShape2D_0pbsn")
 
 [node name="Rbed2" type="Node2D" parent="enviroment (for map making)/beds"]
 position = Vector2(-17.5, -8.25)
@@ -402,13 +413,18 @@ position = Vector2(33.5, -11.5)
 rotation = -3.1415925
 texture = ExtResource("18_veuw3")
 
-[node name="Collision" type="StaticBody2D" parent="enviroment (for map making)/beds/Rbed2"]
-position = Vector2(42, -19)
-collision_layer = 65
-collision_mask = 0
+[node name="BedHide" parent="enviroment (for map making)/beds/Rbed2" instance=ExtResource("200_hide")]
+position = Vector2(39.5, -25.5)
+scale = Vector2(0.33333, 0.33333)
+metadata/_edit_group_ = true
 
-[node name="Shape" type="CollisionShape2D" parent="enviroment (for map making)/beds/Rbed2/Collision"]
-shape = SubResource("bed_2x2")
+[node name="HideCollision" parent="enviroment (for map making)/beds/Rbed2/BedHide/HideArea" index="0"]
+position = Vector2(7.125061, 19.125206)
+shape = SubResource("RectangleShape2D_tm7uy")
+
+[node name="VisionCollision" parent="enviroment (for map making)/beds/Rbed2/BedHide/VisionBlocker" index="0"]
+position = Vector2(6.750122, 19.125206)
+shape = SubResource("RectangleShape2D_0pbsn")
 
 [node name="Gbed3" type="Node2D" parent="enviroment (for map making)/beds"]
 position = Vector2(8.25, -9.5)
@@ -423,14 +439,23 @@ position = Vector2(41, 24)
 rotation = -3.1415925
 texture = ExtResource("22_0aqr5")
 
-[node name="Collision" type="StaticBody2D" parent="enviroment (for map making)/beds/Gbed3"]
-position = Vector2(41.5, 16.5)
-collision_layer = 65
-collision_mask = 0
+[node name="BedHide" parent="enviroment (for map making)/beds/Gbed3" instance=ExtResource("200_hide")]
+scale = Vector2(0.33333, 0.33333)
+metadata/_edit_group_ = true
 
-[node name="Shape" type="CollisionShape2D" parent="enviroment (for map making)/beds/Gbed3/Collision"]
-position = Vector2(0, -0.125)
-shape = SubResource("bed_v2")
+[node name="HideArea" parent="enviroment (for map making)/beds/Gbed3/BedHide" index="0"]
+position = Vector2(140.2514, 29.250292)
+
+[node name="HideCollision" parent="enviroment (for map making)/beds/Gbed3/BedHide/HideArea" index="0"]
+position = Vector2(-15.750153, 19.125183)
+shape = SubResource("RectangleShape2D_okm8u")
+
+[node name="VisionBlocker" parent="enviroment (for map making)/beds/Gbed3/BedHide" index="1"]
+position = Vector2(140.2514, 29.250292)
+
+[node name="VisionCollision" parent="enviroment (for map making)/beds/Gbed3/BedHide/VisionBlocker" index="0"]
+position = Vector2(-15.750153, 19.125183)
+shape = SubResource("RectangleShape2D_cm8sk")
 
 [node name="Rbed3" type="Node2D" parent="enviroment (for map making)/beds"]
 position = Vector2(33.5, -35)
@@ -445,13 +470,24 @@ position = Vector2(17, 16)
 rotation = -3.1415925
 texture = ExtResource("24_sxhpv")
 
-[node name="Collision" type="StaticBody2D" parent="enviroment (for map making)/beds/Rbed3"]
-position = Vector2(17.5, 8.5)
-collision_layer = 65
-collision_mask = 0
+[node name="BedHide" parent="enviroment (for map making)/beds/Rbed3" instance=ExtResource("200_hide")]
+position = Vector2(-23.5, -7.5)
+scale = Vector2(0.33333, 0.33333)
+metadata/_edit_group_ = true
 
-[node name="Shape" type="CollisionShape2D" parent="enviroment (for map making)/beds/Rbed3/Collision"]
-shape = SubResource("bed_v2")
+[node name="HideArea" parent="enviroment (for map making)/beds/Rbed3/BedHide" index="0"]
+position = Vector2(140.2514, 29.250292)
+
+[node name="HideCollision" parent="enviroment (for map making)/beds/Rbed3/BedHide/HideArea" index="0"]
+position = Vector2(-15.750153, 19.125183)
+shape = SubResource("RectangleShape2D_okm8u")
+
+[node name="VisionBlocker" parent="enviroment (for map making)/beds/Rbed3/BedHide" index="1"]
+position = Vector2(140.2514, 29.250292)
+
+[node name="VisionCollision" parent="enviroment (for map making)/beds/Rbed3/BedHide/VisionBlocker" index="0"]
+position = Vector2(-15.750153, 19.125183)
+shape = SubResource("RectangleShape2D_cm8sk")
 
 [node name="Side Furtniture" type="Node2D" parent="enviroment (for map making)"]
 position = Vector2(-821, -123)
@@ -1125,6 +1161,27 @@ texture = ExtResource("104_l1b3u")
 [node name="Sprite2D" type="Sprite2D" parent="enviroment (for map making)/Floor2"]
 position = Vector2(-476, 213)
 texture = ExtResource("97_rqu2v")
+
+[node name="Door" type="Node2D" parent="enviroment (for map making)"]
+position = Vector2(-484, -605)
+
+[node name="ExitDoor" parent="enviroment (for map making)/Door" instance=ExtResource("201_door")]
+position = Vector2(5, 870)
+scale = Vector2(0.99999994, 0.99999994)
+
+[node name="Visual" parent="enviroment (for map making)/Door/ExitDoor" index="0"]
+offset_left = -18.000002
+offset_top = -19.0
+offset_right = 15.999998
+
+[node name="DoorCollision" parent="enviroment (for map making)/Door/ExitDoor" index="1"]
+position = Vector2(-0.99999857, 6.5)
+scale = Vector2(0.9999998, 0.9999998)
+
+[node name="Door2" type="Sprite2D" parent="enviroment (for map making)/Door/ExitDoor"]
+position = Vector2(-1.0000076, 2)
+scale = Vector2(2.031249, 1.7812493)
+texture = ExtResource("6_wuvb2")
 
 [node name="Cat" parent="." instance=ExtResource("4_40jq8")]
 position = Vector2(-40, 825)
@@ -2509,6 +2566,12 @@ position = Vector2(0, 24)
 [editable path="enviroment (for map making)/Chairs/ChairHide1"]
 [editable path="enviroment (for map making)/Chairs/ChairHide2"]
 [editable path="enviroment (for map making)/Chairs/ChairHide3"]
+[editable path="enviroment (for map making)/beds/Gbed1/BedHide"]
+[editable path="enviroment (for map making)/beds/Rbed1/BedHide"]
+[editable path="enviroment (for map making)/beds/Gbed2/BedHide"]
+[editable path="enviroment (for map making)/beds/Rbed2/BedHide"]
+[editable path="enviroment (for map making)/beds/Gbed3/BedHide"]
+[editable path="enviroment (for map making)/beds/Rbed3/BedHide"]
 [editable path="enviroment (for map making)/Table/Long_table/TableHide"]
 [editable path="enviroment (for map making)/Table/Round_table/TableHide"]
 [editable path="enviroment (for map making)/Table/Coloured_Long_table/TableHide"]
@@ -2516,6 +2579,7 @@ position = Vector2(0, 24)
 [editable path="enviroment (for map making)/Sofa/SofaHide"]
 [editable path="enviroment (for map making)/Sofa/SofaHide2"]
 [editable path="enviroment (for map making)/Sofa/SofaHide3"]
+[editable path="enviroment (for map making)/Door/ExitDoor"]
 [editable path="enviroment (to use)/Door/ExitDoor"]
 [editable path="enviroment (to use)/Table/Coloured_round_table/TableHide"]
 [editable path="enviroment (to use)/Table/Long_table/TableHide"]

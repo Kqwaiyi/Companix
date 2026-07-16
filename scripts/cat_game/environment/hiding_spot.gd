@@ -9,6 +9,9 @@ extends Node2D
 @export var alpha_hint: float   = 0.8
 ## Opacity while the cat is underneath (lets the player see the cat).
 @export var alpha_hidden: float = 0.4
+## Set true when this node IS the furniture piece (e.g. each ChairHide is its own chair).
+## False (default) fades get_parent(), which is correct when this node is embedded inside a table/sofa.
+@export var fade_self_only: bool = false
 
 @onready var _hide_area: Area2D = $HideArea
 
@@ -28,6 +31,6 @@ func _on_body_exited(body: Node) -> void:
 		_set_furniture_alpha(alpha_hint)
 
 func _set_furniture_alpha(alpha: float) -> void:
-	var furniture := get_parent()
-	if furniture is Node2D:
-		furniture.modulate.a = alpha
+	var target: Node2D = self if fade_self_only else get_parent() as Node2D
+	if target:
+		target.modulate.a = alpha
