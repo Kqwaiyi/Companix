@@ -5,9 +5,11 @@ extends Node2D
 @export var points_per_mouse: int           = 500
 @export var caught_penalty: int             = 300
 @export var maximum_time_bonus: int         = 3000
+@export var optimal_time_seconds: float     = 60.0
 @export var time_penalty_per_second: float  = 20.0
 @export var anger_per_detection: float      = 20.0
 @export var total_mice: int                 = 3
+@export var next_scene_path: String         = ""
 
 var _elapsed_time: float = 0.0
 var _current_score: int  = 0
@@ -27,6 +29,8 @@ func _ready() -> void:
 
 	_current_score = starting_score
 	_update_hud_all()
+	if _hud:
+		_hud.set_level_mice(total_mice)
 
 	_cat.mouse_caught.connect(_on_mouse_caught)
 	_cat.player_caught.connect(_on_player_caught)
@@ -62,7 +66,11 @@ func _on_mouse_caught(points: int) -> void:
 		for door in _all_exit_doors():
 			door.activate()
 		if _hud:
-			_hud.show_message("Satisfied! Return to the front door")
+			match _mice_caught:
+				total_mice:
+					_hud.show_message("ALL MICE CAUGHT!  →  HEAD TO THE EXIT!", Color(0.18, 0.88, 0.28, 1), 26, 4.0)
+				required_mice:
+					_hud.show_message("SATISFIED", Color(1.0, 0.88, 0.2, 1), 30, 3.0)
 
 func _on_player_caught() -> void:
 	_times_caught  += 1
@@ -70,7 +78,7 @@ func _on_player_caught() -> void:
 	if _hud:
 		_hud.update_caught_count(_times_caught)
 		_hud.update_score(_current_score)
-		_hud.show_message("Caught! -%d points" % caught_penalty)
+		_hud.show_message("HURT!  -%d PTS" % caught_penalty, Color(1.0, 0.12, 0.08, 1), 32, 1.8, 18.0)
 
 func _on_detection_started() -> void:
 	_anger = min(100.0, _anger + anger_per_detection)
@@ -79,7 +87,7 @@ func _on_detection_started() -> void:
 
 func _on_exit_attempted() -> void:
 	if _level_active and _hud:
-		_hud.show_message("The cat is not satisfied yet")
+		_hud.show_message("NOT ENOUGH MICE!", Color(1.0, 0.7, 0.1, 1), 24, 2.0, 7.0)
 
 func _on_level_completed() -> void:
 	if not _level_active:
@@ -90,18 +98,28 @@ func _on_level_completed() -> void:
 		if enemy.has_method("disable"):
 			enemy.disable()
 
-	var time_bonus: int = max(0, maximum_time_bonus - int(_elapsed_time * time_penalty_per_second))
+	var overtime: float = max(0.0, _elapsed_time - optimal_time_seconds)
+	var time_bonus: int = max(0, maximum_time_bonus - int(overtime * time_penalty_per_second))
 	_current_score = max(0, _current_score + time_bonus)
+
+	var mouse_points: int      = _mice_caught * points_per_mouse
+	var caught_deductions: int = _times_caught * caught_penalty
+	var level_total: int       = time_bonus + mouse_points - caught_deductions
+	var prev_total: int        = GameState.total_score
+	GameState.add_score(level_total)
 
 	if _results:
 		_results.show_results(
 			_elapsed_time,
 			_mice_caught,
 			total_mice,
-			required_mice,
-			_times_caught,
 			time_bonus,
-			_current_score
+			mouse_points,
+			caught_deductions,
+			level_total,
+			prev_total,
+			GameState.total_score,
+			next_scene_path
 		)
 
 func _on_catch_area_body_entered(_body: Node) -> void:
