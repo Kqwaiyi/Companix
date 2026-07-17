@@ -67,6 +67,8 @@ func _ready():
 
 ## Opens the laptop UI with a holographic boot animation.
 ## Optionally loads a minigame scene after the animation completes.
+const DESKTOP_SCENE := "res://scenes/ui/DesktopScreen.tscn"
+
 func open_laptop(minigame_scene_path: String = "", fade_duration: float = 0.5) -> void:
 	if _is_animating:
 		return
@@ -79,9 +81,9 @@ func open_laptop(minigame_scene_path: String = "", fade_duration: float = 0.5) -
 	await _play_open_animation()
 	_is_animating = false
 
-	# Load the minigame if a path is provided
-	if minigame_scene_path != "":
-		change_scene(minigame_scene_path, fade_duration)
+	# Load the minigame if a path is provided, otherwise default to Desktop
+	var scene_to_load = minigame_scene_path if minigame_scene_path != "" else DESKTOP_SCENE
+	change_scene(scene_to_load, fade_duration)
 
 	opened.emit()
 

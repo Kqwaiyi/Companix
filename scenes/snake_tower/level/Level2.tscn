@@ -121,7 +121,7 @@ offset_top = -46.0
 offset_right = 283.0
 offset_bottom = 221.0
 scale = Vector2(0.25, 0.25)
-theme_override_constants/line_spacing = -22
+theme_override_constants/line_spacing = -12
 theme_override_font_sizes/font_size = 32
 text = "You can view your
 total elapsed time in

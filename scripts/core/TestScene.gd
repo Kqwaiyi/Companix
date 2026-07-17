@@ -32,3 +32,10 @@ func _input(event):
 			else:
 				print("LaptopUI node not found in TestScene!")
 			DialogueManager.start_dialogue("res://scenes/ui/dialogues/test_dialogue.gd")
+		elif event.keycode == KEY_5:
+			print("Testing LaptopUI Desktop Screen...")
+			var laptop_node = get_node_or_null("LaptopUI")
+			if laptop_node:
+				laptop_node.open_laptop()
+			else:
+				print("LaptopUI node not found in TestScene!")
