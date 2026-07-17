@@ -86,8 +86,9 @@
 [ext_resource type="SpriteFrames" uid="uid://cmkvoaf2lslxi" path="res://scenes/cat_game/characters/dog_variants/dog4.tres" id="112_af4dh"]
 [ext_resource type="SpriteFrames" uid="uid://bspk2plmij7hd" path="res://scenes/cat_game/characters/dog_variants/dog3.tres" id="113_i0vt7"]
 [ext_resource type="PackedScene" uid="uid://fb2upb5dyg5b" path="res://scenes/cat_game/characters/mouse.tscn" id="114_p0khi"]
+[ext_resource type="Script" uid="uid://b66vq4vwdq0cc" path="res://scripts/cat_game/environment/transition_trigger.gd" id="200_trig"]
 [ext_resource type="PackedScene" path="res://scenes/cat_game/ui/hud.tscn" id="hud_l3"]
-[ext_resource type="PackedScene" path="res://scenes/cat_game/ui/results_screen.tscn" id="results_l3"]
+[ext_resource type="PackedScene" uid="uid://cmquucfy2ckxe" path="res://scenes/cat_game/ui/results_screen.tscn" id="results_l3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2byil"]
 size = Vector2(31.500345, 39.00038)
@@ -130,9 +131,6 @@ size = Vector2(145.0014, 52.00028)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_top86"]
 size = Vector2(145.00146, 52.00061)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_od3fh"]
-size = Vector2(21, 43)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lrhrs"]
 size = Vector2(21, 43)
@@ -387,94 +385,94 @@ position = Vector2(2069, 541)
 position = Vector2(-242, 639)
 
 [node name="1" type="Marker2D" parent="Patrol Routes/Human01Route"]
-position = Vector2(1836, 600)
+position = Vector2(1642, 600)
 
 [node name="2" type="Marker2D" parent="Patrol Routes/Human01Route"]
-position = Vector2(1918, 561)
+position = Vector2(1724, 561)
 
 [node name="3" type="Marker2D" parent="Patrol Routes/Human01Route"]
-position = Vector2(1922, 690)
+position = Vector2(1728, 690)
 
 [node name="4" type="Marker2D" parent="Patrol Routes/Human01Route"]
-position = Vector2(1837, 600)
+position = Vector2(1643, 600)
 
 [node name="Human02Route" type="Node2D" parent="Patrol Routes"]
 position = Vector2(-49, 769)
 
 [node name="1" type="Marker2D" parent="Patrol Routes/Human02Route"]
-position = Vector2(1539, 659)
+position = Vector2(1345, 659)
 
 [node name="2" type="Marker2D" parent="Patrol Routes/Human02Route"]
-position = Vector2(1730, 661)
+position = Vector2(1536, 661)
 
 [node name="3" type="Marker2D" parent="Patrol Routes/Human02Route"]
-position = Vector2(1727, 488)
+position = Vector2(1533, 488)
 
 [node name="4" type="Marker2D" parent="Patrol Routes/Human02Route"]
-position = Vector2(1675, 544)
+position = Vector2(1481, 544)
 
 [node name="5" type="Marker2D" parent="Patrol Routes/Human02Route"]
-position = Vector2(1625, 666)
+position = Vector2(1431, 666)
 
 [node name="6" type="Marker2D" parent="Patrol Routes/Human02Route"]
-position = Vector2(1625, 666)
+position = Vector2(1431, 666)
 
 [node name="Human03Route" type="Node2D" parent="Patrol Routes"]
 position = Vector2(-242, 639)
 
 [node name="1" type="Marker2D" parent="Patrol Routes/Human03Route"]
-position = Vector2(3292, 554)
+position = Vector2(3706, 563)
 
 [node name="2" type="Marker2D" parent="Patrol Routes/Human03Route"]
-position = Vector2(3310, 663)
+position = Vector2(3724, 672)
 
 [node name="3" type="Marker2D" parent="Patrol Routes/Human03Route"]
-position = Vector2(3518, 668)
+position = Vector2(3932, 677)
 
 [node name="4" type="Marker2D" parent="Patrol Routes/Human03Route"]
-position = Vector2(3515, 508)
+position = Vector2(3929, 517)
 
 [node name="5" type="Marker2D" parent="Patrol Routes/Human03Route"]
-position = Vector2(3289, 508)
+position = Vector2(3703, 517)
 
 [node name="6" type="Marker2D" parent="Patrol Routes/Human03Route"]
-position = Vector2(3292, 554)
+position = Vector2(3706, 563)
 
 [node name="Human04Route" type="Node2D" parent="Patrol Routes"]
 position = Vector2(-49, 769)
 
 [node name="1" type="Marker2D" parent="Patrol Routes/Human04Route"]
-position = Vector2(3269, 366)
+position = Vector2(3683, 375)
 
 [node name="2" type="Marker2D" parent="Patrol Routes/Human04Route"]
-position = Vector2(3363, 469)
+position = Vector2(3777, 478)
 
 [node name="3" type="Marker2D" parent="Patrol Routes/Human04Route"]
-position = Vector2(3204, 523)
+position = Vector2(3618, 532)
 
 [node name="4" type="Marker2D" parent="Patrol Routes/Human04Route"]
-position = Vector2(3301, 479)
+position = Vector2(3715, 488)
 
 [node name="5" type="Marker2D" parent="Patrol Routes/Human04Route"]
-position = Vector2(3269, 366)
+position = Vector2(3683, 375)
 
 [node name="Human05Route" type="Node2D" parent="Patrol Routes"]
 position = Vector2(-220, 762)
 
 [node name="1" type="Marker2D" parent="Patrol Routes/Human05Route"]
-position = Vector2(3245, 396)
+position = Vector2(3659, 405)
 
 [node name="2" type="Marker2D" parent="Patrol Routes/Human05Route"]
-position = Vector2(3321, 448)
+position = Vector2(3735, 457)
 
 [node name="3" type="Marker2D" parent="Patrol Routes/Human05Route"]
-position = Vector2(3219, 497)
+position = Vector2(3633, 506)
 
 [node name="4" type="Marker2D" parent="Patrol Routes/Human05Route"]
-position = Vector2(3313, 509)
+position = Vector2(3727, 518)
 
 [node name="5" type="Marker2D" parent="Patrol Routes/Human05Route"]
-position = Vector2(3244, 396)
+position = Vector2(3658, 405)
 
 [node name="Mouse01Route" type="Node2D" parent="Patrol Routes"]
 position = Vector2(2115, 1401)
@@ -513,43 +511,43 @@ position = Vector2(0, -58)
 position = Vector2(219, 631)
 
 [node name="1" type="Marker2D" parent="Patrol Routes/Mouse04Route"]
-position = Vector2(1013, 612)
+position = Vector2(819, 612)
 
 [node name="2" type="Marker2D" parent="Patrol Routes/Mouse04Route"]
-position = Vector2(1052, 612)
+position = Vector2(858, 612)
 
 [node name="3" type="Marker2D" parent="Patrol Routes/Mouse04Route"]
-position = Vector2(1013, 612)
+position = Vector2(819, 612)
 
 [node name="Mouse05Route" type="Node2D" parent="Patrol Routes"]
 position = Vector2(-45, 749)
 
 [node name="1" type="Marker2D" parent="Patrol Routes/Mouse05Route"]
-position = Vector2(1508, 685)
+position = Vector2(1314, 685)
 
 [node name="2" type="Marker2D" parent="Patrol Routes/Mouse05Route"]
-position = Vector2(1582, 686)
+position = Vector2(1388, 686)
 
 [node name="3" type="Marker2D" parent="Patrol Routes/Mouse05Route"]
-position = Vector2(1508, 685)
+position = Vector2(1314, 685)
 
 [node name="Mouse06Route" type="Node2D" parent="Patrol Routes"]
 position = Vector2(-161, 557)
 
 [node name="Marker2D" type="Marker2D" parent="Patrol Routes/Mouse06Route"]
-position = Vector2(3211, 798)
+position = Vector2(3625, 807)
 
 [node name="Marker2D2" type="Marker2D" parent="Patrol Routes/Mouse06Route"]
-position = Vector2(3300, 799)
+position = Vector2(3714, 808)
 
 [node name="Marker2D3" type="Marker2D" parent="Patrol Routes/Mouse06Route"]
-position = Vector2(3252, 755)
+position = Vector2(3666, 764)
 
 [node name="Marker2D4" type="Marker2D" parent="Patrol Routes/Mouse06Route"]
-position = Vector2(3211, 798)
+position = Vector2(3625, 807)
 
 [node name="Mouse07Route" type="Node2D" parent="Patrol Routes"]
-position = Vector2(3291, 1093)
+position = Vector2(3705, 1102)
 
 [node name="Marker2D" type="Marker2D" parent="Patrol Routes/Mouse07Route"]
 
@@ -2115,24 +2113,6 @@ texture = ExtResource("70_4d5u3")
 position = Vector2(0, 201)
 texture = ExtResource("71_p5xqo")
 
-[node name="Cactus" type="Node2D" parent="section1"]
-position = Vector2(500, 200)
-metadata/_edit_group_ = true
-
-[node name="CactusHazard" type="Area2D" parent="section1/Cactus"]
-position = Vector2(-759, 288)
-collision_layer = 128
-collision_mask = 2
-script = ExtResource("73_44w27")
-
-[node name="Sprite2D" type="Sprite2D" parent="section1/Cactus/CactusHazard"]
-scale = Vector2(3, 3)
-texture = ExtResource("72_nxv4c")
-
-[node name="CactusCollision" type="CollisionShape2D" parent="section1/Cactus/CactusHazard"]
-position = Vector2(-2.5, -2.5)
-shape = SubResource("RectangleShape2D_od3fh")
-
 [node name="Sofa" type="Node2D" parent="section1"]
 position = Vector2(500, 200)
 scale = Vector2(3, 3)
@@ -2177,55 +2157,57 @@ shape = SubResource("RectangleShape2D_lrhrs")
 
 [node name="to section3" type="Sprite2D" parent="section1/transition node"]
 self_modulate = Color(0, 0, 0, 1)
-position = Vector2(99.24988, 650)
-scale = Vector2(2.0937433, 2.5)
+position = Vector2(98.24997, 650)
+scale = Vector2(1.9687548, 2.5)
 texture = ExtResource("109_niilh")
+script = ExtResource("200_trig")
+destination = NodePath("../../../section3/transition node/hidden area from section 1")
 
-[node name="hidden area" type="Sprite2D" parent="section1/transition node"]
+[node name="hidden area from section 3" type="Sprite2D" parent="section1/transition node"]
 self_modulate = Color(0.63529414, 0.63529414, 0.63529414, 1)
 position = Vector2(133.99997, 649.99994)
 scale = Vector2(2.5, 2.5)
 texture = ExtResource("109_niilh")
 script = ExtResource("57_ikp7i")
 
-[node name="HideArea" type="Area2D" parent="section1/transition node/hidden area"]
+[node name="HideArea" type="Area2D" parent="section1/transition node/hidden area from section 3"]
 collision_layer = 32
 collision_mask = 2
 
-[node name="HideCollision" type="CollisionShape2D" parent="section1/transition node/hidden area/HideArea"]
+[node name="HideCollision" type="CollisionShape2D" parent="section1/transition node/hidden area from section 3/HideArea"]
 position = Vector2(-3.8146973e-05, 0)
 scale = Vector2(0.99999994, 0.99999994)
 shape = SubResource("RectangleShape2D_o60cb")
 
-[node name="VisionBlocker" type="StaticBody2D" parent="section1/transition node/hidden area"]
+[node name="VisionBlocker" type="StaticBody2D" parent="section1/transition node/hidden area from section 3"]
 collision_layer = 64
 collision_mask = 0
 
-[node name="VisionCollision" type="CollisionShape2D" parent="section1/transition node/hidden area/VisionBlocker"]
+[node name="VisionCollision" type="CollisionShape2D" parent="section1/transition node/hidden area from section 3/VisionBlocker"]
 position = Vector2(7.6293945e-06, 0)
 scale = Vector2(0.9999998, 0.9999998)
 shape = SubResource("RectangleShape2D_snbbh")
 
-[node name="hidden area2" type="Sprite2D" parent="section1/transition node"]
+[node name="hidden area from section 2" type="Sprite2D" parent="section1/transition node"]
 self_modulate = Color(0.63529414, 0.63529414, 0.63529414, 1)
 position = Vector2(744, 498)
 scale = Vector2(2.4999998, 2.4999998)
 texture = ExtResource("109_niilh")
 script = ExtResource("57_ikp7i")
 
-[node name="HideArea" type="Area2D" parent="section1/transition node/hidden area2"]
+[node name="HideArea" type="Area2D" parent="section1/transition node/hidden area from section 2"]
 collision_layer = 32
 collision_mask = 2
 
-[node name="HideCollision" type="CollisionShape2D" parent="section1/transition node/hidden area2/HideArea"]
+[node name="HideCollision" type="CollisionShape2D" parent="section1/transition node/hidden area from section 2/HideArea"]
 position = Vector2(-0.7000122, 7.6293945e-06)
 shape = SubResource("RectangleShape2D_vorg2")
 
-[node name="VisionBlocker" type="StaticBody2D" parent="section1/transition node/hidden area2"]
+[node name="VisionBlocker" type="StaticBody2D" parent="section1/transition node/hidden area from section 2"]
 collision_layer = 64
 collision_mask = 0
 
-[node name="VisionCollision" type="CollisionShape2D" parent="section1/transition node/hidden area2/VisionBlocker"]
+[node name="VisionCollision" type="CollisionShape2D" parent="section1/transition node/hidden area from section 2/VisionBlocker"]
 position = Vector2(-1.4000168, 1.9073486e-06)
 shape = SubResource("RectangleShape2D_pin8w")
 
@@ -2234,6 +2216,8 @@ self_modulate = Color(0, 0, 0, 1)
 position = Vector2(771.9999, 498)
 scale = Vector2(1.8749998, 2.4999995)
 texture = ExtResource("109_niilh")
+script = ExtResource("200_trig")
+destination = NodePath("../../../section2/transition node/hidden area from section1")
 
 [node name="WallCollision" type="StaticBody2D" parent="section1"]
 collision_layer = 65
@@ -2309,782 +2293,782 @@ z_index = -999
 scale = Vector2(2.5, 2.5)
 
 [node name="Sprite2D91" type="Sprite2D" parent="section3/Floor2"]
-position = Vector2(271.99997, 305.19998)
+position = Vector2(194.39996, 305.19998)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D92" type="Sprite2D" parent="section3/Floor2"]
-position = Vector2(256, 321.2)
+position = Vector2(178.4, 321.2)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D93" type="Sprite2D" parent="section3/Floor2"]
-position = Vector2(271.99997, 321.19998)
+position = Vector2(194.39996, 321.19998)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D94" type="Sprite2D" parent="section3/Floor2"]
-position = Vector2(224, 321.2)
+position = Vector2(146.4, 321.2)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D95" type="Sprite2D" parent="section3/Floor2"]
-position = Vector2(239.99997, 321.19998)
+position = Vector2(162.39996, 321.19998)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D96" type="Sprite2D" parent="section3/Floor2"]
-position = Vector2(192, 321.2)
+position = Vector2(114.4, 321.2)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D97" type="Sprite2D" parent="section3/Floor2"]
-position = Vector2(207.99997, 321.19998)
+position = Vector2(130.39996, 321.19998)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D98" type="Sprite2D" parent="section3/Floor2"]
-position = Vector2(240, 305.2)
+position = Vector2(162.4, 305.2)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D99" type="Sprite2D" parent="section3/Floor2"]
-position = Vector2(255.99997, 305.19998)
+position = Vector2(178.39996, 305.19998)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D100" type="Sprite2D" parent="section3/Floor2"]
-position = Vector2(208, 305.2)
+position = Vector2(130.4, 305.2)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D101" type="Sprite2D" parent="section3/Floor2"]
-position = Vector2(223.99997, 305.19998)
+position = Vector2(146.39996, 305.19998)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D103" type="Sprite2D" parent="section3/Floor2"]
-position = Vector2(191.99997, 305.19998)
+position = Vector2(114.39997, 305.19998)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D102" type="Sprite2D" parent="section3/Floor2"]
-position = Vector2(160.79999, 321.2)
+position = Vector2(83.19999, 321.2)
 scale = Vector2(0.9000015, 1)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D104" type="Sprite2D" parent="section3/Floor2"]
-position = Vector2(175.99997, 321.19998)
+position = Vector2(98.39997, 321.19998)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D105" type="Sprite2D" parent="section3/Floor2"]
-position = Vector2(176, 305.2)
+position = Vector2(98.4, 305.2)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D106" type="Sprite2D" parent="section3/Floor2"]
-position = Vector2(160.79996, 305.19998)
+position = Vector2(83.19996, 305.19998)
 scale = Vector2(0.9000015, 1)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D107" type="Sprite2D" parent="section3/Floor2"]
-position = Vector2(272.00003, 275.6)
+position = Vector2(194.40002, 275.6)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D108" type="Sprite2D" parent="section3/Floor2"]
-position = Vector2(256.00006, 291.60004)
+position = Vector2(178.40005, 291.60004)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D109" type="Sprite2D" parent="section3/Floor2"]
-position = Vector2(272.00003, 291.6)
+position = Vector2(194.40002, 291.6)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D110" type="Sprite2D" parent="section3/Floor2"]
-position = Vector2(224.00005, 291.60004)
+position = Vector2(146.40005, 291.60004)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D111" type="Sprite2D" parent="section3/Floor2"]
-position = Vector2(240.00002, 291.6)
+position = Vector2(162.40002, 291.6)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D112" type="Sprite2D" parent="section3/Floor2"]
-position = Vector2(192.00005, 291.60004)
+position = Vector2(114.40005, 291.60004)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D113" type="Sprite2D" parent="section3/Floor2"]
-position = Vector2(208.00002, 291.6)
+position = Vector2(130.40002, 291.6)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D114" type="Sprite2D" parent="section3/Floor2"]
-position = Vector2(240.00005, 275.60004)
+position = Vector2(162.40005, 275.60004)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D115" type="Sprite2D" parent="section3/Floor2"]
-position = Vector2(256.00003, 275.6)
+position = Vector2(178.40002, 275.6)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D116" type="Sprite2D" parent="section3/Floor2"]
-position = Vector2(208.00005, 275.60004)
+position = Vector2(130.40005, 275.60004)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D117" type="Sprite2D" parent="section3/Floor2"]
-position = Vector2(224.00002, 275.6)
+position = Vector2(146.40002, 275.6)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D118" type="Sprite2D" parent="section3/Floor2"]
-position = Vector2(192.00002, 275.6)
+position = Vector2(114.40002, 275.6)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D119" type="Sprite2D" parent="section3/Floor2"]
-position = Vector2(160.80003, 291.60004)
+position = Vector2(83.200035, 291.60004)
 scale = Vector2(0.9000015, 1)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D120" type="Sprite2D" parent="section3/Floor2"]
-position = Vector2(176.00002, 291.6)
+position = Vector2(98.40002, 291.6)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D121" type="Sprite2D" parent="section3/Floor2"]
-position = Vector2(176.00005, 275.60004)
+position = Vector2(98.40005, 275.60004)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D122" type="Sprite2D" parent="section3/Floor2"]
-position = Vector2(160.8, 275.6)
+position = Vector2(83.200005, 275.6)
 scale = Vector2(0.9000015, 1)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D124" type="Sprite2D" parent="section3/Floor2"]
-position = Vector2(272, 244.4)
+position = Vector2(194.4, 244.4)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D125" type="Sprite2D" parent="section3/Floor2"]
-position = Vector2(256.00003, 259.6)
+position = Vector2(178.40002, 259.6)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D127" type="Sprite2D" parent="section3/Floor2"]
-position = Vector2(224.00005, 259.6)
+position = Vector2(146.40005, 259.6)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D128" type="Sprite2D" parent="section3/Floor2"]
-position = Vector2(240.00002, 259.6)
+position = Vector2(162.40002, 259.6)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D129" type="Sprite2D" parent="section3/Floor2"]
-position = Vector2(192.00005, 259.6)
+position = Vector2(114.40005, 259.6)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D130" type="Sprite2D" parent="section3/Floor2"]
-position = Vector2(208.00002, 259.6)
+position = Vector2(130.40002, 259.6)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D131" type="Sprite2D" parent="section3/Floor2"]
-position = Vector2(240.00005, 243.60002)
+position = Vector2(162.40005, 243.60002)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D132" type="Sprite2D" parent="section3/Floor2"]
-position = Vector2(256, 243.59999)
+position = Vector2(178.4, 243.59999)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D133" type="Sprite2D" parent="section3/Floor2"]
-position = Vector2(208.00005, 243.60002)
+position = Vector2(130.40005, 243.60002)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D134" type="Sprite2D" parent="section3/Floor2"]
-position = Vector2(224.00002, 243.59999)
+position = Vector2(146.40002, 243.59999)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D135" type="Sprite2D" parent="section3/Floor2"]
-position = Vector2(192.00002, 243.59999)
+position = Vector2(114.40002, 243.59999)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D136" type="Sprite2D" parent="section3/Floor2"]
-position = Vector2(176.00002, 259.6)
+position = Vector2(98.40002, 259.6)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D137" type="Sprite2D" parent="section3/Floor2"]
-position = Vector2(176.00005, 243.60002)
+position = Vector2(98.40005, 243.60002)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D138" type="Sprite2D" parent="section3/Floor2"]
-position = Vector2(272.00006, 214.00002)
+position = Vector2(194.40005, 214.00002)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D139" type="Sprite2D" parent="section3/Floor2"]
-position = Vector2(256.0001, 230.00005)
+position = Vector2(178.40009, 230.00005)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D140" type="Sprite2D" parent="section3/Floor2"]
-position = Vector2(272.00006, 230.00002)
+position = Vector2(194.40005, 230.00002)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D141" type="Sprite2D" parent="section3/Floor2"]
-position = Vector2(224.00009, 230.00005)
+position = Vector2(146.40009, 230.00005)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D142" type="Sprite2D" parent="section3/Floor2"]
-position = Vector2(240.00006, 230.00002)
+position = Vector2(162.40005, 230.00002)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D143" type="Sprite2D" parent="section3/Floor2"]
-position = Vector2(192.00009, 230.00005)
+position = Vector2(114.40009, 230.00005)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D144" type="Sprite2D" parent="section3/Floor2"]
-position = Vector2(208.00006, 230.00002)
+position = Vector2(130.40005, 230.00002)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D145" type="Sprite2D" parent="section3/Floor2"]
-position = Vector2(240.00009, 214.00005)
+position = Vector2(162.40009, 214.00005)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D146" type="Sprite2D" parent="section3/Floor2"]
-position = Vector2(256.00006, 214.00002)
+position = Vector2(178.40005, 214.00002)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D147" type="Sprite2D" parent="section3/Floor2"]
-position = Vector2(208.00009, 214.00005)
+position = Vector2(130.40009, 214.00005)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D148" type="Sprite2D" parent="section3/Floor2"]
-position = Vector2(224.00006, 214.00002)
+position = Vector2(146.40005, 214.00002)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D149" type="Sprite2D" parent="section3/Floor2"]
-position = Vector2(192.00006, 214.00002)
+position = Vector2(114.40006, 214.00002)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D150" type="Sprite2D" parent="section3/Floor2"]
-position = Vector2(176.00006, 230.00002)
+position = Vector2(98.40006, 230.00002)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D151" type="Sprite2D" parent="section3/Floor2"]
-position = Vector2(176.00009, 214.00005)
+position = Vector2(98.40009, 214.00005)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D126" type="Sprite2D" parent="section3/Floor2"]
-position = Vector2(160.00003, 259.6)
+position = Vector2(82.40003, 259.6)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D152" type="Sprite2D" parent="section3/Floor2"]
-position = Vector2(128.00005, 259.6)
+position = Vector2(50.400047, 259.6)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D153" type="Sprite2D" parent="section3/Floor2"]
-position = Vector2(144.00002, 259.6)
+position = Vector2(66.40002, 259.6)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D154" type="Sprite2D" parent="section3/Floor2"]
-position = Vector2(96.00005, 259.6)
+position = Vector2(18.400055, 259.6)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D156" type="Sprite2D" parent="section3/Floor2"]
-position = Vector2(112.00002, 259.6)
+position = Vector2(34.400024, 259.6)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D157" type="Sprite2D" parent="section3/Floor2"]
-position = Vector2(144.00005, 243.60002)
+position = Vector2(66.40005, 243.60002)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D158" type="Sprite2D" parent="section3/Floor2"]
-position = Vector2(160, 243.59999)
+position = Vector2(82.4, 243.59999)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D159" type="Sprite2D" parent="section3/Floor2"]
-position = Vector2(112.00005, 243.60002)
+position = Vector2(34.400055, 243.60002)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D160" type="Sprite2D" parent="section3/Floor2"]
-position = Vector2(128.00002, 243.59999)
+position = Vector2(50.400017, 243.59999)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D161" type="Sprite2D" parent="section3/Floor2"]
-position = Vector2(96.00002, 243.59999)
+position = Vector2(18.400024, 243.59999)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D162" type="Sprite2D" parent="section3/Floor2"]
-position = Vector2(80.00002, 259.6)
+position = Vector2(2.4000244, 259.6)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D163" type="Sprite2D" parent="section3/Floor2"]
-position = Vector2(80.00005, 243.60002)
+position = Vector2(2.400055, 243.60002)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D164" type="Sprite2D" parent="section3/Floor2"]
-position = Vector2(160.00009, 230.00005)
+position = Vector2(82.40009, 230.00005)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D165" type="Sprite2D" parent="section3/Floor2"]
-position = Vector2(128.00009, 230.00005)
+position = Vector2(50.400093, 230.00005)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D166" type="Sprite2D" parent="section3/Floor2"]
-position = Vector2(144.00006, 230.00002)
+position = Vector2(66.40006, 230.00002)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D167" type="Sprite2D" parent="section3/Floor2"]
-position = Vector2(96.0001, 230.00005)
+position = Vector2(18.4001, 230.00005)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D168" type="Sprite2D" parent="section3/Floor2"]
-position = Vector2(112.00007, 230.00002)
+position = Vector2(34.40007, 230.00002)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D169" type="Sprite2D" parent="section3/Floor2"]
-position = Vector2(144.00009, 214.00005)
+position = Vector2(66.40009, 214.00005)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D170" type="Sprite2D" parent="section3/Floor2"]
-position = Vector2(160.00006, 214.00002)
+position = Vector2(82.40006, 214.00002)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D171" type="Sprite2D" parent="section3/Floor2"]
-position = Vector2(112.0001, 214.00005)
+position = Vector2(34.4001, 214.00005)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D172" type="Sprite2D" parent="section3/Floor2"]
-position = Vector2(128.00006, 214.00002)
+position = Vector2(50.400063, 214.00002)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D173" type="Sprite2D" parent="section3/Floor2"]
-position = Vector2(96.00007, 214.00002)
+position = Vector2(18.40007, 214.00002)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D174" type="Sprite2D" parent="section3/Floor2"]
-position = Vector2(80.00007, 230.00002)
+position = Vector2(2.4000702, 230.00002)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D175" type="Sprite2D" parent="section3/Floor2"]
-position = Vector2(80.0001, 214.00005)
+position = Vector2(2.4001007, 214.00005)
 texture = ExtResource("109_niilh")
 
 [node name="wall" type="Node2D" parent="section3"]
 scale = Vector2(2, 2)
 
 [node name="Sprite2D102" type="Sprite2D" parent="section3/wall"]
-position = Vector2(99.5, 252.5)
+position = Vector2(2.5, 252.5)
 texture = ExtResource("95_0x3rd")
 
 [node name="Sprite2D109" type="Sprite2D" parent="section3/wall"]
-position = Vector2(345, 252.5)
+position = Vector2(248, 252.5)
 texture = ExtResource("96_8v0px")
 
 [node name="Sprite2D110" type="Sprite2D" parent="section3/wall"]
-position = Vector2(281, 252.5)
+position = Vector2(184, 252.5)
 texture = ExtResource("94_43b2l")
 
 [node name="Sprite2D111" type="Sprite2D" parent="section3/wall"]
-position = Vector2(297, 252.5)
+position = Vector2(200, 252.5)
 texture = ExtResource("94_43b2l")
 
 [node name="Sprite2D112" type="Sprite2D" parent="section3/wall"]
-position = Vector2(313, 252.5)
+position = Vector2(216, 252.5)
 texture = ExtResource("94_43b2l")
 
 [node name="Sprite2D2" type="Sprite2D" parent="section3/wall"]
-position = Vector2(150, 220.5)
+position = Vector2(53, 220.5)
 texture = ExtResource("80_n7c28")
 
 [node name="Sprite2D4" type="Sprite2D" parent="section3/wall"]
-position = Vector2(166, 220.5)
+position = Vector2(69, 220.5)
 texture = ExtResource("80_n7c28")
 
 [node name="Sprite2D5" type="Sprite2D" parent="section3/wall"]
-position = Vector2(182, 220.5)
+position = Vector2(85, 220.5)
 texture = ExtResource("80_n7c28")
 
 [node name="Sprite2D6" type="Sprite2D" parent="section3/wall"]
-position = Vector2(198, 220.5)
+position = Vector2(101, 220.5)
 texture = ExtResource("80_n7c28")
 
 [node name="Sprite2D7" type="Sprite2D" parent="section3/wall"]
-position = Vector2(214, 220.5)
+position = Vector2(117, 220.5)
 texture = ExtResource("80_n7c28")
 
 [node name="Sprite2D14" type="Sprite2D" parent="section3/wall"]
-position = Vector2(230, 220.5)
+position = Vector2(133, 220.5)
 texture = ExtResource("80_n7c28")
 
 [node name="Sprite2D15" type="Sprite2D" parent="section3/wall"]
-position = Vector2(246, 220.5)
+position = Vector2(149, 220.5)
 texture = ExtResource("80_n7c28")
 
 [node name="Sprite2D16" type="Sprite2D" parent="section3/wall"]
-position = Vector2(262, 220.5)
+position = Vector2(165, 220.5)
 texture = ExtResource("80_n7c28")
 
 [node name="Sprite2D17" type="Sprite2D" parent="section3/wall"]
-position = Vector2(278, 220.5)
+position = Vector2(181, 220.5)
 texture = ExtResource("80_n7c28")
 
 [node name="Sprite2D20" type="Sprite2D" parent="section3/wall"]
-position = Vector2(214, 419)
+position = Vector2(117, 419)
 texture = ExtResource("80_n7c28")
 
 [node name="Sprite2D21" type="Sprite2D" parent="section3/wall"]
-position = Vector2(230, 419)
+position = Vector2(133, 419)
 texture = ExtResource("80_n7c28")
 
 [node name="Sprite2D22" type="Sprite2D" parent="section3/wall"]
-position = Vector2(246, 419)
+position = Vector2(149, 419)
 texture = ExtResource("80_n7c28")
 
 [node name="Sprite2D23" type="Sprite2D" parent="section3/wall"]
-position = Vector2(262, 419)
+position = Vector2(165, 419)
 texture = ExtResource("80_n7c28")
 
 [node name="Sprite2D24" type="Sprite2D" parent="section3/wall"]
-position = Vector2(278, 419)
+position = Vector2(181, 419)
 texture = ExtResource("80_n7c28")
 
 [node name="Sprite2D25" type="Sprite2D" parent="section3/wall"]
-position = Vector2(294, 419)
+position = Vector2(197, 419)
 texture = ExtResource("80_n7c28")
 
 [node name="Sprite2D26" type="Sprite2D" parent="section3/wall"]
-position = Vector2(310, 419)
+position = Vector2(213, 419)
 texture = ExtResource("80_n7c28")
 
 [node name="Sprite2D27" type="Sprite2D" parent="section3/wall"]
-position = Vector2(326, 419)
+position = Vector2(229, 419)
 texture = ExtResource("80_n7c28")
 
 [node name="Sprite2D28" type="Sprite2D" parent="section3/wall"]
-position = Vector2(342, 419)
+position = Vector2(245, 419)
 texture = ExtResource("80_n7c28")
 
 [node name="Sprite2D29" type="Sprite2D" parent="section3/wall"]
-position = Vector2(134.5, 324)
+position = Vector2(37.5, 324)
 texture = ExtResource("80_n7c28")
 
 [node name="Sprite2D30" type="Sprite2D" parent="section3/wall"]
-position = Vector2(150.5, 324)
+position = Vector2(53.5, 324)
 texture = ExtResource("80_n7c28")
 
 [node name="Sprite2D31" type="Sprite2D" parent="section3/wall"]
-position = Vector2(86.5, 220.5)
+position = Vector2(-10.5, 220.5)
 texture = ExtResource("90_ugugv")
 
 [node name="Sprite2D36" type="Sprite2D" parent="section3/wall"]
-position = Vector2(358, 220.5)
+position = Vector2(261, 220.5)
 texture = ExtResource("91_u6nb3")
 
 [node name="Sprite2D39" type="Sprite2D" parent="section3/wall"]
-position = Vector2(358, 419)
+position = Vector2(261, 419)
 texture = ExtResource("93_e2fpy")
 
 [node name="Sprite2D41" type="Sprite2D" parent="section3/wall"]
-position = Vector2(86.5, 236.5)
+position = Vector2(-10.5, 236.5)
 texture = ExtResource("84_6pmoc")
 
 [node name="Sprite2D42" type="Sprite2D" parent="section3/wall"]
-position = Vector2(86.5, 284.5)
+position = Vector2(-10.5, 284.5)
 texture = ExtResource("84_6pmoc")
 
 [node name="Sprite2D43" type="Sprite2D" parent="section3/wall"]
-position = Vector2(86.5, 268.5)
+position = Vector2(-10.5, 268.5)
 texture = ExtResource("84_6pmoc")
 
 [node name="Sprite2D44" type="Sprite2D" parent="section3/wall"]
-position = Vector2(86.5, 252.5)
+position = Vector2(-10.5, 252.5)
 texture = ExtResource("84_6pmoc")
 
 [node name="Sprite2D45" type="Sprite2D" parent="section3/wall"]
-position = Vector2(86.5, 300.5)
+position = Vector2(-10.5, 300.5)
 texture = ExtResource("84_6pmoc")
 
 [node name="Sprite2D58" type="Sprite2D" parent="section3/wall"]
-position = Vector2(358, 252.5)
+position = Vector2(261, 252.5)
 texture = ExtResource("84_6pmoc")
 
 [node name="Sprite2D59" type="Sprite2D" parent="section3/wall"]
-position = Vector2(358, 236.5)
+position = Vector2(261, 236.5)
 texture = ExtResource("84_6pmoc")
 
 [node name="Sprite2D62" type="Sprite2D" parent="section3/wall"]
-position = Vector2(358, 284.5)
+position = Vector2(261, 284.5)
 texture = ExtResource("84_6pmoc")
 
 [node name="Sprite2D63" type="Sprite2D" parent="section3/wall"]
-position = Vector2(358, 268.5)
+position = Vector2(261, 268.5)
 texture = ExtResource("84_6pmoc")
 
 [node name="Sprite2D64" type="Sprite2D" parent="section3/wall"]
-position = Vector2(358, 342.5)
+position = Vector2(261, 342.5)
 texture = ExtResource("84_6pmoc")
 
 [node name="Sprite2D66" type="Sprite2D" parent="section3/wall"]
-position = Vector2(150, 236.5)
+position = Vector2(53, 236.5)
 texture = ExtResource("104_d05nf")
 
 [node name="Sprite2D67" type="Sprite2D" parent="section3/wall"]
-position = Vector2(166, 236.5)
+position = Vector2(69, 236.5)
 texture = ExtResource("104_d05nf")
 
 [node name="Sprite2D68" type="Sprite2D" parent="section3/wall"]
-position = Vector2(182, 236.5)
+position = Vector2(85, 236.5)
 texture = ExtResource("104_d05nf")
 
 [node name="Sprite2D69" type="Sprite2D" parent="section3/wall"]
-position = Vector2(198, 236.5)
+position = Vector2(101, 236.5)
 texture = ExtResource("104_d05nf")
 
 [node name="Sprite2D70" type="Sprite2D" parent="section3/wall"]
-position = Vector2(214, 236.5)
+position = Vector2(117, 236.5)
 texture = ExtResource("104_d05nf")
 
 [node name="Sprite2D73" type="Sprite2D" parent="section3/wall"]
-position = Vector2(230, 236.5)
+position = Vector2(133, 236.5)
 texture = ExtResource("104_d05nf")
 
 [node name="Sprite2D74" type="Sprite2D" parent="section3/wall"]
-position = Vector2(246, 236.5)
+position = Vector2(149, 236.5)
 texture = ExtResource("104_d05nf")
 
 [node name="Sprite2D75" type="Sprite2D" parent="section3/wall"]
-position = Vector2(262, 236.5)
+position = Vector2(165, 236.5)
 texture = ExtResource("104_d05nf")
 
 [node name="Sprite2D76" type="Sprite2D" parent="section3/wall"]
-position = Vector2(278, 236.5)
+position = Vector2(181, 236.5)
 texture = ExtResource("104_d05nf")
 
 [node name="Sprite2D77" type="Sprite2D" parent="section3/wall"]
-position = Vector2(150.5, 340)
+position = Vector2(53.5, 340)
 texture = ExtResource("94_43b2l")
 
 [node name="Sprite2D80" type="Sprite2D" parent="section3/wall"]
-position = Vector2(134.5, 340)
+position = Vector2(37.5, 340)
 texture = ExtResource("94_43b2l")
 
 [node name="Sprite2D81" type="Sprite2D" parent="section3/wall"]
-position = Vector2(342, 435)
+position = Vector2(245, 435)
 texture = ExtResource("94_43b2l")
 
 [node name="Sprite2D82" type="Sprite2D" parent="section3/wall"]
-position = Vector2(358, 435)
+position = Vector2(261, 435)
 texture = ExtResource("96_8v0px")
 
 [node name="Sprite2D83" type="Sprite2D" parent="section3/wall"]
-position = Vector2(326, 435)
+position = Vector2(229, 435)
 texture = ExtResource("94_43b2l")
 
 [node name="Sprite2D84" type="Sprite2D" parent="section3/wall"]
-position = Vector2(310, 435)
+position = Vector2(213, 435)
 texture = ExtResource("94_43b2l")
 
 [node name="Sprite2D87" type="Sprite2D" parent="section3/wall"]
-position = Vector2(214, 435)
+position = Vector2(117, 435)
 texture = ExtResource("94_43b2l")
 
 [node name="Sprite2D90" type="Sprite2D" parent="section3/wall"]
-position = Vector2(262, 435)
+position = Vector2(165, 435)
 texture = ExtResource("94_43b2l")
 
 [node name="Sprite2D91" type="Sprite2D" parent="section3/wall"]
-position = Vector2(246, 435)
+position = Vector2(149, 435)
 texture = ExtResource("94_43b2l")
 
 [node name="Sprite2D92" type="Sprite2D" parent="section3/wall"]
-position = Vector2(230, 435)
+position = Vector2(133, 435)
 texture = ExtResource("94_43b2l")
 
 [node name="Sprite2D93" type="Sprite2D" parent="section3/wall"]
-position = Vector2(294, 435)
+position = Vector2(197, 435)
 texture = ExtResource("94_43b2l")
 
 [node name="Sprite2D94" type="Sprite2D" parent="section3/wall"]
-position = Vector2(278, 435)
+position = Vector2(181, 435)
 texture = ExtResource("94_43b2l")
 
 [node name="Sprite2D113" type="Sprite2D" parent="section3/wall"]
-position = Vector2(329, 252.5)
+position = Vector2(232, 252.5)
 texture = ExtResource("94_43b2l")
 
 [node name="Sprite2D116" type="Sprite2D" parent="section3/wall"]
-position = Vector2(358, 387)
+position = Vector2(261, 387)
 texture = ExtResource("84_6pmoc")
 
 [node name="Sprite2D117" type="Sprite2D" parent="section3/wall"]
-position = Vector2(358, 371)
+position = Vector2(261, 371)
 texture = ExtResource("84_6pmoc")
 
 [node name="Sprite2D118" type="Sprite2D" parent="section3/wall"]
-position = Vector2(358, 355)
+position = Vector2(261, 355)
 texture = ExtResource("84_6pmoc")
 
 [node name="Sprite2D119" type="Sprite2D" parent="section3/wall"]
-position = Vector2(358, 403)
+position = Vector2(261, 403)
 texture = ExtResource("84_6pmoc")
 
 [node name="Sprite2D53" type="Sprite2D" parent="section3/wall"]
-position = Vector2(102.5, 220.5)
+position = Vector2(5.5, 220.5)
 texture = ExtResource("80_n7c28")
 
 [node name="Sprite2D54" type="Sprite2D" parent="section3/wall"]
-position = Vector2(118.5, 220.5)
+position = Vector2(21.5, 220.5)
 texture = ExtResource("80_n7c28")
 
 [node name="Sprite2D120" type="Sprite2D" parent="section3/wall"]
-position = Vector2(134.5, 220.5)
+position = Vector2(37.5, 220.5)
 texture = ExtResource("80_n7c28")
 
 [node name="Sprite2D121" type="Sprite2D" parent="section3/wall"]
-position = Vector2(102.5, 236.5)
+position = Vector2(5.5, 236.5)
 texture = ExtResource("104_d05nf")
 
 [node name="Sprite2D122" type="Sprite2D" parent="section3/wall"]
-position = Vector2(118.5, 236.5)
+position = Vector2(21.5, 236.5)
 texture = ExtResource("104_d05nf")
 
 [node name="Sprite2D123" type="Sprite2D" parent="section3/wall"]
-position = Vector2(134.5, 236.5)
+position = Vector2(37.5, 236.5)
 texture = ExtResource("104_d05nf")
 
 [node name="Sprite2D37" type="Sprite2D" parent="section3/wall"]
-position = Vector2(166.5, 324)
+position = Vector2(69.5, 324)
 texture = ExtResource("80_n7c28")
 
 [node name="Sprite2D38" type="Sprite2D" parent="section3/wall"]
-position = Vector2(182.5, 324)
+position = Vector2(85.5, 324)
 texture = ExtResource("80_n7c28")
 
 [node name="Sprite2D78" type="Sprite2D" parent="section3/wall"]
-position = Vector2(182.5, 340)
+position = Vector2(85.5, 340)
 texture = ExtResource("94_43b2l")
 
 [node name="Sprite2D85" type="Sprite2D" parent="section3/wall"]
-position = Vector2(166.5, 340)
+position = Vector2(69.5, 340)
 texture = ExtResource("94_43b2l")
 
 [node name="Sprite2D40" type="Sprite2D" parent="section3/wall"]
-position = Vector2(198.5, 324)
+position = Vector2(101.5, 324)
 texture = ExtResource("91_u6nb3")
 
 [node name="Sprite2D46" type="Sprite2D" parent="section3/wall"]
-position = Vector2(198.5, 340)
+position = Vector2(101.5, 340)
 texture = ExtResource("84_6pmoc")
 
 [node name="Sprite2D47" type="Sprite2D" parent="section3/wall"]
-position = Vector2(198.5, 388)
+position = Vector2(101.5, 388)
 texture = ExtResource("84_6pmoc")
 
 [node name="Sprite2D48" type="Sprite2D" parent="section3/wall"]
-position = Vector2(198.5, 372)
+position = Vector2(101.5, 372)
 texture = ExtResource("84_6pmoc")
 
 [node name="Sprite2D49" type="Sprite2D" parent="section3/wall"]
-position = Vector2(198.5, 356)
+position = Vector2(101.5, 356)
 texture = ExtResource("84_6pmoc")
 
 [node name="Sprite2D50" type="Sprite2D" parent="section3/wall"]
-position = Vector2(198.5, 404)
+position = Vector2(101.5, 404)
 texture = ExtResource("84_6pmoc")
 
 [node name="Sprite2D51" type="Sprite2D" parent="section3/wall"]
-position = Vector2(198.5, 419)
+position = Vector2(101.5, 419)
 texture = ExtResource("92_vfqyx")
 
 [node name="Sprite2D60" type="Sprite2D" parent="section3/wall"]
-position = Vector2(198.5, 435)
+position = Vector2(101.5, 435)
 texture = ExtResource("95_0x3rd")
 
 [node name="Sprite2D18" type="Sprite2D" parent="section3/wall"]
-position = Vector2(294, 220.5)
+position = Vector2(197, 220.5)
 texture = ExtResource("80_n7c28")
 
 [node name="Sprite2D19" type="Sprite2D" parent="section3/wall"]
-position = Vector2(310, 220.5)
+position = Vector2(213, 220.5)
 texture = ExtResource("80_n7c28")
 
 [node name="Sprite2D32" type="Sprite2D" parent="section3/wall"]
-position = Vector2(326, 220.5)
+position = Vector2(229, 220.5)
 texture = ExtResource("80_n7c28")
 
 [node name="Sprite2D33" type="Sprite2D" parent="section3/wall"]
-position = Vector2(342, 220.5)
+position = Vector2(245, 220.5)
 texture = ExtResource("80_n7c28")
 
 [node name="Sprite2D114" type="Sprite2D" parent="section3/wall"]
-position = Vector2(217, 252.5)
+position = Vector2(120, 252.5)
 texture = ExtResource("94_43b2l")
 
 [node name="Sprite2D115" type="Sprite2D" parent="section3/wall"]
-position = Vector2(233, 252.5)
+position = Vector2(136, 252.5)
 texture = ExtResource("94_43b2l")
 
 [node name="Sprite2D124" type="Sprite2D" parent="section3/wall"]
-position = Vector2(249, 252.5)
+position = Vector2(152, 252.5)
 texture = ExtResource("94_43b2l")
 
 [node name="Sprite2D125" type="Sprite2D" parent="section3/wall"]
-position = Vector2(265, 252.5)
+position = Vector2(168, 252.5)
 texture = ExtResource("94_43b2l")
 
 [node name="Sprite2D126" type="Sprite2D" parent="section3/wall"]
-position = Vector2(169, 252.5)
+position = Vector2(72, 252.5)
 texture = ExtResource("94_43b2l")
 
 [node name="Sprite2D127" type="Sprite2D" parent="section3/wall"]
-position = Vector2(185, 252.5)
+position = Vector2(88, 252.5)
 texture = ExtResource("94_43b2l")
 
 [node name="Sprite2D128" type="Sprite2D" parent="section3/wall"]
-position = Vector2(201, 252.5)
+position = Vector2(104, 252.5)
 texture = ExtResource("94_43b2l")
 
 [node name="Sprite2D129" type="Sprite2D" parent="section3/wall"]
-position = Vector2(105, 252.5)
+position = Vector2(8, 252.5)
 texture = ExtResource("94_43b2l")
 
 [node name="Sprite2D130" type="Sprite2D" parent="section3/wall"]
-position = Vector2(121, 252.5)
+position = Vector2(24, 252.5)
 texture = ExtResource("94_43b2l")
 
 [node name="Sprite2D131" type="Sprite2D" parent="section3/wall"]
-position = Vector2(137, 252.5)
+position = Vector2(40, 252.5)
 texture = ExtResource("94_43b2l")
 
 [node name="Sprite2D132" type="Sprite2D" parent="section3/wall"]
-position = Vector2(153, 252.5)
+position = Vector2(56, 252.5)
 texture = ExtResource("94_43b2l")
 
 [node name="Sprite2D79" type="Sprite2D" parent="section3/wall"]
-position = Vector2(294, 236.5)
+position = Vector2(197, 236.5)
 texture = ExtResource("104_d05nf")
 
 [node name="Sprite2D86" type="Sprite2D" parent="section3/wall"]
-position = Vector2(310, 236.5)
+position = Vector2(213, 236.5)
 texture = ExtResource("104_d05nf")
 
 [node name="Sprite2D88" type="Sprite2D" parent="section3/wall"]
-position = Vector2(326, 236.5)
+position = Vector2(229, 236.5)
 texture = ExtResource("104_d05nf")
 
 [node name="Sprite2D89" type="Sprite2D" parent="section3/wall"]
-position = Vector2(342, 236.5)
+position = Vector2(245, 236.5)
 texture = ExtResource("104_d05nf")
 
 [node name="Sprite2D65" type="Sprite2D" parent="section3/wall"]
-position = Vector2(358, 300.5)
+position = Vector2(261, 300.5)
 texture = ExtResource("84_6pmoc")
 
 [node name="Sprite2D71" type="Sprite2D" parent="section3/wall"]
-position = Vector2(358, 307.5)
+position = Vector2(261, 307.5)
 texture = ExtResource("84_6pmoc")
 
 [node name="Sprite2D133" type="Sprite2D" parent="section3/wall"]
-position = Vector2(118.5, 324)
+position = Vector2(21.5, 324)
 texture = ExtResource("80_n7c28")
 
 [node name="Sprite2D134" type="Sprite2D" parent="section3/wall"]
-position = Vector2(102.5, 340)
+position = Vector2(5.5, 340)
 texture = ExtResource("94_43b2l")
 
 [node name="Sprite2D34" type="Sprite2D" parent="section3/wall"]
-position = Vector2(102.5, 324)
+position = Vector2(5.5, 324)
 texture = ExtResource("80_n7c28")
 
 [node name="Sprite2D72" type="Sprite2D" parent="section3/wall"]
-position = Vector2(86.5, 316)
+position = Vector2(-10.5, 316)
 texture = ExtResource("84_6pmoc")
 
 [node name="Sprite2D35" type="Sprite2D" parent="section3/wall"]
-position = Vector2(86.5, 324)
+position = Vector2(-10.5, 324)
 texture = ExtResource("92_vfqyx")
 
 [node name="Sprite2D52" type="Sprite2D" parent="section3/wall"]
-position = Vector2(118.5, 340)
+position = Vector2(21.5, 340)
 texture = ExtResource("94_43b2l")
 
 [node name="Sprite2D55" type="Sprite2D" parent="section3/wall"]
-position = Vector2(86.5, 340)
+position = Vector2(-10.5, 340)
 texture = ExtResource("95_0x3rd")
 
 [node name="Chairs" type="Node2D" parent="section3"]
@@ -3092,7 +3076,7 @@ position = Vector2(2098, -639.00006)
 scale = Vector2(3, 3)
 
 [node name="ChairHide2" parent="section3/Chairs" instance=ExtResource("8_vcomt")]
-position = Vector2(-471.66675, 417.00006)
+position = Vector2(-536.33344, 417.00006)
 scale = Vector2(0.33333, 0.33333)
 metadata/_edit_group_ = true
 
@@ -3110,7 +3094,7 @@ scale = Vector2(3.00003, 3.00003)
 texture = ExtResource("6_1wqwq")
 
 [node name="ChairHide3" parent="section3/Chairs" instance=ExtResource("8_vcomt")]
-position = Vector2(-456.99997, 490)
+position = Vector2(-521.6666, 490)
 scale = Vector2(0.33333, 0.33333)
 metadata/_edit_group_ = true
 
@@ -3132,7 +3116,7 @@ position = Vector2(-111, 549)
 scale = Vector2(4, 4)
 
 [node name="Rbed1" type="Node2D" parent="section3/beds"]
-position = Vector2(145.5, -2.25)
+position = Vector2(97, -2.25)
 script = ExtResource("57_ikp7i")
 metadata/_edit_group_ = true
 
@@ -3165,33 +3149,33 @@ position = Vector2(144, 990)
 scale = Vector2(3, 3)
 
 [node name="Sprite2D10" type="Sprite2D" parent="section3/Side Furtniture"]
-position = Vector2(136.333, -104.167)
+position = Vector2(71.66632, -104.167)
 texture = ExtResource("31_ukdfb")
 
 [node name="Sprite2D11" type="Sprite2D" parent="section3/Side Furtniture"]
-position = Vector2(125.66631, -131.5)
+position = Vector2(60.99964, -131.5)
 texture = ExtResource("31_ukdfb")
 
 [node name="side counter top" type="Node2D" parent="section3/Side Furtniture"]
 
 [node name="Sprite2D11" type="Sprite2D" parent="section3/Side Furtniture/side counter top"]
-position = Vector2(120.83336, -104.16667)
+position = Vector2(56.166687, -104.16667)
 texture = ExtResource("32_d3k35")
 
 [node name="Sprite2D13" type="Sprite2D" parent="section3/Side Furtniture/side counter top"]
-position = Vector2(120.83336, -88.16667)
+position = Vector2(56.166687, -88.16667)
 texture = ExtResource("33_bac5v")
 
 [node name="Sprite2D15" type="Sprite2D" parent="section3/Side Furtniture/side counter top"]
-position = Vector2(120.83336, -72.5)
+position = Vector2(56.166687, -72.5)
 texture = ExtResource("34_j1x2a")
 
 [node name="Sprite2D12" type="Sprite2D" parent="section3/Side Furtniture/side counter top"]
-position = Vector2(110.16668, -131.49968)
+position = Vector2(45.500008, -131.49968)
 texture = ExtResource("32_d3k35")
 
 [node name="Sprite2D16" type="Sprite2D" parent="section3/Side Furtniture/side counter top"]
-position = Vector2(110.16667, -116.333664)
+position = Vector2(45.5, -116.333664)
 texture = ExtResource("34_j1x2a")
 
 [node name="side counter top2" type="Node2D" parent="section3/Side Furtniture"]
@@ -3207,65 +3191,65 @@ position = Vector2(539, 986)
 scale = Vector2(2, 2)
 
 [node name="Sprite2D" type="Sprite2D" parent="section3/Wall decors"]
-position = Vector2(62.5, -254)
+position = Vector2(-34.5, -254)
 texture = ExtResource("52_e4t5q")
 
 [node name="Sprite2D11" type="Sprite2D" parent="section3/Wall decors"]
-position = Vector2(1.5, -255.5)
+position = Vector2(-95.5, -255.5)
 texture = ExtResource("52_e4t5q")
 
 [node name="Sprite2D14" type="Sprite2D" parent="section3/Wall decors"]
-position = Vector2(-32, -255)
+position = Vector2(-129, -255)
 texture = ExtResource("52_e4t5q")
 
 [node name="Sprite2D2" type="Sprite2D" parent="section3/Wall decors"]
-position = Vector2(73.5, -243)
+position = Vector2(-23.5, -243)
 texture = ExtResource("53_d2a3p")
 
 [node name="Sprite2D12" type="Sprite2D" parent="section3/Wall decors"]
-position = Vector2(-9, -245)
+position = Vector2(-106, -245)
 texture = ExtResource("53_d2a3p")
 
 [node name="Sprite2D15" type="Sprite2D" parent="section3/Wall decors"]
-position = Vector2(-43, -255)
+position = Vector2(-140, -255)
 texture = ExtResource("53_d2a3p")
 
 [node name="Sprite2D3" type="Sprite2D" parent="section3/Wall decors"]
-position = Vector2(49, -254)
+position = Vector2(-48, -254)
 texture = ExtResource("54_lhrc5")
 
 [node name="Sprite2D10" type="Sprite2D" parent="section3/Wall decors"]
-position = Vector2(13, -255)
+position = Vector2(-84, -255)
 texture = ExtResource("54_lhrc5")
 
 [node name="Sprite2D16" type="Sprite2D" parent="section3/Wall decors"]
-position = Vector2(-53, -246)
+position = Vector2(-150, -246)
 texture = ExtResource("54_lhrc5")
 
 [node name="Sprite2D4" type="Sprite2D" parent="section3/Wall decors"]
-position = Vector2(37, -245.5)
+position = Vector2(-60, -245.5)
 texture = ExtResource("55_f6iqw")
 
 [node name="Sprite2D9" type="Sprite2D" parent="section3/Wall decors"]
-position = Vector2(25, -255.5)
+position = Vector2(-72, -255.5)
 texture = ExtResource("55_f6iqw")
 
 [node name="Sprite2D13" type="Sprite2D" parent="section3/Wall decors"]
-position = Vector2(-20.5, -254.5)
+position = Vector2(-117.5, -254.5)
 texture = ExtResource("55_f6iqw")
 
 [node name="long_art_green" type="Node2D" parent="section3/Wall decors"]
 
 [node name="Sprite2D15" type="Sprite2D" parent="section3/Wall decors/long_art_green"]
-position = Vector2(-103.5, -250)
+position = Vector2(-200.5, -250)
 texture = ExtResource("60_d0yip")
 
 [node name="Sprite2D16" type="Sprite2D" parent="section3/Wall decors/long_art_green"]
-position = Vector2(-87.5, -250)
+position = Vector2(-184.5, -250)
 texture = ExtResource("61_gqljy")
 
 [node name="Sprite2D17" type="Sprite2D" parent="section3/Wall decors/long_art_green"]
-position = Vector2(-71.5, -250)
+position = Vector2(-168.5, -250)
 texture = ExtResource("62_qdmo2")
 
 [node name="potrait_orange" type="Node2D" parent="section3/Wall decors"]
@@ -3277,23 +3261,22 @@ texture = ExtResource("62_qdmo2")
 [node name="long_art_blue" type="Node2D" parent="section3/Wall decors"]
 
 [node name="Sprite2D18" type="Sprite2D" parent="section3/Wall decors/long_art_blue"]
-position = Vector2(-156.5, -251)
+position = Vector2(-253.5, -251)
 texture = ExtResource("69_hfab1")
 
 [node name="Sprite2D19" type="Sprite2D" parent="section3/Wall decors/long_art_blue"]
-position = Vector2(-140.5, -251)
+position = Vector2(-237.5, -251)
 texture = ExtResource("70_4d5u3")
 
 [node name="Sprite2D20" type="Sprite2D" parent="section3/Wall decors/long_art_blue"]
-position = Vector2(-124.5, -251)
+position = Vector2(-221.5, -251)
 texture = ExtResource("71_p5xqo")
 
 [node name="Cactus" type="Node2D" parent="section3"]
 position = Vector2(1024, 326)
-metadata/_edit_group_ = true
 
 [node name="CactusHazard" type="Area2D" parent="section3/Cactus"]
-position = Vector2(-759, 288)
+position = Vector2(-953, 288)
 collision_layer = 128
 collision_mask = 2
 script = ExtResource("73_44w27")
@@ -3308,10 +3291,9 @@ shape = SubResource("RectangleShape2D_ea8eh")
 
 [node name="Cactus2" type="Node2D" parent="section3"]
 position = Vector2(1088, 229)
-metadata/_edit_group_ = true
 
 [node name="CactusHazard" type="Area2D" parent="section3/Cactus2"]
-position = Vector2(-759, 288)
+position = Vector2(-953, 288)
 collision_layer = 128
 collision_mask = 2
 script = ExtResource("73_44w27")
@@ -3326,10 +3308,9 @@ shape = SubResource("RectangleShape2D_ea8eh")
 
 [node name="Cactus6" type="Node2D" parent="section3"]
 position = Vector2(1086, 288)
-metadata/_edit_group_ = true
 
 [node name="CactusHazard" type="Area2D" parent="section3/Cactus6"]
-position = Vector2(-759, 288)
+position = Vector2(-953, 288)
 collision_layer = 128
 collision_mask = 2
 script = ExtResource("73_44w27")
@@ -3344,10 +3325,9 @@ shape = SubResource("RectangleShape2D_ea8eh")
 
 [node name="Cactus3" type="Node2D" parent="section3"]
 position = Vector2(1154, 325)
-metadata/_edit_group_ = true
 
 [node name="CactusHazard" type="Area2D" parent="section3/Cactus3"]
-position = Vector2(-759, 288)
+position = Vector2(-953, 288)
 collision_layer = 128
 collision_mask = 2
 script = ExtResource("73_44w27")
@@ -3362,10 +3342,9 @@ shape = SubResource("RectangleShape2D_ea8eh")
 
 [node name="Cactus4" type="Node2D" parent="section3"]
 position = Vector2(1022, 241)
-metadata/_edit_group_ = true
 
 [node name="CactusHazard" type="Area2D" parent="section3/Cactus4"]
-position = Vector2(-759, 288)
+position = Vector2(-953, 288)
 collision_layer = 128
 collision_mask = 2
 script = ExtResource("73_44w27")
@@ -3380,10 +3359,9 @@ shape = SubResource("RectangleShape2D_ea8eh")
 
 [node name="Cactus5" type="Node2D" parent="section3"]
 position = Vector2(1154, 242)
-metadata/_edit_group_ = true
 
 [node name="CactusHazard" type="Area2D" parent="section3/Cactus5"]
-position = Vector2(-759, 288)
+position = Vector2(-953, 288)
 collision_layer = 128
 collision_mask = 2
 script = ExtResource("73_44w27")
@@ -3401,7 +3379,7 @@ position = Vector2(86, 864)
 scale = Vector2(3, 3)
 
 [node name="SofaHide" parent="section3/Sofa" instance=ExtResource("8_vcomt")]
-position = Vector2(39.666668, -113.666664)
+position = Vector2(-25.000004, -113.666664)
 scale = Vector2(0.33333, 0.33333)
 metadata/_edit_group_ = true
 
@@ -3426,7 +3404,7 @@ position = Vector2(-8.833334, 0.5)
 texture = ExtResource("75_62huu")
 
 [node name="SofaHide3" parent="section3/Sofa" instance=ExtResource("8_vcomt")]
-position = Vector2(125.666664, -58.000004)
+position = Vector2(60.999992, -58.000004)
 scale = Vector2(0.33333, 0.33333)
 metadata/_edit_group_ = true
 
@@ -3456,30 +3434,32 @@ metadata/_edit_group_ = true
 
 [node name="To section1" type="Sprite2D" parent="section3/transition node"]
 self_modulate = Color(0, 0, 0, 1)
-position = Vector2(716, 650)
+position = Vector2(522, 650)
 scale = Vector2(2.0624924, 2.3749971)
 texture = ExtResource("109_niilh")
+script = ExtResource("200_trig")
+destination = NodePath("../../../section1/transition node/hidden area from section 3")
 
-[node name="hidden area" type="Sprite2D" parent="section3/transition node"]
+[node name="hidden area from section 1" type="Sprite2D" parent="section3/transition node"]
 self_modulate = Color(0.63529414, 0.63529414, 0.63529414, 1)
-position = Vector2(680.00006, 650)
+position = Vector2(486.00006, 650)
 scale = Vector2(2.5, 2.3749971)
 texture = ExtResource("109_niilh")
 script = ExtResource("57_ikp7i")
 
-[node name="HideArea" type="Area2D" parent="section3/transition node/hidden area"]
+[node name="HideArea" type="Area2D" parent="section3/transition node/hidden area from section 1"]
 collision_layer = 32
 collision_mask = 2
 
-[node name="HideCollision" type="CollisionShape2D" parent="section3/transition node/hidden area/HideArea"]
+[node name="HideCollision" type="CollisionShape2D" parent="section3/transition node/hidden area from section 1/HideArea"]
 position = Vector2(-3.0517578e-05, 7.6293945e-06)
 shape = SubResource("RectangleShape2D_o60cb")
 
-[node name="VisionBlocker" type="StaticBody2D" parent="section3/transition node/hidden area"]
+[node name="VisionBlocker" type="StaticBody2D" parent="section3/transition node/hidden area from section 1"]
 collision_layer = 64
 collision_mask = 0
 
-[node name="VisionCollision" type="CollisionShape2D" parent="section3/transition node/hidden area/VisionBlocker"]
+[node name="VisionCollision" type="CollisionShape2D" parent="section3/transition node/hidden area from section 1/VisionBlocker"]
 position = Vector2(-3.0517578e-05, 3.8146973e-06)
 shape = SubResource("RectangleShape2D_5o1ik")
 
@@ -3488,47 +3468,47 @@ collision_layer = 65
 collision_mask = 0
 
 [node name="LeftWall" type="CollisionShape2D" parent="section3/WallCollision"]
-position = Vector2(396, 752)
+position = Vector2(202, 752)
 shape = SubResource("RectangleShape2D_rnfd2")
 
 [node name="LeftWall2" type="CollisionShape2D" parent="section3/WallCollision"]
-position = Vector2(465, 616.5625)
+position = Vector2(271, 616.5625)
 shape = SubResource("RectangleShape2D_417h0")
 
 [node name="LeftWall4" type="CollisionShape2D" parent="section3/WallCollision"]
-position = Vector2(496.75, 593.28125)
+position = Vector2(302.75, 593.28125)
 shape = SubResource("RectangleShape2D_m7vw6")
 
 [node name="LeftWall5" type="CollisionShape2D" parent="section3/WallCollision"]
-position = Vector2(528, 676)
+position = Vector2(334, 676)
 shape = SubResource("RectangleShape2D_m7vw6")
 
 [node name="LeftWall3" type="CollisionShape2D" parent="section3/WallCollision"]
-position = Vector2(497, 722.78125)
+position = Vector2(303, 722.78125)
 shape = SubResource("RectangleShape2D_e4t5q")
 
 [node name="InnerLeftWall" type="CollisionShape2D" parent="section3/WallCollision"]
-position = Vector2(172, 600)
+position = Vector2(-22, 600)
 shape = SubResource("RectangleShape2D_od75w")
 
 [node name="InteriorWall" type="CollisionShape2D" parent="section3/WallCollision"]
-position = Vector2(443.5, 473.5)
+position = Vector2(249.5, 473.5)
 shape = SubResource("RectangleShape2D_ldp3s")
 
 [node name="InnerRightWall" type="CollisionShape2D" parent="section3/WallCollision"]
-position = Vector2(716, 527.625)
+position = Vector2(522, 527.625)
 shape = SubResource("RectangleShape2D_go5qf")
 
 [node name="RightWall" type="CollisionShape2D" parent="section3/WallCollision"]
-position = Vector2(716, 764.25)
+position = Vector2(522, 764.25)
 shape = SubResource("RectangleShape2D_1wqwq")
 
 [node name="BottomWall" type="CollisionShape2D" parent="section3/WallCollision"]
-position = Vector2(557, 857)
+position = Vector2(363, 857)
 shape = SubResource("RectangleShape2D_flvyo")
 
 [node name="InteriorWall2" type="CollisionShape2D" parent="section3/WallCollision"]
-position = Vector2(282.5, 665.4375)
+position = Vector2(88.5, 665.4375)
 shape = SubResource("RectangleShape2D_vcomt")
 
 [node name="section2" type="Node2D" parent="."]
@@ -3539,682 +3519,682 @@ z_index = -999
 scale = Vector2(2.5, 2.5)
 
 [node name="Sprite2D140" type="Sprite2D" parent="section2/Floor2"]
-position = Vector2(66.799995, 224.79999)
+position = Vector2(232.40002, 228.4)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D142" type="Sprite2D" parent="section2/Floor2"]
-position = Vector2(82.799995, 224.79999)
+position = Vector2(248.40002, 228.4)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D143" type="Sprite2D" parent="section2/Floor2"]
-position = Vector2(98.799995, 224.79999)
+position = Vector2(264.40002, 228.4)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D144" type="Sprite2D" parent="section2/Floor2"]
-position = Vector2(114.799995, 224.79999)
+position = Vector2(280.40002, 228.4)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D145" type="Sprite2D" parent="section2/Floor2"]
-position = Vector2(130.79999, 224.79999)
+position = Vector2(296.40002, 228.4)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D146" type="Sprite2D" parent="section2/Floor2"]
-position = Vector2(146.79999, 224.79999)
+position = Vector2(312.40002, 228.4)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D147" type="Sprite2D" parent="section2/Floor2"]
-position = Vector2(162.79999, 224.79999)
+position = Vector2(328.40002, 228.4)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D148" type="Sprite2D" parent="section2/Floor2"]
-position = Vector2(178.79999, 224.79999)
+position = Vector2(344.40002, 228.4)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D149" type="Sprite2D" parent="section2/Floor2"]
-position = Vector2(194.79999, 224.79999)
+position = Vector2(360.40002, 228.4)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D150" type="Sprite2D" parent="section2/Floor2"]
-position = Vector2(62.799995, 240.79999)
+position = Vector2(228.40002, 244.4)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D151" type="Sprite2D" parent="section2/Floor2"]
-position = Vector2(78.799995, 240.79999)
+position = Vector2(244.40002, 244.4)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D152" type="Sprite2D" parent="section2/Floor2"]
-position = Vector2(94.799995, 240.79999)
+position = Vector2(260.40002, 244.4)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D154" type="Sprite2D" parent="section2/Floor2"]
-position = Vector2(110.799995, 240.79999)
+position = Vector2(276.40002, 244.4)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D155" type="Sprite2D" parent="section2/Floor2"]
-position = Vector2(126.79998, 240.79999)
+position = Vector2(292.4, 244.4)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D156" type="Sprite2D" parent="section2/Floor2"]
-position = Vector2(142.79999, 240.79999)
+position = Vector2(308.40002, 244.4)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D157" type="Sprite2D" parent="section2/Floor2"]
-position = Vector2(158.79999, 240.79999)
+position = Vector2(324.40002, 244.4)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D158" type="Sprite2D" parent="section2/Floor2"]
-position = Vector2(174.79999, 240.79999)
+position = Vector2(340.40002, 244.4)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D159" type="Sprite2D" parent="section2/Floor2"]
-position = Vector2(190.79999, 240.79999)
+position = Vector2(356.40002, 244.4)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D160" type="Sprite2D" parent="section2/Floor2"]
-position = Vector2(62.799995, 256.8)
+position = Vector2(228.40002, 260.4)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D161" type="Sprite2D" parent="section2/Floor2"]
-position = Vector2(78.799995, 256.8)
+position = Vector2(244.40002, 260.4)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D162" type="Sprite2D" parent="section2/Floor2"]
-position = Vector2(94.799995, 256.8)
+position = Vector2(260.40002, 260.4)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D163" type="Sprite2D" parent="section2/Floor2"]
-position = Vector2(110.799995, 256.8)
+position = Vector2(276.40002, 260.4)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D164" type="Sprite2D" parent="section2/Floor2"]
-position = Vector2(126.79999, 256.8)
+position = Vector2(292.40002, 260.4)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D165" type="Sprite2D" parent="section2/Floor2"]
-position = Vector2(142.79999, 256.8)
+position = Vector2(308.40002, 260.4)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D166" type="Sprite2D" parent="section2/Floor2"]
-position = Vector2(158.79999, 256.8)
+position = Vector2(324.40002, 260.4)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D167" type="Sprite2D" parent="section2/Floor2"]
-position = Vector2(174.79999, 256.8)
+position = Vector2(340.40002, 260.4)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D168" type="Sprite2D" parent="section2/Floor2"]
-position = Vector2(190.79999, 256.8)
+position = Vector2(356.40002, 260.4)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D169" type="Sprite2D" parent="section2/Floor2"]
-position = Vector2(62.799995, 272.8)
+position = Vector2(228.40002, 276.4)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D170" type="Sprite2D" parent="section2/Floor2"]
-position = Vector2(78.799995, 272.8)
+position = Vector2(244.40002, 276.4)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D171" type="Sprite2D" parent="section2/Floor2"]
-position = Vector2(94.799995, 272.8)
+position = Vector2(260.40002, 276.4)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D172" type="Sprite2D" parent="section2/Floor2"]
-position = Vector2(110.799995, 272.8)
+position = Vector2(276.40002, 276.4)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D173" type="Sprite2D" parent="section2/Floor2"]
-position = Vector2(126.79999, 272.8)
+position = Vector2(292.40002, 276.4)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D174" type="Sprite2D" parent="section2/Floor2"]
-position = Vector2(142.79999, 272.8)
+position = Vector2(308.40002, 276.4)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D175" type="Sprite2D" parent="section2/Floor2"]
-position = Vector2(158.79999, 272.8)
+position = Vector2(324.40002, 276.4)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D176" type="Sprite2D" parent="section2/Floor2"]
-position = Vector2(174.79999, 272.8)
+position = Vector2(340.40002, 276.4)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D177" type="Sprite2D" parent="section2/Floor2"]
-position = Vector2(190.79999, 272.8)
+position = Vector2(356.40002, 276.4)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D178" type="Sprite2D" parent="section2/Floor2"]
-position = Vector2(62.799995, 288.8)
+position = Vector2(228.40002, 292.4)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D179" type="Sprite2D" parent="section2/Floor2"]
-position = Vector2(78.799995, 288.8)
+position = Vector2(244.40002, 292.4)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D180" type="Sprite2D" parent="section2/Floor2"]
-position = Vector2(94.799995, 288.8)
+position = Vector2(260.40002, 292.4)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D181" type="Sprite2D" parent="section2/Floor2"]
-position = Vector2(110.799995, 288.8)
+position = Vector2(276.40002, 292.4)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D182" type="Sprite2D" parent="section2/Floor2"]
-position = Vector2(126.79998, 288.8)
+position = Vector2(292.4, 292.4)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D183" type="Sprite2D" parent="section2/Floor2"]
-position = Vector2(142.79999, 288.8)
+position = Vector2(308.40002, 292.4)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D184" type="Sprite2D" parent="section2/Floor2"]
-position = Vector2(158.79999, 288.8)
+position = Vector2(324.40002, 292.4)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D185" type="Sprite2D" parent="section2/Floor2"]
-position = Vector2(174.79999, 288.8)
+position = Vector2(340.40002, 292.4)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D186" type="Sprite2D" parent="section2/Floor2"]
-position = Vector2(190.79999, 288.8)
+position = Vector2(356.40002, 292.4)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D187" type="Sprite2D" parent="section2/Floor2"]
-position = Vector2(62.799995, 304.8)
+position = Vector2(228.40002, 308.4)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D188" type="Sprite2D" parent="section2/Floor2"]
-position = Vector2(78.799995, 304.8)
+position = Vector2(244.40002, 308.4)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D189" type="Sprite2D" parent="section2/Floor2"]
-position = Vector2(94.799995, 304.8)
+position = Vector2(260.40002, 308.4)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D190" type="Sprite2D" parent="section2/Floor2"]
-position = Vector2(110.799995, 304.8)
+position = Vector2(276.40002, 308.4)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D191" type="Sprite2D" parent="section2/Floor2"]
-position = Vector2(126.79999, 304.8)
+position = Vector2(292.40002, 308.4)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D192" type="Sprite2D" parent="section2/Floor2"]
-position = Vector2(142.79999, 304.8)
+position = Vector2(308.40002, 308.4)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D193" type="Sprite2D" parent="section2/Floor2"]
-position = Vector2(158.79999, 304.8)
+position = Vector2(324.40002, 308.4)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D194" type="Sprite2D" parent="section2/Floor2"]
-position = Vector2(174.79999, 304.8)
+position = Vector2(340.40002, 308.4)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D195" type="Sprite2D" parent="section2/Floor2"]
-position = Vector2(190.79999, 304.8)
+position = Vector2(356.40002, 308.4)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D196" type="Sprite2D" parent="section2/Floor2"]
-position = Vector2(46.799995, 240.79999)
+position = Vector2(212.40002, 244.4)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D197" type="Sprite2D" parent="section2/Floor2"]
-position = Vector2(46.799995, 256.8)
+position = Vector2(212.40002, 260.4)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D198" type="Sprite2D" parent="section2/Floor2"]
-position = Vector2(46.799995, 272.8)
+position = Vector2(212.40002, 276.4)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D199" type="Sprite2D" parent="section2/Floor2"]
-position = Vector2(46.799995, 288.8)
+position = Vector2(212.40002, 292.4)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D200" type="Sprite2D" parent="section2/Floor2"]
-position = Vector2(46.799995, 304.8)
+position = Vector2(212.40002, 308.4)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D201" type="Sprite2D" parent="section2/Floor2"]
-position = Vector2(78.799995, 320)
+position = Vector2(244.40002, 323.6)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D202" type="Sprite2D" parent="section2/Floor2"]
-position = Vector2(94.799995, 320)
+position = Vector2(260.40002, 323.6)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D203" type="Sprite2D" parent="section2/Floor2"]
-position = Vector2(110.799995, 320)
+position = Vector2(276.40002, 323.6)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D204" type="Sprite2D" parent="section2/Floor2"]
-position = Vector2(126.79999, 320)
+position = Vector2(292.40002, 323.6)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D205" type="Sprite2D" parent="section2/Floor2"]
-position = Vector2(142.79999, 320)
+position = Vector2(308.40002, 323.6)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D206" type="Sprite2D" parent="section2/Floor2"]
-position = Vector2(158.79999, 320)
+position = Vector2(324.40002, 323.6)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D207" type="Sprite2D" parent="section2/Floor2"]
-position = Vector2(174.79999, 320)
+position = Vector2(340.40002, 323.6)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D208" type="Sprite2D" parent="section2/Floor2"]
-position = Vector2(78.799995, 304.8)
+position = Vector2(244.40002, 308.4)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D209" type="Sprite2D" parent="section2/Floor2"]
-position = Vector2(94.799995, 304.8)
+position = Vector2(260.40002, 308.4)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D210" type="Sprite2D" parent="section2/Floor2"]
-position = Vector2(110.799995, 304.8)
+position = Vector2(276.40002, 308.4)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D211" type="Sprite2D" parent="section2/Floor2"]
-position = Vector2(126.79999, 304.8)
+position = Vector2(292.40002, 308.4)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D212" type="Sprite2D" parent="section2/Floor2"]
-position = Vector2(142.79999, 304.8)
+position = Vector2(308.40002, 308.4)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D213" type="Sprite2D" parent="section2/Floor2"]
-position = Vector2(158.79999, 304.8)
+position = Vector2(324.40002, 308.4)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D214" type="Sprite2D" parent="section2/Floor2"]
-position = Vector2(174.79999, 304.8)
+position = Vector2(340.40002, 308.4)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D215" type="Sprite2D" parent="section2/Floor2"]
-position = Vector2(78.799995, 332.4)
+position = Vector2(244.40002, 336)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D216" type="Sprite2D" parent="section2/Floor2"]
-position = Vector2(94.799995, 332.4)
+position = Vector2(260.40002, 336)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D217" type="Sprite2D" parent="section2/Floor2"]
-position = Vector2(110.799995, 332.4)
+position = Vector2(276.40002, 336)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D218" type="Sprite2D" parent="section2/Floor2"]
-position = Vector2(126.79999, 332.4)
+position = Vector2(292.40002, 336)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D219" type="Sprite2D" parent="section2/Floor2"]
-position = Vector2(142.79999, 332.4)
+position = Vector2(308.40002, 336)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D220" type="Sprite2D" parent="section2/Floor2"]
-position = Vector2(158.79999, 332.4)
+position = Vector2(324.40002, 336)
 texture = ExtResource("109_niilh")
 
 [node name="Sprite2D221" type="Sprite2D" parent="section2/Floor2"]
-position = Vector2(174.79999, 332.4)
+position = Vector2(340.40002, 336)
 texture = ExtResource("109_niilh")
 
 [node name="wall" type="Node2D" parent="section2"]
 scale = Vector2(2, 2)
 
 [node name="Sprite2D109" type="Sprite2D" parent="section2/wall"]
-position = Vector2(244.5, 263)
+position = Vector2(451.50003, 267.5)
 texture = ExtResource("96_8v0px")
 
 [node name="Sprite2D110" type="Sprite2D" parent="section2/wall"]
-position = Vector2(82, 263)
+position = Vector2(289.00003, 267.5)
 texture = ExtResource("94_43b2l")
 
 [node name="Sprite2D111" type="Sprite2D" parent="section2/wall"]
-position = Vector2(98, 263)
+position = Vector2(305.00003, 267.5)
 texture = ExtResource("94_43b2l")
 
 [node name="Sprite2D112" type="Sprite2D" parent="section2/wall"]
-position = Vector2(129.5, 263)
+position = Vector2(336.50003, 267.5)
 texture = ExtResource("94_43b2l")
 
 [node name="Sprite2D2" type="Sprite2D" parent="section2/wall"]
-position = Vector2(113.5, 231)
+position = Vector2(320.50003, 235.5)
 texture = ExtResource("80_n7c28")
 
 [node name="Sprite2D4" type="Sprite2D" parent="section2/wall"]
-position = Vector2(129.5, 231)
+position = Vector2(336.50003, 235.5)
 texture = ExtResource("80_n7c28")
 
 [node name="Sprite2D5" type="Sprite2D" parent="section2/wall"]
-position = Vector2(145.5, 231)
+position = Vector2(352.50003, 235.5)
 texture = ExtResource("80_n7c28")
 
 [node name="Sprite2D6" type="Sprite2D" parent="section2/wall"]
-position = Vector2(161.5, 231)
+position = Vector2(368.50003, 235.5)
 texture = ExtResource("80_n7c28")
 
 [node name="Sprite2D7" type="Sprite2D" parent="section2/wall"]
-position = Vector2(177.5, 231)
+position = Vector2(384.50003, 235.5)
 texture = ExtResource("80_n7c28")
 
 [node name="Sprite2D13" type="Sprite2D" parent="section2/wall"]
-position = Vector2(193.5, 231)
+position = Vector2(400.50003, 235.5)
 texture = ExtResource("80_n7c28")
 
 [node name="Sprite2D14" type="Sprite2D" parent="section2/wall"]
-position = Vector2(209.5, 231)
+position = Vector2(416.50003, 235.5)
 texture = ExtResource("80_n7c28")
 
 [node name="Sprite2D16" type="Sprite2D" parent="section2/wall"]
-position = Vector2(225.5, 231)
+position = Vector2(432.50003, 235.5)
 texture = ExtResource("80_n7c28")
 
 [node name="Sprite2D17" type="Sprite2D" parent="section2/wall"]
-position = Vector2(241.5, 231)
+position = Vector2(448.50003, 235.5)
 texture = ExtResource("80_n7c28")
 
 [node name="Sprite2D18" type="Sprite2D" parent="section2/wall"]
-position = Vector2(113.5, 423)
+position = Vector2(320.50003, 427.5)
 texture = ExtResource("80_n7c28")
 
 [node name="Sprite2D19" type="Sprite2D" parent="section2/wall"]
-position = Vector2(129.5, 423)
+position = Vector2(336.50003, 427.5)
 texture = ExtResource("80_n7c28")
 
 [node name="Sprite2D20" type="Sprite2D" parent="section2/wall"]
-position = Vector2(145.5, 423)
+position = Vector2(352.50003, 427.5)
 texture = ExtResource("80_n7c28")
 
 [node name="Sprite2D22" type="Sprite2D" parent="section2/wall"]
-position = Vector2(161.5, 423)
+position = Vector2(368.50003, 427.5)
 texture = ExtResource("80_n7c28")
 
 [node name="Sprite2D23" type="Sprite2D" parent="section2/wall"]
-position = Vector2(177.5, 423)
+position = Vector2(384.50003, 427.5)
 texture = ExtResource("80_n7c28")
 
 [node name="Sprite2D27" type="Sprite2D" parent="section2/wall"]
-position = Vector2(193.5, 423)
+position = Vector2(400.50003, 427.5)
 texture = ExtResource("80_n7c28")
 
 [node name="Sprite2D28" type="Sprite2D" parent="section2/wall"]
-position = Vector2(209.5, 423)
+position = Vector2(416.50003, 427.5)
 texture = ExtResource("80_n7c28")
 
 [node name="Sprite2D29" type="Sprite2D" parent="section2/wall"]
-position = Vector2(241, 391)
+position = Vector2(448.00003, 395.5)
 texture = ExtResource("80_n7c28")
 
 [node name="Sprite2D31" type="Sprite2D" parent="section2/wall"]
-position = Vector2(50, 231)
+position = Vector2(257.00003, 235.5)
 texture = ExtResource("90_ugugv")
 
 [node name="Sprite2D36" type="Sprite2D" parent="section2/wall"]
-position = Vector2(256.5, 231)
+position = Vector2(463.50003, 235.5)
 texture = ExtResource("91_u6nb3")
 
 [node name="Sprite2D37" type="Sprite2D" parent="section2/wall"]
-position = Vector2(256.5, 391)
+position = Vector2(463.50003, 395.5)
 texture = ExtResource("93_e2fpy")
 
 [node name="Sprite2D38" type="Sprite2D" parent="section2/wall"]
-position = Vector2(225.5, 391)
+position = Vector2(432.50003, 395.5)
 texture = ExtResource("90_ugugv")
 
 [node name="Sprite2D39" type="Sprite2D" parent="section2/wall"]
-position = Vector2(225.5, 423)
+position = Vector2(432.50003, 427.5)
 texture = ExtResource("93_e2fpy")
 
 [node name="Sprite2D41" type="Sprite2D" parent="section2/wall"]
-position = Vector2(50, 247)
+position = Vector2(257.00003, 251.5)
 texture = ExtResource("84_6pmoc")
 
 [node name="Sprite2D42" type="Sprite2D" parent="section2/wall"]
-position = Vector2(50, 299)
+position = Vector2(257.00003, 303.5)
 texture = ExtResource("84_6pmoc")
 
 [node name="Sprite2D44" type="Sprite2D" parent="section2/wall"]
-position = Vector2(50, 263)
+position = Vector2(257.00003, 267.5)
 texture = ExtResource("84_6pmoc")
 
 [node name="Sprite2D45" type="Sprite2D" parent="section2/wall"]
-position = Vector2(50, 327)
+position = Vector2(257.00003, 331.5)
 texture = ExtResource("84_6pmoc")
 
 [node name="Sprite2D46" type="Sprite2D" parent="section2/wall"]
-position = Vector2(50, 359)
+position = Vector2(257.00003, 363.5)
 texture = ExtResource("84_6pmoc")
 
 [node name="Sprite2D47" type="Sprite2D" parent="section2/wall"]
-position = Vector2(50, 343)
+position = Vector2(257.00003, 347.5)
 texture = ExtResource("84_6pmoc")
 
 [node name="Sprite2D49" type="Sprite2D" parent="section2/wall"]
-position = Vector2(50, 375)
+position = Vector2(257.00003, 379.5)
 texture = ExtResource("84_6pmoc")
 
 [node name="Sprite2D58" type="Sprite2D" parent="section2/wall"]
-position = Vector2(256.5, 263)
+position = Vector2(463.50003, 267.5)
 texture = ExtResource("84_6pmoc")
 
 [node name="Sprite2D59" type="Sprite2D" parent="section2/wall"]
-position = Vector2(256.5, 247)
+position = Vector2(463.50003, 251.5)
 texture = ExtResource("84_6pmoc")
 
 [node name="Sprite2D61" type="Sprite2D" parent="section2/wall"]
-position = Vector2(256.5, 295)
+position = Vector2(463.50003, 299.5)
 texture = ExtResource("84_6pmoc")
 
 [node name="Sprite2D62" type="Sprite2D" parent="section2/wall"]
-position = Vector2(256.5, 280)
+position = Vector2(463.50003, 284.5)
 texture = ExtResource("84_6pmoc")
 
 [node name="Sprite2D64" type="Sprite2D" parent="section2/wall"]
-position = Vector2(256.5, 311)
+position = Vector2(463.50003, 315.5)
 texture = ExtResource("84_6pmoc")
 
 [node name="Sprite2D65" type="Sprite2D" parent="section2/wall"]
-position = Vector2(225.5, 407)
+position = Vector2(432.50003, 411.5)
 texture = ExtResource("84_6pmoc")
 
 [node name="Sprite2D66" type="Sprite2D" parent="section2/wall"]
-position = Vector2(113.5, 247)
+position = Vector2(320.50003, 251.5)
 texture = ExtResource("104_d05nf")
 
 [node name="Sprite2D67" type="Sprite2D" parent="section2/wall"]
-position = Vector2(129.5, 247)
+position = Vector2(336.50003, 251.5)
 texture = ExtResource("104_d05nf")
 
 [node name="Sprite2D68" type="Sprite2D" parent="section2/wall"]
-position = Vector2(145.5, 247)
+position = Vector2(352.50003, 251.5)
 texture = ExtResource("104_d05nf")
 
 [node name="Sprite2D69" type="Sprite2D" parent="section2/wall"]
-position = Vector2(161.5, 247)
+position = Vector2(368.50003, 251.5)
 texture = ExtResource("104_d05nf")
 
 [node name="Sprite2D70" type="Sprite2D" parent="section2/wall"]
-position = Vector2(177.5, 247)
+position = Vector2(384.50003, 251.5)
 texture = ExtResource("104_d05nf")
 
 [node name="Sprite2D72" type="Sprite2D" parent="section2/wall"]
-position = Vector2(193.5, 247)
+position = Vector2(400.50003, 251.5)
 texture = ExtResource("104_d05nf")
 
 [node name="Sprite2D73" type="Sprite2D" parent="section2/wall"]
-position = Vector2(209.5, 247)
+position = Vector2(416.50003, 251.5)
 texture = ExtResource("104_d05nf")
 
 [node name="Sprite2D75" type="Sprite2D" parent="section2/wall"]
-position = Vector2(225.5, 247)
+position = Vector2(432.50003, 251.5)
 texture = ExtResource("104_d05nf")
 
 [node name="Sprite2D76" type="Sprite2D" parent="section2/wall"]
-position = Vector2(240.5, 247)
+position = Vector2(447.50003, 251.5)
 texture = ExtResource("104_d05nf")
 
 [node name="Sprite2D79" type="Sprite2D" parent="section2/wall"]
-position = Vector2(256.5, 407)
+position = Vector2(463.50003, 411.5)
 texture = ExtResource("96_8v0px")
 
 [node name="Sprite2D80" type="Sprite2D" parent="section2/wall"]
-position = Vector2(241.5, 407)
+position = Vector2(448.50003, 411.5)
 texture = ExtResource("94_43b2l")
 
 [node name="Sprite2D81" type="Sprite2D" parent="section2/wall"]
-position = Vector2(209.5, 439)
+position = Vector2(416.50003, 443.5)
 texture = ExtResource("94_43b2l")
 
 [node name="Sprite2D82" type="Sprite2D" parent="section2/wall"]
-position = Vector2(225.5, 439)
+position = Vector2(432.50003, 443.5)
 texture = ExtResource("96_8v0px")
 
 [node name="Sprite2D83" type="Sprite2D" parent="section2/wall"]
-position = Vector2(193.5, 439)
+position = Vector2(400.50003, 443.5)
 texture = ExtResource("94_43b2l")
 
 [node name="Sprite2D87" type="Sprite2D" parent="section2/wall"]
-position = Vector2(145.5, 439)
+position = Vector2(352.50003, 443.5)
 texture = ExtResource("94_43b2l")
 
 [node name="Sprite2D88" type="Sprite2D" parent="section2/wall"]
-position = Vector2(129.5, 439)
+position = Vector2(336.50003, 443.5)
 texture = ExtResource("94_43b2l")
 
 [node name="Sprite2D89" type="Sprite2D" parent="section2/wall"]
-position = Vector2(113.5, 439)
+position = Vector2(320.50003, 443.5)
 texture = ExtResource("94_43b2l")
 
 [node name="Sprite2D90" type="Sprite2D" parent="section2/wall"]
-position = Vector2(177.5, 439)
+position = Vector2(384.50003, 443.5)
 texture = ExtResource("94_43b2l")
 
 [node name="Sprite2D91" type="Sprite2D" parent="section2/wall"]
-position = Vector2(161.5, 439)
+position = Vector2(368.50003, 443.5)
 texture = ExtResource("94_43b2l")
 
 [node name="Sprite2D107" type="Sprite2D" parent="section2/wall"]
-position = Vector2(66, 263)
+position = Vector2(273.00003, 267.5)
 texture = ExtResource("94_43b2l")
 
 [node name="Sprite2D113" type="Sprite2D" parent="section2/wall"]
-position = Vector2(114, 263)
+position = Vector2(321.00003, 267.5)
 texture = ExtResource("94_43b2l")
 
 [node name="Sprite2D116" type="Sprite2D" parent="section2/wall"]
-position = Vector2(256.5, 359)
+position = Vector2(463.50003, 363.5)
 texture = ExtResource("84_6pmoc")
 
 [node name="Sprite2D117" type="Sprite2D" parent="section2/wall"]
-position = Vector2(256.5, 343)
+position = Vector2(463.50003, 347.5)
 texture = ExtResource("84_6pmoc")
 
 [node name="Sprite2D118" type="Sprite2D" parent="section2/wall"]
-position = Vector2(256.5, 327)
+position = Vector2(463.50003, 331.5)
 texture = ExtResource("84_6pmoc")
 
 [node name="Sprite2D119" type="Sprite2D" parent="section2/wall"]
-position = Vector2(256.5, 375)
+position = Vector2(463.50003, 379.5)
 texture = ExtResource("84_6pmoc")
 
 [node name="Sprite2D53" type="Sprite2D" parent="section2/wall"]
-position = Vector2(66, 231)
+position = Vector2(273.00003, 235.5)
 texture = ExtResource("80_n7c28")
 
 [node name="Sprite2D54" type="Sprite2D" parent="section2/wall"]
-position = Vector2(82, 231)
+position = Vector2(289.00003, 235.5)
 texture = ExtResource("80_n7c28")
 
 [node name="Sprite2D120" type="Sprite2D" parent="section2/wall"]
-position = Vector2(98, 231)
+position = Vector2(305.00003, 235.5)
 texture = ExtResource("80_n7c28")
 
 [node name="Sprite2D121" type="Sprite2D" parent="section2/wall"]
-position = Vector2(66, 247)
+position = Vector2(273.00003, 251.5)
 texture = ExtResource("104_d05nf")
 
 [node name="Sprite2D122" type="Sprite2D" parent="section2/wall"]
-position = Vector2(82, 247)
+position = Vector2(289.00003, 251.5)
 texture = ExtResource("104_d05nf")
 
 [node name="Sprite2D123" type="Sprite2D" parent="section2/wall"]
-position = Vector2(98, 247)
+position = Vector2(305.00003, 251.5)
 texture = ExtResource("104_d05nf")
 
 [node name="Sprite2D126" type="Sprite2D" parent="section2/wall"]
-position = Vector2(98, 423)
+position = Vector2(305.00003, 427.5)
 texture = ExtResource("80_n7c28")
 
 [node name="Sprite2D127" type="Sprite2D" parent="section2/wall"]
-position = Vector2(98, 439)
+position = Vector2(305.00003, 443.5)
 texture = ExtResource("94_43b2l")
 
 [node name="Sprite2D114" type="Sprite2D" parent="section2/wall"]
-position = Vector2(161.5, 263)
+position = Vector2(368.50003, 267.5)
 texture = ExtResource("94_43b2l")
 
 [node name="Sprite2D115" type="Sprite2D" parent="section2/wall"]
-position = Vector2(177.5, 263)
+position = Vector2(384.50003, 267.5)
 texture = ExtResource("94_43b2l")
 
 [node name="Sprite2D130" type="Sprite2D" parent="section2/wall"]
-position = Vector2(209, 263)
+position = Vector2(416.00003, 267.5)
 texture = ExtResource("94_43b2l")
 
 [node name="Sprite2D108" type="Sprite2D" parent="section2/wall"]
-position = Vector2(145.5, 263)
+position = Vector2(352.50003, 267.5)
 texture = ExtResource("94_43b2l")
 
 [node name="Sprite2D131" type="Sprite2D" parent="section2/wall"]
-position = Vector2(193.5, 263)
+position = Vector2(400.50003, 267.5)
 texture = ExtResource("94_43b2l")
 
 [node name="Sprite2D132" type="Sprite2D" parent="section2/wall"]
-position = Vector2(224.5, 263)
+position = Vector2(431.50003, 267.5)
 texture = ExtResource("94_43b2l")
 
 [node name="Sprite2D134" type="Sprite2D" parent="section2/wall"]
-position = Vector2(235.5, 263)
+position = Vector2(442.50003, 267.5)
 texture = ExtResource("94_43b2l")
 
 [node name="Sprite2D63" type="Sprite2D" parent="section2/wall"]
-position = Vector2(256.5, 277)
+position = Vector2(463.50003, 281.5)
 texture = ExtResource("84_6pmoc")
 
 [node name="Sprite2D32" type="Sprite2D" parent="section2/wall"]
-position = Vector2(66, 391)
+position = Vector2(273.00003, 395.5)
 texture = ExtResource("80_n7c28")
 
 [node name="Sprite2D21" type="Sprite2D" parent="section2/wall"]
-position = Vector2(50, 391)
+position = Vector2(257.00003, 395.5)
 texture = ExtResource("92_vfqyx")
 
 [node name="Sprite2D71" type="Sprite2D" parent="section2/wall"]
-position = Vector2(82, 407)
+position = Vector2(289.00003, 411.5)
 texture = ExtResource("84_6pmoc")
 
 [node name="Sprite2D24" type="Sprite2D" parent="section2/wall"]
-position = Vector2(82, 423)
+position = Vector2(289.00003, 427.5)
 texture = ExtResource("92_vfqyx")
 
 [node name="Sprite2D25" type="Sprite2D" parent="section2/wall"]
-position = Vector2(66, 407)
+position = Vector2(273.00003, 411.5)
 texture = ExtResource("94_43b2l")
 
 [node name="Sprite2D26" type="Sprite2D" parent="section2/wall"]
-position = Vector2(50, 407)
+position = Vector2(257.00003, 411.5)
 texture = ExtResource("95_0x3rd")
 
 [node name="Sprite2D33" type="Sprite2D" parent="section2/wall"]
-position = Vector2(82, 439)
+position = Vector2(289.00003, 443.5)
 texture = ExtResource("95_0x3rd")
 
 [node name="Sprite2D43" type="Sprite2D" parent="section2/wall"]
-position = Vector2(50, 311)
+position = Vector2(257.00003, 315.5)
 texture = ExtResource("84_6pmoc")
 
 [node name="Sprite2D8" type="Sprite2D" parent="section2/wall"]
-position = Vector2(82, 391)
+position = Vector2(289.00003, 395.5)
 texture = ExtResource("91_u6nb3")
 
 [node name="Chairs" type="Node2D" parent="section2"]
@@ -4222,7 +4202,7 @@ position = Vector2(2968, -514)
 scale = Vector2(3, 3)
 
 [node name="ChairHide1" parent="section2/Chairs" instance=ExtResource("8_vcomt")]
-position = Vector2(-947, 394)
+position = Vector2(-809, 397)
 scale = Vector2(0.33333, 0.33333)
 metadata/_edit_group_ = true
 
@@ -4240,7 +4220,7 @@ scale = Vector2(3.00003, 3.00003)
 texture = ExtResource("5_go5qf")
 
 [node name="ChairHide2" parent="section2/Chairs" instance=ExtResource("8_vcomt")]
-position = Vector2(-889, 355.66672)
+position = Vector2(-751, 358.66672)
 scale = Vector2(0.33333, 0.33333)
 metadata/_edit_group_ = true
 
@@ -4258,7 +4238,7 @@ scale = Vector2(3.00003, 3.00003)
 texture = ExtResource("6_1wqwq")
 
 [node name="ChairHide3" parent="section2/Chairs" instance=ExtResource("8_vcomt")]
-position = Vector2(-873, 451.33334)
+position = Vector2(-735, 454.33334)
 scale = Vector2(0.33333, 0.33333)
 metadata/_edit_group_ = true
 
@@ -4289,23 +4269,23 @@ scale = Vector2(3, 3)
 position = Vector2(18, -1)
 
 [node name="Sprite2D12" type="Sprite2D" parent="section2/Side Furtniture/side counter top2"]
-position = Vector2(-108.83333, 99.5)
+position = Vector2(29.166702, 102.5)
 texture = ExtResource("35_s6wv5")
 
 [node name="Sprite2D14" type="Sprite2D" parent="section2/Side Furtniture/side counter top2"]
-position = Vector2(-108.83333, 115.166664)
+position = Vector2(29.166702, 118.166664)
 texture = ExtResource("36_soeno")
 
 [node name="Sprite2D15" type="Sprite2D" parent="section2/Side Furtniture/side counter top2"]
-position = Vector2(-108.83333, 131.16666)
+position = Vector2(29.166702, 134.16666)
 texture = ExtResource("36_soeno")
 
 [node name="Sprite2D17" type="Sprite2D" parent="section2/Side Furtniture/side counter top2"]
-position = Vector2(-108.83333, 147.16666)
+position = Vector2(29.166702, 150.16666)
 texture = ExtResource("36_soeno")
 
 [node name="Sprite2D16" type="Sprite2D" parent="section2/Side Furtniture/side counter top2"]
-position = Vector2(-108.99988, 158.00003)
+position = Vector2(29.000153, 161.00003)
 texture = ExtResource("37_6ln58")
 
 [node name="long_table" type="Node2D" parent="section2/Side Furtniture"]
@@ -4314,7 +4294,7 @@ texture = ExtResource("37_6ln58")
 position = Vector2(1569, 393)
 
 [node name="Coloured_round_table" type="Node2D" parent="section2/Table"]
-position = Vector2(-1462, 299.00003)
+position = Vector2(-1048, 308.00003)
 scale = Vector2(3, 3)
 metadata/_edit_group_ = true
 
@@ -4343,11 +4323,11 @@ position = Vector2(539, 279)
 scale = Vector2(2, 2)
 
 [node name="Sprite2D5" type="Sprite2D" parent="section2/Wall decors"]
-position = Vector2(-151.5, 113)
+position = Vector2(55.50003, 117.5)
 texture = ExtResource("56_md2j5")
 
 [node name="Sprite2D6" type="Sprite2D" parent="section2/Wall decors"]
-position = Vector2(-84, 112)
+position = Vector2(123.00003, 116.5)
 texture = ExtResource("57_6ynes")
 
 [node name="long_art_green" type="Node2D" parent="section2/Wall decors"]
@@ -4355,41 +4335,40 @@ texture = ExtResource("57_6ynes")
 [node name="potrait_orange" type="Node2D" parent="section2/Wall decors"]
 
 [node name="Sprite2D9" type="Sprite2D" parent="section2/Wall decors/potrait_orange"]
-position = Vector2(-184.5, 104.5)
+position = Vector2(22.50003, 109)
 texture = ExtResource("63_hhevf")
 
 [node name="Sprite2D10" type="Sprite2D" parent="section2/Wall decors/potrait_orange"]
-position = Vector2(-184.5, 120.5)
+position = Vector2(22.50003, 125)
 texture = ExtResource("64_byxgv")
 
 [node name="potrait_green" type="Node2D" parent="section2/Wall decors"]
 
 [node name="Sprite2D11" type="Sprite2D" parent="section2/Wall decors/potrait_green"]
-position = Vector2(-50.5, 105.5)
+position = Vector2(156.50003, 110)
 texture = ExtResource("65_wrbd2")
 
 [node name="Sprite2D12" type="Sprite2D" parent="section2/Wall decors/potrait_green"]
-position = Vector2(-50.5, 121.5)
+position = Vector2(156.50003, 126)
 texture = ExtResource("66_fvaxo")
 
 [node name="potrait_blue" type="Node2D" parent="section2/Wall decors"]
 
 [node name="Sprite2D13" type="Sprite2D" parent="section2/Wall decors/potrait_blue"]
-position = Vector2(-118, 104.5)
+position = Vector2(89.00003, 109)
 texture = ExtResource("67_6sv1p")
 
 [node name="Sprite2D14" type="Sprite2D" parent="section2/Wall decors/potrait_blue"]
-position = Vector2(-118, 120.5)
+position = Vector2(89.00003, 125)
 texture = ExtResource("68_iqtlp")
 
 [node name="long_art_blue" type="Node2D" parent="section2/Wall decors"]
 
 [node name="Cactus" type="Node2D" parent="section2"]
 position = Vector2(1250, 247)
-metadata/_edit_group_ = true
 
 [node name="CactusHazard" type="Area2D" parent="section2/Cactus"]
-position = Vector2(-759, 288)
+position = Vector2(-344.99994, 297)
 collision_layer = 128
 collision_mask = 2
 script = ExtResource("73_44w27")
@@ -4404,10 +4383,9 @@ shape = SubResource("RectangleShape2D_ea8eh")
 
 [node name="Cactus2" type="Node2D" parent="section2"]
 position = Vector2(1249, 426)
-metadata/_edit_group_ = true
 
 [node name="CactusHazard" type="Area2D" parent="section2/Cactus2"]
-position = Vector2(-759, 288)
+position = Vector2(-344.99994, 297)
 collision_layer = 128
 collision_mask = 2
 script = ExtResource("73_44w27")
@@ -4429,66 +4407,68 @@ collision_layer = 65
 collision_mask = 0
 
 [node name="InteriorWall" type="CollisionShape2D" parent="section2/WallCollision"]
-position = Vector2(132, 800.5)
+position = Vector2(546.00006, 809.5)
 shape = SubResource("RectangleShape2D_1fuk7")
 
 [node name="InnerRightWall" type="CollisionShape2D" parent="section2/WallCollision"]
-position = Vector2(100, 708)
+position = Vector2(514.00006, 717)
 shape = SubResource("wall_inner_right")
 
 [node name="TopWallRight" type="CollisionShape2D" parent="section2/WallCollision"]
-position = Vector2(295, 493.3125)
+position = Vector2(709.00006, 502.3125)
 shape = SubResource("RectangleShape2D_fk4r6")
 
 [node name="TopWallRight2" type="CollisionShape2D" parent="section2/WallCollision"]
-position = Vector2(474, 563.15625)
+position = Vector2(888.00006, 572.15625)
 shape = SubResource("RectangleShape2D_37xis")
 
 [node name="RightWall" type="CollisionShape2D" parent="section2/WallCollision"]
-position = Vector2(513, 603.25)
+position = Vector2(927.00006, 612.25)
 shape = SubResource("RectangleShape2D_po0q6")
 
 [node name="RightWall2" type="CollisionShape2D" parent="section2/WallCollision"]
-position = Vector2(485, 653)
+position = Vector2(899.00006, 662)
 shape = SubResource("RectangleShape2D_8kvnq")
 
 [node name="BottomWall" type="CollisionShape2D" parent="section2/WallCollision"]
-position = Vector2(307, 860)
+position = Vector2(721.00006, 869)
 shape = SubResource("RectangleShape2D_dnwtx")
 
 [node name="InteriorWall2" type="CollisionShape2D" parent="section2/WallCollision"]
-position = Vector2(482.25, 801)
+position = Vector2(896.25006, 810)
 shape = SubResource("RectangleShape2D_whbgx")
 
 [node name="transition node" type="Node2D" parent="section2"]
 
-[node name="to section3" type="Sprite2D" parent="section2/transition node"]
+[node name="to section1" type="Sprite2D" parent="section2/transition node"]
 self_modulate = Color(0, 0, 0, 1)
-position = Vector2(100.49988, 562)
+position = Vector2(514.4999, 571)
 scale = Vector2(2.0624902, 2.5)
 texture = ExtResource("109_niilh")
+script = ExtResource("200_trig")
+destination = NodePath("../../../section1/transition node/hidden area from section 2")
 
-[node name="hidden area" type="Sprite2D" parent="section2/transition node"]
+[node name="hidden area from section1" type="Sprite2D" parent="section2/transition node"]
 self_modulate = Color(0.63529414, 0.63529414, 0.63529414, 1)
-position = Vector2(137, 562)
+position = Vector2(551, 571)
 scale = Vector2(2.5, 2.5)
 texture = ExtResource("109_niilh")
 script = ExtResource("57_ikp7i")
 
-[node name="HideArea" type="Area2D" parent="section2/transition node/hidden area"]
+[node name="HideArea" type="Area2D" parent="section2/transition node/hidden area from section1"]
 collision_layer = 32
 collision_mask = 2
 
-[node name="HideCollision" type="CollisionShape2D" parent="section2/transition node/hidden area/HideArea"]
+[node name="HideCollision" type="CollisionShape2D" parent="section2/transition node/hidden area from section1/HideArea"]
 position = Vector2(0, 7.6293945e-06)
 scale = Vector2(0.99999994, 0.99999994)
 shape = SubResource("RectangleShape2D_c583b")
 
-[node name="VisionBlocker" type="StaticBody2D" parent="section2/transition node/hidden area"]
+[node name="VisionBlocker" type="StaticBody2D" parent="section2/transition node/hidden area from section1"]
 collision_layer = 64
 collision_mask = 0
 
-[node name="VisionCollision" type="CollisionShape2D" parent="section2/transition node/hidden area/VisionBlocker"]
+[node name="VisionCollision" type="CollisionShape2D" parent="section2/transition node/hidden area from section1/VisionBlocker"]
 position = Vector2(-3.0517578e-05, 0)
 scale = Vector2(0.99999994, 0.99999994)
 shape = SubResource("RectangleShape2D_v26rs")
@@ -4554,7 +4534,7 @@ ray_count = 20
 animation = &"Bark"
 
 [node name="Human01" parent="Characters" instance=ExtResource("99_jht3f")]
-position = Vector2(-725, 221)
+position = Vector2(-919, 221)
 patrol_route = NodePath("../../Patrol Routes/Human01Route")
 
 [node name="Visual" parent="Characters/Human01" index="4"]
@@ -4570,7 +4550,7 @@ offset_right = -6.0
 offset_bottom = -52.0
 
 [node name="Human02" parent="Characters" instance=ExtResource("99_jht3f")]
-position = Vector2(-742, 412)
+position = Vector2(-936, 412)
 patrol_route = NodePath("../../Patrol Routes/Human02Route")
 
 [node name="Visual" parent="Characters/Human02" index="4"]
@@ -4586,7 +4566,7 @@ offset_right = -6.0
 offset_bottom = -52.0
 
 [node name="Human03" parent="Characters" instance=ExtResource("99_jht3f")]
-position = Vector2(731, 175)
+position = Vector2(1145, 184)
 patrol_route = NodePath("../../Patrol Routes/Human03Route")
 
 [node name="Visual" parent="Characters/Human03" index="4"]
@@ -4599,7 +4579,7 @@ offset_right = -6.0
 offset_bottom = -52.0
 
 [node name="Human04" parent="Characters" instance=ExtResource("99_jht3f")]
-position = Vector2(901, 117)
+position = Vector2(1315, 126)
 patrol_route = NodePath("../../Patrol Routes/Human04Route")
 
 [node name="Visual" parent="Characters/Human04" index="4"]
@@ -4619,7 +4599,7 @@ offset_right = -6.0
 offset_bottom = -52.0
 
 [node name="Human05" parent="Characters" instance=ExtResource("99_jht3f")]
-position = Vector2(705, 142)
+position = Vector2(1119, 151)
 patrol_route = NodePath("../../Patrol Routes/Human05Route")
 
 [node name="Visual" parent="Characters/Human05" index="4"]
@@ -4650,19 +4630,19 @@ position = Vector2(245, 176)
 patrol_route = NodePath("../../Patrol Routes/Mouse03Route")
 
 [node name="Mouse04" parent="Characters" instance=ExtResource("114_p0khi")]
-position = Vector2(-1087, 225)
+position = Vector2(-1281, 225)
 patrol_route = NodePath("../../Patrol Routes/Mouse04Route")
 
 [node name="Mouse05" parent="Characters" instance=ExtResource("114_p0khi")]
-position = Vector2(-856, 416)
+position = Vector2(-1050, 416)
 patrol_route = NodePath("../../Patrol Routes/Mouse05Route")
 
 [node name="Mouse06" parent="Characters" instance=ExtResource("114_p0khi")]
-position = Vector2(731, 337)
+position = Vector2(1145, 346)
 patrol_route = NodePath("../../Patrol Routes/Mouse06Route")
 
 [node name="Mouse07" parent="Characters" instance=ExtResource("114_p0khi")]
-position = Vector2(972, 75)
+position = Vector2(1386, 84)
 patrol_route = NodePath("../../Patrol Routes/Mouse07Route")
 
 [node name="Cat" parent="." instance=ExtResource("110_g5bg3")]

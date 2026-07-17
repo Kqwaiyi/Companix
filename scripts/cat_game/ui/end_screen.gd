@@ -95,9 +95,9 @@ func _apply_color() -> void:
 
 	if _total >= 15000:
 		score_color = _GREEN
-	elif _total >= 13,000:
+	elif _total >= 13000:
 		score_color = _YELLOW
-	elif _total >= 11,000:
+	elif _total >= 11000:
 		score_color = _ORANGE
 	else:
 		score_color = _RED
