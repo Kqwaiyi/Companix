@@ -1,4 +1,4 @@
-[gd_scene load_steps=192 format=3 uid="uid://cvu1uypx4tmj"]
+[gd_scene load_steps=195 format=3 uid="uid://cvu1uypx4tmj"]
 
 [ext_resource type="Script" uid="uid://bsoa08gnlhoau" path="res://scripts/cat_game/levels/level_02.gd" id="1_kxtkb"]
 [ext_resource type="Texture2D" uid="uid://chvlnk4siv40s" path="res://assets/sprites/environment/Sample.png" id="2_eoyah"]
@@ -115,7 +115,10 @@
 [ext_resource type="PackedScene" uid="uid://fb2upb5dyg5b" path="res://scenes/cat_game/characters/mouse.tscn" id="113_5507m"]
 [ext_resource type="PackedScene" uid="uid://b2qxfiflox5xx" path="res://scenes/cat_game/characters/cat.tscn" id="114_cjj0f"]
 [ext_resource type="Texture2D" uid="uid://c6m6camx3yxk6" path="res://assets/sprites/environment/ref.png" id="115_rh2bo"]
+[ext_resource type="SpriteFrames" uid="uid://cgsm11nxra82k" path="res://scenes/cat_game/characters/dog_variants/dog2.tres" id="116_degob"]
 [ext_resource type="Texture2D" uid="uid://buagx8syvfhii" path="res://assets/sprites/environment/reference 8.jpg" id="116_pspp5"]
+[ext_resource type="SpriteFrames" uid="uid://bhrhax5yf546b" path="res://scenes/cat_game/characters/dog_variants/dog1.tres" id="117_gxwku"]
+[ext_resource type="PackedScene" uid="uid://dvwclk57xvglw" path="res://scenes/cat_game/characters/human.tscn" id="118_ga3np"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vr38v"]
 size = Vector2(30.000038, 40.000397)
@@ -892,6 +895,14 @@ position = Vector2(-11.666669, -16.666668)
 scale = Vector2(0.33333, 0.33333)
 metadata/_edit_group_ = true
 
+[node name="HideCollision" parent="enviroment (for map making)/Sofa/SofaHide/HideArea" index="0"]
+position = Vector2(1, 26.000267)
+shape = SubResource("RectangleShape2D_8d8o3")
+
+[node name="VisionCollision" parent="enviroment (for map making)/Sofa/SofaHide/VisionBlocker" index="0"]
+position = Vector2(1, 26.000267)
+shape = SubResource("RectangleShape2D_ns4l0")
+
 [node name="sofa1" type="Node2D" parent="enviroment (for map making)/Sofa/SofaHide"]
 position = Vector2(35.000305, 50.000507)
 scale = Vector2(3.00003, 3.00003)
@@ -904,18 +915,18 @@ texture = ExtResource("74_y43ap")
 position = Vector2(-8.833334, 0.5)
 texture = ExtResource("75_t5h53")
 
-[node name="HideCollision" parent="enviroment (for map making)/Sofa/SofaHide/HideArea" index="0"]
-position = Vector2(1, 26.000267)
-shape = SubResource("RectangleShape2D_8d8o3")
-
-[node name="VisionCollision" parent="enviroment (for map making)/Sofa/SofaHide/VisionBlocker" index="0"]
-position = Vector2(1, 26.000267)
-shape = SubResource("RectangleShape2D_ns4l0")
-
 [node name="SofaHide2" parent="enviroment (for map making)/Sofa" instance=ExtResource("8_ga3np")]
 position = Vector2(4.666665, -16.333334)
 scale = Vector2(0.33333, 0.33333)
 metadata/_edit_group_ = true
+
+[node name="HideCollision" parent="enviroment (for map making)/Sofa/SofaHide2/HideArea" index="0"]
+position = Vector2(1, 26.000267)
+shape = SubResource("RectangleShape2D_8d8o3")
+
+[node name="VisionCollision" parent="enviroment (for map making)/Sofa/SofaHide2/VisionBlocker" index="0"]
+position = Vector2(1, 26.000267)
+shape = SubResource("RectangleShape2D_ns4l0")
 
 [node name="sofa3" type="Node2D" parent="enviroment (for map making)/Sofa/SofaHide2"]
 position = Vector2(-56.00061, 53.00053)
@@ -930,18 +941,18 @@ texture = ExtResource("77_xgfij")
 position = Vector2(21.5, -0.5)
 texture = ExtResource("78_eo7b6")
 
-[node name="HideCollision" parent="enviroment (for map making)/Sofa/SofaHide2/HideArea" index="0"]
-position = Vector2(1, 26.000267)
-shape = SubResource("RectangleShape2D_8d8o3")
-
-[node name="VisionCollision" parent="enviroment (for map making)/Sofa/SofaHide2/VisionBlocker" index="0"]
-position = Vector2(1, 26.000267)
-shape = SubResource("RectangleShape2D_ns4l0")
-
 [node name="SofaHide3" parent="enviroment (for map making)/Sofa" instance=ExtResource("8_ga3np")]
 position = Vector2(19.666664, -16.666668)
 scale = Vector2(0.33333, 0.33333)
 metadata/_edit_group_ = true
+
+[node name="HideCollision" parent="enviroment (for map making)/Sofa/SofaHide3/HideArea" index="0"]
+position = Vector2(1.0002441, 30.000305)
+shape = SubResource("RectangleShape2D_pd6ml")
+
+[node name="VisionCollision" parent="enviroment (for map making)/Sofa/SofaHide3/VisionBlocker" index="0"]
+position = Vector2(1.0004272, 30.000305)
+shape = SubResource("RectangleShape2D_fl277")
 
 [node name="sofa2" type="Node2D" parent="enviroment (for map making)/Sofa/SofaHide3"]
 position = Vector2(-58.00061, 65.000656)
@@ -956,14 +967,6 @@ texture = ExtResource("76_hm0vf")
 position = Vector2(22.333344, -15.333333)
 texture = ExtResource("74_y43ap")
 metadata/_edit_group_ = true
-
-[node name="HideCollision" parent="enviroment (for map making)/Sofa/SofaHide3/HideArea" index="0"]
-position = Vector2(1.0002441, 30.000305)
-shape = SubResource("RectangleShape2D_pd6ml")
-
-[node name="VisionCollision" parent="enviroment (for map making)/Sofa/SofaHide3/VisionBlocker" index="0"]
-position = Vector2(1.0004272, 30.000305)
-shape = SubResource("RectangleShape2D_fl277")
 
 [node name="Wall" type="Node2D" parent="enviroment (for map making)"]
 position = Vector2(-1080, 114)
@@ -2424,137 +2427,6 @@ texture = ExtResource("70_revjj")
 [node name="Sprite2D20" type="Sprite2D" parent="enviroment (to use)/Wall decors/long_art_blue"]
 position = Vector2(104.5, 186)
 texture = ExtResource("71_f7wmb")
-
-[node name="Characters" type="Node2D" parent="."]
-visible = false
-
-[node name="Dog01" parent="Characters" instance=ExtResource("110_pxw4d")]
-position = Vector2(220, 752)
-patrol_route = NodePath("../../Patrol Routes/Dog01Route")
-
-[node name="VisionCone" parent="Characters/Dog01" index="2"]
-ray_count = 20
-
-[node name="Visual" parent="Characters/Dog01" index="5"]
-sprite_frames = ExtResource("111_kl4m0")
-animation = &"Bark"
-
-[node name="AlertIcon" parent="Characters/Dog01" index="6"]
-offset_left = -6.0
-offset_top = -52.0
-offset_right = -6.0
-offset_bottom = -52.0
-
-[node name="Dog03" parent="Characters" instance=ExtResource("110_pxw4d")]
-position = Vector2(-215, 606)
-patrol_route = NodePath("../../Patrol Routes/Dog03Route")
-
-[node name="VisionCone" parent="Characters/Dog03" index="2"]
-ray_count = 20
-
-[node name="Visual" parent="Characters/Dog03" index="5"]
-sprite_frames = ExtResource("112_xv4l3")
-animation = &"Bark"
-
-[node name="AlertIcon" parent="Characters/Dog03" index="6"]
-offset_left = -6.0
-offset_top = -52.0
-offset_right = -6.0
-offset_bottom = -52.0
-
-[node name="Mouse02" parent="Characters" instance=ExtResource("113_5507m")]
-position = Vector2(-45, 750)
-patrol_route = NodePath("../../Patrol Routes/Mouse02Route")
-
-[node name="Mouse01" parent="Characters" instance=ExtResource("113_5507m")]
-position = Vector2(218, 631)
-patrol_route = NodePath("../../Patrol Routes/Mouse01Route")
-
-[node name="Mouse03" parent="Characters" instance=ExtResource("113_5507m")]
-position = Vector2(-161, 557)
-patrol_route = NodePath("../../Patrol Routes/Mouse03Route")
-
-[node name="Patrol Routes" type="Node2D" parent="."]
-visible = false
-
-[node name="Dog01Route" type="Node2D" parent="Patrol Routes"]
-position = Vector2(222, 755)
-
-[node name="p1" type="Marker2D" parent="Patrol Routes/Dog01Route"]
-gizmo_extents = 1.0
-
-[node name="p2" type="Marker2D" parent="Patrol Routes/Dog01Route"]
-position = Vector2(-2, -122)
-
-[node name="p3" type="Marker2D" parent="Patrol Routes/Dog01Route"]
-position = Vector2(-145, -123)
-
-[node name="p4" type="Marker2D" parent="Patrol Routes/Dog01Route"]
-position = Vector2(-143, 4)
-
-[node name="p5" type="Marker2D" parent="Patrol Routes/Dog01Route"]
-
-[node name="Dog02Route" type="Node2D" parent="Patrol Routes"]
-position = Vector2(-49, 769)
-
-[node name="p1" type="Marker2D" parent="Patrol Routes/Dog02Route"]
-position = Vector2(-2, -42)
-
-[node name="p2" type="Marker2D" parent="Patrol Routes/Dog02Route"]
-position = Vector2(-71, 1)
-
-[node name="p3" type="Marker2D" parent="Patrol Routes/Dog02Route"]
-position = Vector2(56, 5)
-
-[node name="p4" type="Marker2D" parent="Patrol Routes/Dog02Route"]
-position = Vector2(-2, -42)
-
-[node name="Dog03Route" type="Node2D" parent="Patrol Routes"]
-position = Vector2(-242, 639)
-
-[node name="p1" type="Marker2D" parent="Patrol Routes/Dog03Route"]
-position = Vector2(27, -33)
-
-[node name="p2" type="Marker2D" parent="Patrol Routes/Dog03Route"]
-position = Vector2(-41, 80)
-
-[node name="p3" type="Marker2D" parent="Patrol Routes/Dog03Route"]
-position = Vector2(70, 73)
-
-[node name="p4" type="Marker2D" parent="Patrol Routes/Dog03Route"]
-position = Vector2(27, -33)
-
-[node name="Mouse01Route" type="Node2D" parent="Patrol Routes"]
-position = Vector2(219, 631)
-
-[node name="Marker2D" type="Marker2D" parent="Patrol Routes/Mouse01Route"]
-
-[node name="Marker2D2" type="Marker2D" parent="Patrol Routes/Mouse01Route"]
-position = Vector2(-142, 1)
-
-[node name="Marker2D3" type="Marker2D" parent="Patrol Routes/Mouse01Route"]
-
-[node name="Mouse02Route" type="Node2D" parent="Patrol Routes"]
-position = Vector2(-45, 749)
-
-[node name="Marker2D" type="Marker2D" parent="Patrol Routes/Mouse02Route"]
-
-[node name="Marker2D2" type="Marker2D" parent="Patrol Routes/Mouse02Route"]
-position = Vector2(87, -29)
-
-[node name="Marker2D3" type="Marker2D" parent="Patrol Routes/Mouse02Route"]
-position = Vector2(-55, -30)
-
-[node name="Mouse03Route" type="Node2D" parent="Patrol Routes"]
-position = Vector2(-161, 557)
-
-[node name="Marker2D" type="Marker2D" parent="Patrol Routes/Mouse03Route"]
-
-[node name="Marker2D2" type="Marker2D" parent="Patrol Routes/Mouse03Route"]
-position = Vector2(-89, 10)
-
-[node name="Marker2D3" type="Marker2D" parent="Patrol Routes/Mouse03Route"]
-position = Vector2(0, 24)
 
 [node name="section2" type="Node2D" parent="."]
 position = Vector2(2169, 345)
@@ -4693,6 +4565,14 @@ position = Vector2(255.66667, -11.333334)
 scale = Vector2(0.33333, 0.33333)
 metadata/_edit_group_ = true
 
+[node name="HideCollision" parent="section2/Sofa/SofaHide/HideArea" index="0"]
+position = Vector2(1, 26.000267)
+shape = SubResource("RectangleShape2D_8d8o3")
+
+[node name="VisionCollision" parent="section2/Sofa/SofaHide/VisionBlocker" index="0"]
+position = Vector2(1, 26.000267)
+shape = SubResource("RectangleShape2D_ns4l0")
+
 [node name="sofa1" type="Node2D" parent="section2/Sofa/SofaHide"]
 position = Vector2(35.000305, 50.000507)
 scale = Vector2(3.00003, 3.00003)
@@ -4705,18 +4585,18 @@ texture = ExtResource("74_y43ap")
 position = Vector2(-8.833334, 0.5)
 texture = ExtResource("75_t5h53")
 
-[node name="HideCollision" parent="section2/Sofa/SofaHide/HideArea" index="0"]
-position = Vector2(1, 26.000267)
-shape = SubResource("RectangleShape2D_8d8o3")
-
-[node name="VisionCollision" parent="section2/Sofa/SofaHide/VisionBlocker" index="0"]
-position = Vector2(1, 26.000267)
-shape = SubResource("RectangleShape2D_ns4l0")
-
 [node name="SofaHide2" parent="section2/Sofa" instance=ExtResource("8_ga3np")]
 position = Vector2(44.333344, -16.000002)
 scale = Vector2(0.33333, 0.33333)
 metadata/_edit_group_ = true
+
+[node name="HideCollision" parent="section2/Sofa/SofaHide2/HideArea" index="0"]
+position = Vector2(1, 26.000267)
+shape = SubResource("RectangleShape2D_8d8o3")
+
+[node name="VisionCollision" parent="section2/Sofa/SofaHide2/VisionBlocker" index="0"]
+position = Vector2(1, 26.000267)
+shape = SubResource("RectangleShape2D_ns4l0")
 
 [node name="sofa3" type="Node2D" parent="section2/Sofa/SofaHide2"]
 position = Vector2(-56.00061, 53.00053)
@@ -4731,18 +4611,18 @@ texture = ExtResource("77_xgfij")
 position = Vector2(21.5, -0.5)
 texture = ExtResource("78_eo7b6")
 
-[node name="HideCollision" parent="section2/Sofa/SofaHide2/HideArea" index="0"]
-position = Vector2(1, 26.000267)
-shape = SubResource("RectangleShape2D_8d8o3")
-
-[node name="VisionCollision" parent="section2/Sofa/SofaHide2/VisionBlocker" index="0"]
-position = Vector2(1, 26.000267)
-shape = SubResource("RectangleShape2D_ns4l0")
-
 [node name="SofaHide3" parent="section2/Sofa" instance=ExtResource("8_ga3np")]
 position = Vector2(19.666664, -16.666668)
 scale = Vector2(0.33333, 0.33333)
 metadata/_edit_group_ = true
+
+[node name="HideCollision" parent="section2/Sofa/SofaHide3/HideArea" index="0"]
+position = Vector2(1.0002441, 30.000305)
+shape = SubResource("RectangleShape2D_pd6ml")
+
+[node name="VisionCollision" parent="section2/Sofa/SofaHide3/VisionBlocker" index="0"]
+position = Vector2(1.0004272, 30.000305)
+shape = SubResource("RectangleShape2D_fl277")
 
 [node name="sofa2" type="Node2D" parent="section2/Sofa/SofaHide3"]
 position = Vector2(-58.00061, 65.000656)
@@ -4757,14 +4637,6 @@ texture = ExtResource("76_hm0vf")
 position = Vector2(22.333344, -15.333333)
 texture = ExtResource("74_y43ap")
 metadata/_edit_group_ = true
-
-[node name="HideCollision" parent="section2/Sofa/SofaHide3/HideArea" index="0"]
-position = Vector2(1.0002441, 30.000305)
-shape = SubResource("RectangleShape2D_pd6ml")
-
-[node name="VisionCollision" parent="section2/Sofa/SofaHide3/VisionBlocker" index="0"]
-position = Vector2(1.0004272, 30.000305)
-shape = SubResource("RectangleShape2D_fl277")
 
 [node name="Sprite2D2" type="Sprite2D" parent="."]
 position = Vector2(3210, 916)
@@ -8577,7 +8449,337 @@ position = Vector2(1.0004272, 30.000305)
 shape = SubResource("RectangleShape2D_xbffw")
 
 [node name="Cat" parent="." instance=ExtResource("114_cjj0f")]
-position = Vector2(2931, 504)
+position = Vector2(3028, 499)
+
+[node name="Patrol Routes" type="Node2D" parent="."]
+position = Vector2(2793, -1501)
+metadata/_edit_group_ = true
+
+[node name="Dog01Route" type="Node2D" parent="Patrol Routes"]
+position = Vector2(406, 730)
+
+[node name="Dog02Route" type="Node2D" parent="Patrol Routes"]
+position = Vector2(-49, 769)
+
+[node name="Dog03Route" type="Node2D" parent="Patrol Routes"]
+position = Vector2(-242, 639)
+
+[node name="Dog04Route" type="Node2D" parent="Patrol Routes"]
+position = Vector2(338, 758)
+
+[node name="1" type="Marker2D" parent="Patrol Routes/Dog04Route"]
+position = Vector2(1889, 416)
+
+[node name="2" type="Marker2D" parent="Patrol Routes/Dog04Route"]
+position = Vector2(1779, 450)
+
+[node name="3" type="Marker2D" parent="Patrol Routes/Dog04Route"]
+position = Vector2(1942, 474)
+
+[node name="4" type="Marker2D" parent="Patrol Routes/Dog04Route"]
+position = Vector2(1889, 416)
+
+[node name="Dog05Route" type="Node2D" parent="Patrol Routes"]
+position = Vector2(338, 758)
+
+[node name="1" type="Marker2D" parent="Patrol Routes/Dog05Route"]
+position = Vector2(2069, 541)
+
+[node name="2" type="Marker2D" parent="Patrol Routes/Dog05Route"]
+position = Vector2(2212, 627)
+
+[node name="3" type="Marker2D" parent="Patrol Routes/Dog05Route"]
+position = Vector2(2226, 534)
+
+[node name="4" type="Marker2D" parent="Patrol Routes/Dog05Route"]
+position = Vector2(2069, 541)
+
+[node name="Human01Route" type="Node2D" parent="Patrol Routes"]
+position = Vector2(-242, 639)
+
+[node name="1" type="Marker2D" parent="Patrol Routes/Human01Route"]
+position = Vector2(1836, 600)
+
+[node name="2" type="Marker2D" parent="Patrol Routes/Human01Route"]
+position = Vector2(1918, 561)
+
+[node name="3" type="Marker2D" parent="Patrol Routes/Human01Route"]
+position = Vector2(1922, 690)
+
+[node name="4" type="Marker2D" parent="Patrol Routes/Human01Route"]
+position = Vector2(1837, 600)
+
+[node name="Human02Route" type="Node2D" parent="Patrol Routes"]
+position = Vector2(-49, 769)
+
+[node name="1" type="Marker2D" parent="Patrol Routes/Human02Route"]
+position = Vector2(1539, 659)
+
+[node name="2" type="Marker2D" parent="Patrol Routes/Human02Route"]
+position = Vector2(1730, 661)
+
+[node name="3" type="Marker2D" parent="Patrol Routes/Human02Route"]
+position = Vector2(1727, 488)
+
+[node name="4" type="Marker2D" parent="Patrol Routes/Human02Route"]
+position = Vector2(1675, 544)
+
+[node name="5" type="Marker2D" parent="Patrol Routes/Human02Route"]
+position = Vector2(1625, 666)
+
+[node name="6" type="Marker2D" parent="Patrol Routes/Human02Route"]
+position = Vector2(1625, 666)
+
+[node name="Human03Route" type="Node2D" parent="Patrol Routes"]
+position = Vector2(-242, 639)
+
+[node name="1" type="Marker2D" parent="Patrol Routes/Human03Route"]
+position = Vector2(3292, 554)
+
+[node name="2" type="Marker2D" parent="Patrol Routes/Human03Route"]
+position = Vector2(3310, 663)
+
+[node name="3" type="Marker2D" parent="Patrol Routes/Human03Route"]
+position = Vector2(3518, 668)
+
+[node name="4" type="Marker2D" parent="Patrol Routes/Human03Route"]
+position = Vector2(3515, 508)
+
+[node name="5" type="Marker2D" parent="Patrol Routes/Human03Route"]
+position = Vector2(3289, 508)
+
+[node name="6" type="Marker2D" parent="Patrol Routes/Human03Route"]
+position = Vector2(3292, 554)
+
+[node name="Human04Route" type="Node2D" parent="Patrol Routes"]
+position = Vector2(-49, 769)
+
+[node name="1" type="Marker2D" parent="Patrol Routes/Human04Route"]
+position = Vector2(3269, 366)
+
+[node name="2" type="Marker2D" parent="Patrol Routes/Human04Route"]
+position = Vector2(3363, 469)
+
+[node name="3" type="Marker2D" parent="Patrol Routes/Human04Route"]
+position = Vector2(3204, 523)
+
+[node name="4" type="Marker2D" parent="Patrol Routes/Human04Route"]
+position = Vector2(3301, 479)
+
+[node name="5" type="Marker2D" parent="Patrol Routes/Human04Route"]
+position = Vector2(3269, 366)
+
+[node name="Human05Route" type="Node2D" parent="Patrol Routes"]
+position = Vector2(-220, 762)
+
+[node name="1" type="Marker2D" parent="Patrol Routes/Human05Route"]
+position = Vector2(3245, 396)
+
+[node name="2" type="Marker2D" parent="Patrol Routes/Human05Route"]
+position = Vector2(3321, 448)
+
+[node name="3" type="Marker2D" parent="Patrol Routes/Human05Route"]
+position = Vector2(3219, 497)
+
+[node name="4" type="Marker2D" parent="Patrol Routes/Human05Route"]
+position = Vector2(3313, 509)
+
+[node name="5" type="Marker2D" parent="Patrol Routes/Human05Route"]
+position = Vector2(3244, 396)
+
+[node name="Mouse01Route" type="Node2D" parent="Patrol Routes"]
+position = Vector2(2115, 1401)
+
+[node name="1" type="Marker2D" parent="Patrol Routes/Mouse01Route"]
+
+[node name="2" type="Marker2D" parent="Patrol Routes/Mouse01Route"]
+position = Vector2(-1, -69)
+
+[node name="3" type="Marker2D" parent="Patrol Routes/Mouse01Route"]
+
+[node name="Mouse02Route" type="Node2D" parent="Patrol Routes"]
+position = Vector2(2185, 1178)
+
+[node name="1" type="Marker2D" parent="Patrol Routes/Mouse02Route"]
+
+[node name="2" type="Marker2D" parent="Patrol Routes/Mouse02Route"]
+position = Vector2(87, 27)
+
+[node name="3" type="Marker2D" parent="Patrol Routes/Mouse02Route"]
+position = Vector2(-52, 30)
+
+[node name="4" type="Marker2D" parent="Patrol Routes/Mouse02Route"]
+
+[node name="Mouse03Route" type="Node2D" parent="Patrol Routes"]
+position = Vector2(2564, 1194)
+
+[node name="1" type="Marker2D" parent="Patrol Routes/Mouse03Route"]
+
+[node name="2" type="Marker2D" parent="Patrol Routes/Mouse03Route"]
+position = Vector2(0, -58)
+
+[node name="3" type="Marker2D" parent="Patrol Routes/Mouse03Route"]
+
+[node name="Mouse04Route" type="Node2D" parent="Patrol Routes"]
+position = Vector2(219, 631)
+
+[node name="1" type="Marker2D" parent="Patrol Routes/Mouse04Route"]
+position = Vector2(1013, 612)
+
+[node name="2" type="Marker2D" parent="Patrol Routes/Mouse04Route"]
+position = Vector2(1052, 612)
+
+[node name="3" type="Marker2D" parent="Patrol Routes/Mouse04Route"]
+position = Vector2(1013, 612)
+
+[node name="Mouse05Route" type="Node2D" parent="Patrol Routes"]
+position = Vector2(-45, 749)
+
+[node name="1" type="Marker2D" parent="Patrol Routes/Mouse05Route"]
+position = Vector2(1508, 685)
+
+[node name="2" type="Marker2D" parent="Patrol Routes/Mouse05Route"]
+position = Vector2(1582, 686)
+
+[node name="3" type="Marker2D" parent="Patrol Routes/Mouse05Route"]
+position = Vector2(1508, 685)
+
+[node name="Mouse06Route" type="Node2D" parent="Patrol Routes"]
+position = Vector2(-161, 557)
+
+[node name="Marker2D" type="Marker2D" parent="Patrol Routes/Mouse06Route"]
+position = Vector2(3211, 798)
+
+[node name="Marker2D2" type="Marker2D" parent="Patrol Routes/Mouse06Route"]
+position = Vector2(3300, 799)
+
+[node name="Marker2D3" type="Marker2D" parent="Patrol Routes/Mouse06Route"]
+position = Vector2(3252, 755)
+
+[node name="Marker2D4" type="Marker2D" parent="Patrol Routes/Mouse06Route"]
+position = Vector2(3211, 798)
+
+[node name="Mouse07Route" type="Node2D" parent="Patrol Routes"]
+position = Vector2(3291, 1093)
+
+[node name="Marker2D" type="Marker2D" parent="Patrol Routes/Mouse07Route"]
+
+[node name="Marker2D2" type="Marker2D" parent="Patrol Routes/Mouse07Route"]
+position = Vector2(0, 68)
+
+[node name="Marker2D3" type="Marker2D" parent="Patrol Routes/Mouse07Route"]
+position = Vector2(-86, 1)
+
+[node name="Marker2D4" type="Marker2D" parent="Patrol Routes/Mouse07Route"]
+
+[node name="Characters" type="Node2D" parent="."]
+position = Vector2(5283, -511)
+metadata/_edit_group_ = true
+
+[node name="Dog01" parent="Characters" instance=ExtResource("110_pxw4d")]
+position = Vector2(246, 273)
+patrol_route = NodePath("../../Patrol Routes/Dog01Route")
+
+[node name="VisionCone" parent="Characters/Dog01" index="2"]
+ray_count = 20
+
+[node name="Visual" parent="Characters/Dog01" index="5"]
+sprite_frames = ExtResource("111_kl4m0")
+animation = &"Bark"
+
+[node name="Dog02" parent="Characters" instance=ExtResource("110_pxw4d")]
+position = Vector2(391, 131)
+patrol_route = NodePath("../../Patrol Routes/Dog02Route")
+
+[node name="VisionCone" parent="Characters/Dog02" index="2"]
+ray_count = 20
+
+[node name="Visual" parent="Characters/Dog02" index="5"]
+sprite_frames = ExtResource("112_xv4l3")
+animation = &"Bark"
+
+[node name="Dog03" parent="Characters" instance=ExtResource("110_pxw4d")]
+position = Vector2(-120, 395)
+patrol_route = NodePath("../../Patrol Routes/Dog03Route")
+metadata/_edit_group_ = true
+
+[node name="VisionCone" parent="Characters/Dog03" index="2"]
+ray_count = 20
+
+[node name="Visual" parent="Characters/Dog03" index="5"]
+sprite_frames = ExtResource("116_degob")
+animation = &"Bark"
+
+[node name="Dog04" parent="Characters" instance=ExtResource("110_pxw4d")]
+position = Vector2(-94, 155)
+patrol_route = NodePath("../../Patrol Routes/Dog04Route")
+metadata/_edit_group_ = true
+
+[node name="VisionCone" parent="Characters/Dog04" index="2"]
+ray_count = 20
+
+[node name="Visual" parent="Characters/Dog04" index="5"]
+sprite_frames = ExtResource("117_gxwku")
+animation = &"Bark"
+
+[node name="Dog05" parent="Characters" instance=ExtResource("110_pxw4d")]
+position = Vector2(88, 281)
+patrol_route = NodePath("../../Patrol Routes/Dog05Route")
+metadata/_edit_group_ = true
+
+[node name="VisionCone" parent="Characters/Dog05" index="2"]
+ray_count = 20
+
+[node name="Visual" parent="Characters/Dog05" index="5"]
+animation = &"Bark"
+
+[node name="Human01" parent="Characters" instance=ExtResource("118_ga3np")]
+position = Vector2(-725, 221)
+patrol_route = NodePath("../../Patrol Routes/Human01Route")
+
+[node name="Human02" parent="Characters" instance=ExtResource("118_ga3np")]
+position = Vector2(-742, 412)
+patrol_route = NodePath("../../Patrol Routes/Human02Route")
+
+[node name="Human03" parent="Characters" instance=ExtResource("118_ga3np")]
+position = Vector2(731, 175)
+patrol_route = NodePath("../../Patrol Routes/Human03Route")
+
+[node name="Human04" parent="Characters" instance=ExtResource("118_ga3np")]
+position = Vector2(901, 117)
+patrol_route = NodePath("../../Patrol Routes/Human04Route")
+
+[node name="Human05" parent="Characters" instance=ExtResource("118_ga3np")]
+position = Vector2(705, 142)
+patrol_route = NodePath("../../Patrol Routes/Human05Route")
+
+[node name="Mouse01" parent="Characters" instance=ExtResource("113_5507m")]
+position = Vector2(-204, 383)
+patrol_route = NodePath("../../Patrol Routes/Mouse01Route")
+
+[node name="Mouse02" parent="Characters" instance=ExtResource("113_5507m")]
+position = Vector2(-134, 160)
+patrol_route = NodePath("../../Patrol Routes/Mouse02Route")
+
+[node name="Mouse03" parent="Characters" instance=ExtResource("113_5507m")]
+position = Vector2(245, 176)
+patrol_route = NodePath("../../Patrol Routes/Mouse03Route")
+
+[node name="Mouse04" parent="Characters" instance=ExtResource("113_5507m")]
+position = Vector2(-1087, 225)
+patrol_route = NodePath("../../Patrol Routes/Mouse04Route")
+
+[node name="Mouse05" parent="Characters" instance=ExtResource("113_5507m")]
+position = Vector2(-856, 416)
+patrol_route = NodePath("../../Patrol Routes/Mouse05Route")
+
+[node name="Mouse06" parent="Characters" instance=ExtResource("113_5507m")]
+position = Vector2(731, 337)
+patrol_route = NodePath("../../Patrol Routes/Mouse06Route")
+
+[node name="Mouse07" parent="Characters" instance=ExtResource("113_5507m")]
+position = Vector2(972, 75)
+patrol_route = NodePath("../../Patrol Routes/Mouse07Route")
 
 [editable path="enviroment (for map making)/Chairs/ChairHide1"]
 [editable path="enviroment (for map making)/Chairs/ChairHide2"]
@@ -8598,8 +8800,6 @@ position = Vector2(2931, 504)
 [editable path="enviroment (to use)/Chairs/ChairHide6"]
 [editable path="enviroment (to use)/Chairs/ChairHide8"]
 [editable path="enviroment (to use)/Sofa/SofaHide"]
-[editable path="Characters/Dog01"]
-[editable path="Characters/Dog03"]
 [editable path="section2/Chairs/ChairHide1"]
 [editable path="section2/Chairs/ChairHide2"]
 [editable path="section2/Chairs/ChairHide3"]
@@ -8628,3 +8828,8 @@ position = Vector2(2931, 504)
 [editable path="section1/Sofa/sofa1/SofaHide"]
 [editable path="section1/Sofa/SofaHide2"]
 [editable path="section1/Sofa/SofaHide3"]
+[editable path="Characters/Dog01"]
+[editable path="Characters/Dog02"]
+[editable path="Characters/Dog03"]
+[editable path="Characters/Dog04"]
+[editable path="Characters/Dog05"]

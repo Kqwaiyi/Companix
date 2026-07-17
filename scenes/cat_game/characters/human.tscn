@@ -1,6 +1,5 @@
 [gd_scene load_steps=15 format=3 uid="uid://dvwclk57xvglw"]
 
-[ext_resource type="Script" path="res://scripts/cat_game/characters/shadow.gd" id="99_shadow"]
 [ext_resource type="Script" uid="uid://djs3bfof0ptli" path="res://scripts/cat_game/characters/human.gd" id="1_human"]
 [ext_resource type="Script" uid="uid://dc83e8ygmgd17" path="res://scripts/cat_game/environment/vision_cone.gd" id="2_cone"]
 [ext_resource type="Script" uid="uid://oclwxt2xw2qs" path="res://scripts/cat_game/characters/layered_character.gd" id="3_pkgn7"]
@@ -12,20 +11,22 @@
 [ext_resource type="SpriteFrames" uid="uid://cqjxvp1wo1exp" path="res://scenes/cat_game/characters/human_variants/hat2.tres" id="7_bexoq"]
 [ext_resource type="SpriteFrames" uid="uid://bn3toc4d0xgku" path="res://scenes/cat_game/characters/human_variants/hair1.tres" id="7_kkin8"]
 [ext_resource type="SpriteFrames" uid="uid://pffadsbf5sqd" path="res://scenes/cat_game/characters/human_variants/hat1.tres" id="9_x6irx"]
+[ext_resource type="Script" uid="uid://dyabx23k351gr" path="res://scripts/cat_game/characters/shadow.gd" id="99_shadow"]
 
 [sub_resource type="CircleShape2D" id="1_body"]
-radius = 14.0
+radius = 11.045361
 
 [sub_resource type="CircleShape2D" id="2_catch"]
 radius = 8.0
 
 [node name="Human" type="CharacterBody2D"]
 collision_layer = 4
+collision_mask = 1
 script = ExtResource("1_human")
 
 [node name="Shadow" type="Node2D" parent="."]
-position = Vector2(0, 12)
 z_index = -1
+position = Vector2(0, 12)
 script = ExtResource("99_shadow")
 
 [node name="BodyCollision" type="CollisionShape2D" parent="."]
@@ -50,7 +51,7 @@ hat_variants = Array[SpriteFrames]([ExtResource("9_x6irx"), ExtResource("7_bexoq
 starting_outfit = null
 starting_hair = null
 starting_hat = null
-run_threshold = null
+run_threshold = 9999.0
 idle_delay = null
 
 [node name="LayerBase" type="AnimatedSprite2D" parent="Visual"]
@@ -62,9 +63,18 @@ sprite_frames = ExtResource("5_bexoq")
 animation = &"walk_right"
 
 [node name="LayerHair" type="AnimatedSprite2D" parent="Visual"]
+self_modulate = Color(0.29586652, 0.2958665, 0.2958665, 1)
 sprite_frames = ExtResource("7_kkin8")
 animation = &"walk_right"
 
 [node name="LayerHat" type="AnimatedSprite2D" parent="Visual"]
+visible = false
 sprite_frames = ExtResource("9_x6irx")
 animation = &"walk_right"
+
+[node name="AlertIcon" type="Label" parent="."]
+position = Vector2(-6, -52)
+visible = false
+text = "!"
+theme_override_colors/font_color = Color(1, 0.85, 0, 1)
+theme_override_font_sizes/font_size = 28

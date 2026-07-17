@@ -6,7 +6,7 @@
 extends Node2D
 
 ## Opacity hint when no one is hiding (signals the player this is a hiding spot).
-@export var alpha_hint: float   = 0.8
+@export var alpha_hint: float   = 0.6
 ## Opacity while the cat is underneath (lets the player see the cat).
 @export var alpha_hidden: float = 0.4
 ## Set true when this node IS the furniture piece (e.g. each ChairHide is its own chair).
