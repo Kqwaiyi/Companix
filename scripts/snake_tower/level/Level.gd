@@ -8,6 +8,7 @@ func _enter_tree():
 	LevelManager.reset()
 
 func _ready():
+	MusicManager.play_music("minigame_bgm", true)
 	# Start the timer whenever a level is loaded (handles direct editor runs)
 	get_tree().call_group("minigame_time_trackers", "start_time")
 	
@@ -65,6 +66,9 @@ func _on_level_lost():
 
 func reset_level():
 	print("Manual Reset!")
+	var snake = get_tree().get_first_node_in_group("snake")
+	if snake and snake.has_node("DieAudio"):
+		snake.get_node("DieAudio").play()
 	_reload_level()
 
 func _reload_level():
@@ -83,4 +87,5 @@ func return_to_home():
 	if _is_transitioning: return
 	_is_transitioning = true
 	Globals.reset_attempt_timer()
+	MusicManager.play_music("pet_home", true)
 	_switch_level(home_scene_path)

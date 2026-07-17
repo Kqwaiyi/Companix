@@ -72,6 +72,10 @@ The `Snake.gd` is the most complex entity, handling input, multi-segment movemen
 *   **Fall Phase:** Every `fall_interval` (0.07s), the entire snake shifts down by `Vector2i(0, 1)`.
 *   **Lethality:** During a fall step, it explicitly checks `check_gravity_death` and `check_gravity_win` to resolve landing on spikes or the goal. It also checks if any segment's Y coordinate exceeds `LevelManager.death_y` (configured by a `DeathFloor` node) to trigger a reset if the snake falls off the map.
 
+### Visuals & Audio
+*   **Head Rotation:** The snake's head sprite dynamically rotates and flips to match the current movement direction based on a configuration dictionary. It utilizes centered positioning to rotate strictly around its grid cell center.
+*   **SFX Placeholders:** `Snake.tscn` contains dedicated `AudioStreamPlayer` nodes (`MoveAudio`, `EatAudio`, `DieAudio`). These are triggered internally by `Snake.gd` during relevant grid interactions (e.g., eating an apple, falling on a spike, or moving successfully).
+
 ---
 
 ## 5. Global State & Timers (`Globals.gd`)
@@ -155,3 +159,13 @@ Because `LaptopUI` is fully self-contained and utilizes Godot's Group system, ad
 5.  Load it into the laptop by querying the new manager for the correct path and passing it to `LaptopUI.open_laptop(path)`.
 
 `LaptopUI` will handle the rendering, transitions, and ensure the time tracking is perfectly synchronized with the open/close states of the holographic display.
+
+---
+
+## 8. Audio Integration
+
+The Snake Tower utilizes the global `MusicManager` autoload for background music persistence and dedicated `AudioStreamPlayer` nodes for local sound effects.
+
+*   **Background Music:** Upon loading any level (`Level.gd _ready()`), the minigame requests the `"minigame_bgm"` track from `MusicManager`. Because `MusicManager` handles track caching, this won't restart the song unnecessarily on every level reload.
+*   **Home Transition:** When the player uses the Home button to exit the minigame, `Level.gd` instructs `MusicManager` to play the `"pet_home"` track, ensuring a seamless audio transition back to the main laptop desktop environment.
+*   **Local SFX:** Movement, eating, and death sounds are handled locally within `Snake.tscn` using dedicated `AudioStreamPlayer` nodes triggered by `Snake.gd` and `Level.gd`.

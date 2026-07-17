@@ -25,6 +25,7 @@ Globals="*res://scripts/snake_tower/core/Globals.gd"
 LevelManager="*res://scripts/snake_tower/core/LevelManager.gd"
 SceneManager="*res://scenes/core/SceneManager.tscn"
 DialogueManager="*res://scripts/core/DialogueManager.gd"
+MusicManager="*res://scripts/core/MusicManager.gd"
 
 [display]
 
