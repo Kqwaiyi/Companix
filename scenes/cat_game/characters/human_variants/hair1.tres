@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=18 format=3 uid="uid://bn3toc4d0xgku"]
+[gd_resource type="SpriteFrames" format=3 uid="uid://bn3toc4d0xgku"]
 
 [ext_resource type="Texture2D" uid="uid://d30mp6deypys" path="res://assets/sprites/humans/hair1.png" id="1_dwh0u"]
 
@@ -75,7 +75,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_7f5xf")
 }],
-"loop": true,
+"loop": 1,
 "name": &"run_left",
 "speed": 5.0
 }, {
@@ -86,7 +86,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_tp05q")
 }],
-"loop": true,
+"loop": 1,
 "name": &"run_right",
 "speed": 5.0
 }, {
@@ -109,7 +109,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_axx5o")
 }],
-"loop": true,
+"loop": 1,
 "name": &"walk_left",
 "speed": 5.0
 }, {
@@ -132,7 +132,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_q85a4")
 }],
-"loop": true,
+"loop": 1,
 "name": &"walk_right",
 "speed": 5.0
 }]

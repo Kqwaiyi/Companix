@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=18 format=3 uid="uid://brhcc85u8d7mv"]
+[gd_resource type="SpriteFrames" format=3 uid="uid://brhcc85u8d7mv"]
 
 [ext_resource type="Texture2D" uid="uid://p3iq8c44n40l" path="res://assets/sprites/humans/naked human.png" id="1_2cp82"]
 
@@ -75,7 +75,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_jo5n7")
 }],
-"loop": true,
+"loop": 1,
 "name": &"run_left",
 "speed": 5.0
 }, {
@@ -86,7 +86,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_0yd8l")
 }],
-"loop": true,
+"loop": 1,
 "name": &"run_right",
 "speed": 5.0
 }, {
@@ -109,7 +109,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_x6irx")
 }],
-"loop": true,
+"loop": 1,
 "name": &"walk_left",
 "speed": 5.0
 }, {
@@ -132,7 +132,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_wwyff")
 }],
-"loop": true,
+"loop": 1,
 "name": &"walk_right",
 "speed": 5.0
 }]
