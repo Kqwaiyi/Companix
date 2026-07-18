@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://pet_info_panel_01"]
+
+[ext_resource type="Script" path="res://scripts/pet_world/lobby/pet_info_panel.gd" id="1_panel"]
+
+[node name="PetInfoPanel" type="CanvasLayer"]
+script = ExtResource("1_panel")

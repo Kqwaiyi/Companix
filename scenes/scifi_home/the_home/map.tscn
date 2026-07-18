@@ -15,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://d30mp6deypys" path="res://assets/sprites/humans/hair1.png" id="12_2u0fs"]
 [ext_resource type="PackedScene" path="res://scenes/scifi_home/interaction/hologram_door.tscn" id="12_holo"]
 [ext_resource type="PackedScene" uid="uid://cxab321y70xra" path="res://scenes/ui/LaptopUI.tscn" id="13_laptop"]
+[ext_resource type="Script" uid="uid://b4msr7je2nlbf" path="res://scripts/scifi_home/map.gd" id="map_script"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mdo6h"]
 texture = ExtResource("1_k7ymq")
@@ -2955,6 +2956,7 @@ size = Vector2(34, 52.5)
 size = Vector2(93.5, 51)
 
 [node name="Map" type="Node2D" unique_id=801796816]
+script = ExtResource("map_script")
 
 [node name="TileMap" type="TileMap" parent="." unique_id=1085419593]
 z_index = -10
@@ -2993,12 +2995,15 @@ tile_set = SubResource("TileSet_fm8fw")
 
 [node name="things2" type="TileMapLayer" parent="TileMap" unique_id=1353031783]
 use_parent_material = true
-tile_map_data = PackedByteArray("AAASAOz/AQABAAkAAAAYAOz/AQABAAkAAADq/w4ABAAPAAcAAADq/xAABAAOAAcAAADr/xAABAAOAAcAAADs/w4ABAAOAAYAAADs/xEABAAPAAYAAADt/xAABAAOAAYAAADx/w4ABAAEAAUAAADz/w4AAQABAAkAAAD2/wQABAAAAAUAAAD3/wUABAAAAAUAAAD6/wAABAAEAAYAAAD6/wEABAAFAAYAAAD6/wMABAAEAAcAAAD6/wQABAAFAAcAAAD8/wUABAACAAUAAADt/xUABgAEAAAAAADt/xgABgAEAAEAAADx/xMABgAHAAAAAADx/xYABgAHAAEAAADv/xoABgALAAAAAADv/x0ABgALAAEAAADv/yAABgALAAIAAADy/xoABgAMAAAAAADy/x0ABgAMAAEAAADy/yAABgAMAAIAAAA=")
+tile_map_data = PackedByteArray("AADq/w4ABAAPAAcAAADq/xAABAAOAAcAAADr/xAABAAOAAcAAADs/w4ABAAOAAYAAADs/xEABAAPAAYAAADt/xAABAAOAAYAAADx/w4ABAAEAAUAAADz/w4AAQABAAkAAAD2/wQABAAAAAUAAAD3/wUABAAAAAUAAAD6/wAABAAEAAYAAAD6/wEABAAFAAYAAAD6/wMABAAEAAcAAAD6/wQABAAFAAcAAAD8/wUABAACAAUAAADt/xUABgAEAAAAAADt/xgABgAEAAEAAADx/xMABgAHAAAAAADx/xYABgAHAAEAAADv/xoABgALAAAAAADv/x0ABgALAAEAAADv/yAABgALAAIAAADy/xoABgAMAAAAAADy/x0ABgAMAAEAAADy/yAABgAMAAIAAAAUAOv/AQABAAkAAAAaAOv/AQABAAkAAAA=")
 tile_set = SubResource("TileSet_fm8fw")
 
 [node name="Player" parent="." unique_id=568852055 instance=ExtResource("10_char")]
 position = Vector2(-210, 58)
 metadata/_edit_group_ = true
+
+[node name="Camera2D" parent="Player" index="2" unique_id=1706229302]
+visible = false
 
 [node name="LayerBase" parent="Player/Visual" parent_id_path=PackedInt32Array(568852055, 1469507102) index="0" unique_id=439474350]
 sprite_frames = SubResource("SpriteFrames_2u0fs")
@@ -3014,6 +3019,7 @@ scale = Vector2(3, 3)
 texture = ExtResource("8_ruksc")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=636002530]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1949734694]
 position = Vector2(-10, 213)

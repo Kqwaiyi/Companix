@@ -1,7 +1,9 @@
 [gd_scene format=3 uid="uid://byd7ye2p1btx0"]
 
-[ext_resource type="Script" uid="uid://bsoa08gnlhoau" path="res://scripts/cat_game/levels/level_02.gd" id="1_egvdl"]
+[ext_resource type="Script" uid="uid://c0b3q8qwv4fuc" path="res://scripts/cat_game/levels/tutorial_level.gd" id="1_tutorial"]
 [ext_resource type="Texture2D" uid="uid://c6hf42lml3pkx" path="res://assets/sprites/environment/wall and floor tiles/tile_2_8.png" id="2_8wkct"]
+[ext_resource type="PackedScene" path="res://scenes/cat_game/ui/hud.tscn" id="2_hud"]
+[ext_resource type="PackedScene" uid="uid://cmquucfy2ckxe" path="res://scenes/cat_game/ui/results_screen.tscn" id="3_results"]
 [ext_resource type="Texture2D" uid="uid://ba2156x383hte" path="res://assets/sprites/environment/wall and floor tiles/tile_15_16.png" id="3_srtlc"]
 [ext_resource type="Texture2D" uid="uid://budygsw83hv5g" path="res://assets/sprites/environment/wall and floor tiles/tile_15_13.png" id="4_0qs06"]
 [ext_resource type="Texture2D" uid="uid://dqmp1qq20m8sr" path="res://assets/sprites/environment/wall and floor tiles/tile_12_14.png" id="5_ff620"]
@@ -26,6 +28,9 @@
 [ext_resource type="Texture2D" uid="uid://v2t14fam52fh" path="res://assets/sprites/environment/output/tile_12_11.png" id="32_w824r"]
 [ext_resource type="Texture2D" uid="uid://boweqsypvupdc" path="res://assets/sprites/environment/output/tile_14_11.png" id="33_17bii"]
 [ext_resource type="Texture2D" uid="uid://bac8ci07iafs0" path="res://assets/sprites/environment/output/tile_13_11.png" id="34_4dnk1"]
+[ext_resource type="PackedScene" uid="uid://fb2upb5dyg5b" path="res://scenes/cat_game/characters/mouse.tscn" id="37_01g5v"]
+[ext_resource type="Texture2D" uid="uid://ck1ekesl1qktd" path="res://assets/sprites/environment/output/tile_0_16.png" id="38_01g5v"]
+[ext_resource type="Script" uid="uid://bqh3brfi1re2c" path="res://scripts/cat_game/environment/cactus_hazard.gd" id="39_4ortt"]
 [ext_resource type="Texture2D" uid="uid://vweksugkkb2c" path="res://assets/sprites/environment/output/tile_13_5.png" id="39_nktx4"]
 [ext_resource type="Texture2D" uid="uid://yvbfn6vcrlc3" path="res://assets/sprites/environment/output/tile_13_6.png" id="40_f4ah8"]
 [ext_resource type="Texture2D" uid="uid://bexg04orn4tqq" path="res://assets/sprites/environment/output/tile_8_19.png" id="50_tolgh"]
@@ -37,8 +42,32 @@
 [ext_resource type="SpriteFrames" uid="uid://bspk2plmij7hd" path="res://scenes/cat_game/characters/dog_variants/dog3.tres" id="71_hq8tn"]
 [ext_resource type="PackedScene" uid="uid://b2qxfiflox5xx" path="res://scenes/cat_game/characters/cat.tscn" id="72_vwyt6"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7ujw3"]
+size = Vector2(94, 67)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qrcko"]
+size = Vector2(855, 67)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_716oc"]
 size = Vector2(992, 67)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_01g5v"]
+size = Vector2(187, 47.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4ortt"]
+size = Vector2(331.5, 47.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t5n54"]
+size = Vector2(28.75, 129.75)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j6dyl"]
+size = Vector2(28.75, 189.875)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tjjyv"]
+size = Vector2(282.75, 45.75)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_11t3f"]
+size = Vector2(30.375, 105.875)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xxwm5"]
 size = Vector2(30, 371)
@@ -67,1723 +96,1770 @@ size = Vector2(36.000362, 96.00097)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u801f"]
 size = Vector2(16.400002, 16.065994)
 
-[node name="tutorial map" type="Node2D"]
-script = ExtResource("1_egvdl")
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fqclw"]
+size = Vector2(21, 43)
 
-[node name="seciton 1" type="Node2D" parent="."]
+[node name="tutorial map" type="Node2D" unique_id=1371152845]
+script = ExtResource("1_tutorial")
+starting_score = 0
+points_per_mouse = 0
+caught_penalty = 0
+maximum_time_bonus = 0
+time_penalty_per_second = 0.0
+total_mice = 2
+next_scene_path = "res://scenes/cat_game/levels/level_01.tscn"
+
+[node name="seciton 1" type="Node2D" parent="." unique_id=1230646003]
 position = Vector2(2960, 577)
 
-[node name="Floor2" type="Node2D" parent="seciton 1"]
+[node name="Floor2" type="Node2D" parent="seciton 1" unique_id=1833433818]
 z_index = -999
 scale = Vector2(2.5, 2.5)
 
-[node name="Sprite2D543" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D543" type="Sprite2D" parent="seciton 1/Floor2" unique_id=1215688482]
 position = Vector2(-763.2, 425.6)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D544" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D544" type="Sprite2D" parent="seciton 1/Floor2" unique_id=1471158191]
 position = Vector2(-747.2, 425.6)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D545" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D545" type="Sprite2D" parent="seciton 1/Floor2" unique_id=1422612666]
 position = Vector2(-731.2, 425.6)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D546" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D546" type="Sprite2D" parent="seciton 1/Floor2" unique_id=1236491509]
 position = Vector2(-715.2, 425.6)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D547" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D547" type="Sprite2D" parent="seciton 1/Floor2" unique_id=1135019255]
 position = Vector2(-699.2, 425.6)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D548" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D548" type="Sprite2D" parent="seciton 1/Floor2" unique_id=1105491421]
 position = Vector2(-683.2, 425.6)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D549" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D549" type="Sprite2D" parent="seciton 1/Floor2" unique_id=1002440706]
 position = Vector2(-667.2, 425.6)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D550" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D550" type="Sprite2D" parent="seciton 1/Floor2" unique_id=365770423]
 position = Vector2(-651.2, 425.6)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D551" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D551" type="Sprite2D" parent="seciton 1/Floor2" unique_id=176970288]
 position = Vector2(-635.2, 425.6)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D552" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D552" type="Sprite2D" parent="seciton 1/Floor2" unique_id=1097479912]
 position = Vector2(-619.2, 425.6)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D553" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D553" type="Sprite2D" parent="seciton 1/Floor2" unique_id=1802894352]
 position = Vector2(-603.2, 425.6)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D554" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D554" type="Sprite2D" parent="seciton 1/Floor2" unique_id=702298771]
 position = Vector2(-587.2, 425.6)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D555" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D555" type="Sprite2D" parent="seciton 1/Floor2" unique_id=1405309774]
 position = Vector2(-571.2, 425.6)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D556" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D556" type="Sprite2D" parent="seciton 1/Floor2" unique_id=1852798193]
 position = Vector2(-555.2, 425.6)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D557" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D557" type="Sprite2D" parent="seciton 1/Floor2" unique_id=813065512]
 position = Vector2(-539.2, 425.6)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D558" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D558" type="Sprite2D" parent="seciton 1/Floor2" unique_id=51687900]
 position = Vector2(-523.2, 425.6)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D559" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D559" type="Sprite2D" parent="seciton 1/Floor2" unique_id=303566748]
 position = Vector2(-507.2, 425.6)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D560" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D560" type="Sprite2D" parent="seciton 1/Floor2" unique_id=1370647433]
 position = Vector2(-491.2, 425.6)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D561" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D561" type="Sprite2D" parent="seciton 1/Floor2" unique_id=873072971]
 position = Vector2(-475.2, 425.6)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D562" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D562" type="Sprite2D" parent="seciton 1/Floor2" unique_id=342678980]
 position = Vector2(-459.2, 425.6)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D563" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D563" type="Sprite2D" parent="seciton 1/Floor2" unique_id=860556543]
 position = Vector2(-443.2, 425.6)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D564" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D564" type="Sprite2D" parent="seciton 1/Floor2" unique_id=553298002]
 position = Vector2(-427.19998, 425.6)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D565" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D565" type="Sprite2D" parent="seciton 1/Floor2" unique_id=125883285]
 position = Vector2(-411.19998, 425.6)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D566" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D566" type="Sprite2D" parent="seciton 1/Floor2" unique_id=717103101]
 position = Vector2(-395.19998, 425.6)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D567" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D567" type="Sprite2D" parent="seciton 1/Floor2" unique_id=85123673]
 position = Vector2(-379.19998, 425.6)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D570" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D570" type="Sprite2D" parent="seciton 1/Floor2" unique_id=1374114186]
 position = Vector2(-763.2, 441.6)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D571" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D571" type="Sprite2D" parent="seciton 1/Floor2" unique_id=161756567]
 position = Vector2(-747.2, 441.6)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D572" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D572" type="Sprite2D" parent="seciton 1/Floor2" unique_id=1501913428]
 position = Vector2(-731.2, 441.6)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D573" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D573" type="Sprite2D" parent="seciton 1/Floor2" unique_id=1280497945]
 position = Vector2(-715.2, 441.6)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D574" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D574" type="Sprite2D" parent="seciton 1/Floor2" unique_id=2035643374]
 position = Vector2(-699.2, 441.6)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D575" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D575" type="Sprite2D" parent="seciton 1/Floor2" unique_id=1593712510]
 position = Vector2(-683.2, 441.6)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D576" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D576" type="Sprite2D" parent="seciton 1/Floor2" unique_id=1084648283]
 position = Vector2(-667.2, 441.6)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D577" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D577" type="Sprite2D" parent="seciton 1/Floor2" unique_id=343812918]
 position = Vector2(-651.2, 441.6)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D578" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D578" type="Sprite2D" parent="seciton 1/Floor2" unique_id=2146850381]
 position = Vector2(-635.2, 441.6)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D579" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D579" type="Sprite2D" parent="seciton 1/Floor2" unique_id=49574089]
 position = Vector2(-619.2, 441.6)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D580" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D580" type="Sprite2D" parent="seciton 1/Floor2" unique_id=260040798]
 position = Vector2(-603.2, 441.6)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D581" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D581" type="Sprite2D" parent="seciton 1/Floor2" unique_id=353863989]
 position = Vector2(-587.2, 441.6)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D582" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D582" type="Sprite2D" parent="seciton 1/Floor2" unique_id=542462582]
 position = Vector2(-571.2, 441.6)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D583" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D583" type="Sprite2D" parent="seciton 1/Floor2" unique_id=202122106]
 position = Vector2(-555.2, 441.6)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D584" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D584" type="Sprite2D" parent="seciton 1/Floor2" unique_id=1876833822]
 position = Vector2(-539.2, 441.6)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D585" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D585" type="Sprite2D" parent="seciton 1/Floor2" unique_id=1798218028]
 position = Vector2(-523.2, 441.6)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D586" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D586" type="Sprite2D" parent="seciton 1/Floor2" unique_id=375313182]
 position = Vector2(-507.2, 441.6)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D587" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D587" type="Sprite2D" parent="seciton 1/Floor2" unique_id=1862777641]
 position = Vector2(-491.2, 441.6)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D588" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D588" type="Sprite2D" parent="seciton 1/Floor2" unique_id=2076977402]
 position = Vector2(-475.2, 441.6)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D589" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D589" type="Sprite2D" parent="seciton 1/Floor2" unique_id=1439688617]
 position = Vector2(-459.2, 441.6)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D590" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D590" type="Sprite2D" parent="seciton 1/Floor2" unique_id=1203935717]
 position = Vector2(-443.2, 441.6)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D591" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D591" type="Sprite2D" parent="seciton 1/Floor2" unique_id=989549645]
 position = Vector2(-427.19998, 441.6)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D592" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D592" type="Sprite2D" parent="seciton 1/Floor2" unique_id=1931308039]
 position = Vector2(-411.19998, 441.6)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D593" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D593" type="Sprite2D" parent="seciton 1/Floor2" unique_id=295116073]
 position = Vector2(-395.19998, 441.6)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D594" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D594" type="Sprite2D" parent="seciton 1/Floor2" unique_id=827826270]
 position = Vector2(-379.19998, 441.6)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D595" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D595" type="Sprite2D" parent="seciton 1/Floor2" unique_id=1704895437]
 position = Vector2(-364.39996, 441.6)
 scale = Vector2(0.8500023, 1)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D597" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D597" type="Sprite2D" parent="seciton 1/Floor2" unique_id=668585505]
 position = Vector2(-763.2, 457.60004)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D598" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D598" type="Sprite2D" parent="seciton 1/Floor2" unique_id=1202791241]
 position = Vector2(-747.2, 457.60004)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D599" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D599" type="Sprite2D" parent="seciton 1/Floor2" unique_id=563999765]
 position = Vector2(-731.2, 457.60004)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D600" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D600" type="Sprite2D" parent="seciton 1/Floor2" unique_id=1253386577]
 position = Vector2(-715.2, 457.60004)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D601" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D601" type="Sprite2D" parent="seciton 1/Floor2" unique_id=1136279177]
 position = Vector2(-699.2, 457.60004)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D602" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D602" type="Sprite2D" parent="seciton 1/Floor2" unique_id=1659495452]
 position = Vector2(-683.2, 457.60004)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D603" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D603" type="Sprite2D" parent="seciton 1/Floor2" unique_id=558103979]
 position = Vector2(-667.2, 457.60004)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D604" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D604" type="Sprite2D" parent="seciton 1/Floor2" unique_id=1219336532]
 position = Vector2(-651.2, 457.60004)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D605" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D605" type="Sprite2D" parent="seciton 1/Floor2" unique_id=654174254]
 position = Vector2(-635.2, 457.60004)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D606" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D606" type="Sprite2D" parent="seciton 1/Floor2" unique_id=1179027948]
 position = Vector2(-619.2, 457.60004)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D607" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D607" type="Sprite2D" parent="seciton 1/Floor2" unique_id=1950105507]
 position = Vector2(-603.2, 457.60004)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D608" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D608" type="Sprite2D" parent="seciton 1/Floor2" unique_id=1853611232]
 position = Vector2(-587.2, 457.60004)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D609" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D609" type="Sprite2D" parent="seciton 1/Floor2" unique_id=651278426]
 position = Vector2(-571.2, 457.60004)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D610" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D610" type="Sprite2D" parent="seciton 1/Floor2" unique_id=1137795756]
 position = Vector2(-555.2, 457.60004)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D611" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D611" type="Sprite2D" parent="seciton 1/Floor2" unique_id=975958328]
 position = Vector2(-539.2, 457.60004)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D612" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D612" type="Sprite2D" parent="seciton 1/Floor2" unique_id=66502055]
 position = Vector2(-523.2, 457.60004)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D613" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D613" type="Sprite2D" parent="seciton 1/Floor2" unique_id=2065196264]
 position = Vector2(-507.2, 457.60004)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D614" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D614" type="Sprite2D" parent="seciton 1/Floor2" unique_id=135876468]
 position = Vector2(-491.2, 457.60004)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D615" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D615" type="Sprite2D" parent="seciton 1/Floor2" unique_id=2067974184]
 position = Vector2(-475.2, 457.60004)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D616" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D616" type="Sprite2D" parent="seciton 1/Floor2" unique_id=411294339]
 position = Vector2(-459.2, 457.60004)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D617" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D617" type="Sprite2D" parent="seciton 1/Floor2" unique_id=2030183638]
 position = Vector2(-443.2, 457.60004)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D618" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D618" type="Sprite2D" parent="seciton 1/Floor2" unique_id=1327336307]
 position = Vector2(-427.19998, 457.60004)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D619" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D619" type="Sprite2D" parent="seciton 1/Floor2" unique_id=931580198]
 position = Vector2(-411.19998, 457.60004)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D620" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D620" type="Sprite2D" parent="seciton 1/Floor2" unique_id=1095635698]
 position = Vector2(-395.19998, 457.60004)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D621" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D621" type="Sprite2D" parent="seciton 1/Floor2" unique_id=1438920801]
 position = Vector2(-379.19998, 457.60004)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D622" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D622" type="Sprite2D" parent="seciton 1/Floor2" unique_id=2090884053]
 position = Vector2(-364.39996, 457.60004)
 scale = Vector2(0.8500023, 1)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D624" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D624" type="Sprite2D" parent="seciton 1/Floor2" unique_id=23273074]
 position = Vector2(-763.2, 473.60004)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D625" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D625" type="Sprite2D" parent="seciton 1/Floor2" unique_id=882590639]
 position = Vector2(-747.2, 473.60004)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D626" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D626" type="Sprite2D" parent="seciton 1/Floor2" unique_id=1300596297]
 position = Vector2(-731.2, 473.60004)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D627" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D627" type="Sprite2D" parent="seciton 1/Floor2" unique_id=1925365126]
 position = Vector2(-715.2, 473.60004)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D628" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D628" type="Sprite2D" parent="seciton 1/Floor2" unique_id=1346455400]
 position = Vector2(-699.2, 473.60004)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D629" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D629" type="Sprite2D" parent="seciton 1/Floor2" unique_id=948772014]
 position = Vector2(-683.2, 473.60004)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D630" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D630" type="Sprite2D" parent="seciton 1/Floor2" unique_id=1421181316]
 position = Vector2(-667.2, 473.60004)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D631" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D631" type="Sprite2D" parent="seciton 1/Floor2" unique_id=648692430]
 position = Vector2(-651.2, 473.60004)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D632" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D632" type="Sprite2D" parent="seciton 1/Floor2" unique_id=1758518569]
 position = Vector2(-635.2, 473.60004)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D633" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D633" type="Sprite2D" parent="seciton 1/Floor2" unique_id=1922132710]
 position = Vector2(-619.2, 473.60004)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D634" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D634" type="Sprite2D" parent="seciton 1/Floor2" unique_id=1941438247]
 position = Vector2(-603.2, 473.60004)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D635" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D635" type="Sprite2D" parent="seciton 1/Floor2" unique_id=80312280]
 position = Vector2(-587.2, 473.60004)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D636" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D636" type="Sprite2D" parent="seciton 1/Floor2" unique_id=709054950]
 position = Vector2(-571.2, 473.60004)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D637" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D637" type="Sprite2D" parent="seciton 1/Floor2" unique_id=505345264]
 position = Vector2(-555.2, 473.60004)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D638" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D638" type="Sprite2D" parent="seciton 1/Floor2" unique_id=1140116615]
 position = Vector2(-539.2, 473.60004)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D639" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D639" type="Sprite2D" parent="seciton 1/Floor2" unique_id=631488222]
 position = Vector2(-523.2, 473.60004)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D640" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D640" type="Sprite2D" parent="seciton 1/Floor2" unique_id=2055939935]
 position = Vector2(-507.2, 473.60004)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D641" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D641" type="Sprite2D" parent="seciton 1/Floor2" unique_id=1452517466]
 position = Vector2(-491.2, 473.60004)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D642" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D642" type="Sprite2D" parent="seciton 1/Floor2" unique_id=1458575158]
 position = Vector2(-475.2, 473.60004)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D643" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D643" type="Sprite2D" parent="seciton 1/Floor2" unique_id=618102214]
 position = Vector2(-459.2, 473.60004)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D644" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D644" type="Sprite2D" parent="seciton 1/Floor2" unique_id=512148028]
 position = Vector2(-443.2, 473.60004)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D645" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D645" type="Sprite2D" parent="seciton 1/Floor2" unique_id=1347445115]
 position = Vector2(-427.19998, 473.60004)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D646" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D646" type="Sprite2D" parent="seciton 1/Floor2" unique_id=1768819657]
 position = Vector2(-411.19998, 473.60004)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D647" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D647" type="Sprite2D" parent="seciton 1/Floor2" unique_id=1206121070]
 position = Vector2(-395.19998, 473.60004)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D648" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D648" type="Sprite2D" parent="seciton 1/Floor2" unique_id=851894110]
 position = Vector2(-379.19998, 473.60004)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D649" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D649" type="Sprite2D" parent="seciton 1/Floor2" unique_id=1398894509]
 position = Vector2(-364.59998, 473.60004)
 scale = Vector2(0.82500076, 1)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D651" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D651" type="Sprite2D" parent="seciton 1/Floor2" unique_id=934180462]
 position = Vector2(-759.2, 489.59998)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D652" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D652" type="Sprite2D" parent="seciton 1/Floor2" unique_id=747622839]
 position = Vector2(-743.2, 489.59998)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D653" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D653" type="Sprite2D" parent="seciton 1/Floor2" unique_id=419644732]
 position = Vector2(-727.2, 489.59998)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D654" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D654" type="Sprite2D" parent="seciton 1/Floor2" unique_id=1509751085]
 position = Vector2(-711.2, 489.59998)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D655" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D655" type="Sprite2D" parent="seciton 1/Floor2" unique_id=1038797740]
 position = Vector2(-695.2, 489.59998)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D656" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D656" type="Sprite2D" parent="seciton 1/Floor2" unique_id=598935391]
 position = Vector2(-679.2, 489.59998)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D657" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D657" type="Sprite2D" parent="seciton 1/Floor2" unique_id=2126601903]
 position = Vector2(-663.2, 489.59998)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D658" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D658" type="Sprite2D" parent="seciton 1/Floor2" unique_id=814066291]
 position = Vector2(-647.2, 489.59998)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D659" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D659" type="Sprite2D" parent="seciton 1/Floor2" unique_id=959716250]
 position = Vector2(-631.2, 489.59998)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D660" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D660" type="Sprite2D" parent="seciton 1/Floor2" unique_id=792768101]
 position = Vector2(-615.2, 489.59998)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D661" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D661" type="Sprite2D" parent="seciton 1/Floor2" unique_id=348190692]
 position = Vector2(-599.2, 489.59998)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D662" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D662" type="Sprite2D" parent="seciton 1/Floor2" unique_id=1742337550]
 position = Vector2(-583.2, 489.59998)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D663" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D663" type="Sprite2D" parent="seciton 1/Floor2" unique_id=617270008]
 position = Vector2(-567.2, 489.59998)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D664" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D664" type="Sprite2D" parent="seciton 1/Floor2" unique_id=2035970284]
 position = Vector2(-551.2, 489.59998)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D665" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D665" type="Sprite2D" parent="seciton 1/Floor2" unique_id=1523479513]
 position = Vector2(-535.2, 489.59998)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D666" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D666" type="Sprite2D" parent="seciton 1/Floor2" unique_id=642898790]
 position = Vector2(-519.2, 489.59998)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D667" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D667" type="Sprite2D" parent="seciton 1/Floor2" unique_id=189690436]
 position = Vector2(-503.2, 489.59998)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D668" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D668" type="Sprite2D" parent="seciton 1/Floor2" unique_id=813262175]
 position = Vector2(-487.2, 489.59998)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D669" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D669" type="Sprite2D" parent="seciton 1/Floor2" unique_id=1218832033]
 position = Vector2(-471.2, 489.59998)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D670" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D670" type="Sprite2D" parent="seciton 1/Floor2" unique_id=91957096]
 position = Vector2(-455.2, 489.59998)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D671" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D671" type="Sprite2D" parent="seciton 1/Floor2" unique_id=1284700083]
 position = Vector2(-439.2, 489.59998)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D672" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D672" type="Sprite2D" parent="seciton 1/Floor2" unique_id=1229791913]
 position = Vector2(-423.19998, 489.59998)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D673" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D673" type="Sprite2D" parent="seciton 1/Floor2" unique_id=567086242]
 position = Vector2(-407.19998, 489.59998)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D674" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D674" type="Sprite2D" parent="seciton 1/Floor2" unique_id=388810585]
 position = Vector2(-391.19998, 489.59998)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D675" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D675" type="Sprite2D" parent="seciton 1/Floor2" unique_id=621182385]
 position = Vector2(-375.19998, 489.59998)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D678" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D678" type="Sprite2D" parent="seciton 1/Floor2" unique_id=280936411]
 position = Vector2(-759.2, 505.59995)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D679" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D679" type="Sprite2D" parent="seciton 1/Floor2" unique_id=1457031387]
 position = Vector2(-743.2, 505.59995)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D680" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D680" type="Sprite2D" parent="seciton 1/Floor2" unique_id=509038326]
 position = Vector2(-727.2, 505.59995)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D681" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D681" type="Sprite2D" parent="seciton 1/Floor2" unique_id=607469841]
 position = Vector2(-711.2, 505.59995)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D682" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D682" type="Sprite2D" parent="seciton 1/Floor2" unique_id=1150859021]
 position = Vector2(-695.2, 505.59995)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D683" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D683" type="Sprite2D" parent="seciton 1/Floor2" unique_id=1557400500]
 position = Vector2(-679.2, 505.59995)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D684" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D684" type="Sprite2D" parent="seciton 1/Floor2" unique_id=1331089024]
 position = Vector2(-663.2, 505.59995)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D685" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D685" type="Sprite2D" parent="seciton 1/Floor2" unique_id=584985836]
 position = Vector2(-647.2, 505.59995)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D686" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D686" type="Sprite2D" parent="seciton 1/Floor2" unique_id=2086165699]
 position = Vector2(-631.2, 505.59995)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D687" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D687" type="Sprite2D" parent="seciton 1/Floor2" unique_id=608003382]
 position = Vector2(-615.2, 505.59995)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D688" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D688" type="Sprite2D" parent="seciton 1/Floor2" unique_id=562641517]
 position = Vector2(-599.2, 505.59995)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D689" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D689" type="Sprite2D" parent="seciton 1/Floor2" unique_id=915415712]
 position = Vector2(-583.2, 505.59995)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D690" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D690" type="Sprite2D" parent="seciton 1/Floor2" unique_id=622282174]
 position = Vector2(-567.2, 505.59995)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D691" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D691" type="Sprite2D" parent="seciton 1/Floor2" unique_id=1798025097]
 position = Vector2(-551.2, 505.59995)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D692" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D692" type="Sprite2D" parent="seciton 1/Floor2" unique_id=1960572722]
 position = Vector2(-535.2, 505.59995)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D693" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D693" type="Sprite2D" parent="seciton 1/Floor2" unique_id=18861218]
 position = Vector2(-519.2, 505.59995)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D694" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D694" type="Sprite2D" parent="seciton 1/Floor2" unique_id=13515253]
 position = Vector2(-503.2, 505.59995)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D695" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D695" type="Sprite2D" parent="seciton 1/Floor2" unique_id=131846530]
 position = Vector2(-487.2, 505.59995)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D696" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D696" type="Sprite2D" parent="seciton 1/Floor2" unique_id=1273217745]
 position = Vector2(-471.2, 505.59995)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D697" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D697" type="Sprite2D" parent="seciton 1/Floor2" unique_id=2013673107]
 position = Vector2(-455.2, 505.59995)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D698" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D698" type="Sprite2D" parent="seciton 1/Floor2" unique_id=1211816104]
 position = Vector2(-439.2, 505.59995)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D699" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D699" type="Sprite2D" parent="seciton 1/Floor2" unique_id=1816571009]
 position = Vector2(-423.19998, 505.59995)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D700" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D700" type="Sprite2D" parent="seciton 1/Floor2" unique_id=169275483]
 position = Vector2(-407.19998, 505.59995)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D701" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D701" type="Sprite2D" parent="seciton 1/Floor2" unique_id=933716897]
 position = Vector2(-391.19998, 505.59995)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D702" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D702" type="Sprite2D" parent="seciton 1/Floor2" unique_id=1442834098]
 position = Vector2(-375.19998, 505.59995)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D705" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D705" type="Sprite2D" parent="seciton 1/Floor2" unique_id=868115273]
 position = Vector2(-759.2, 521.6)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D706" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D706" type="Sprite2D" parent="seciton 1/Floor2" unique_id=548677301]
 position = Vector2(-743.2, 521.6)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D707" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D707" type="Sprite2D" parent="seciton 1/Floor2" unique_id=591812012]
 position = Vector2(-727.2, 521.6)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D708" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D708" type="Sprite2D" parent="seciton 1/Floor2" unique_id=1477064550]
 position = Vector2(-711.2, 521.6)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D709" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D709" type="Sprite2D" parent="seciton 1/Floor2" unique_id=1285491392]
 position = Vector2(-695.2, 521.6)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D710" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D710" type="Sprite2D" parent="seciton 1/Floor2" unique_id=755363406]
 position = Vector2(-679.2, 521.6)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D711" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D711" type="Sprite2D" parent="seciton 1/Floor2" unique_id=198241347]
 position = Vector2(-663.2, 521.6)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D712" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D712" type="Sprite2D" parent="seciton 1/Floor2" unique_id=42039642]
 position = Vector2(-647.2, 521.6)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D713" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D713" type="Sprite2D" parent="seciton 1/Floor2" unique_id=1109271368]
 position = Vector2(-631.2, 521.6)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D714" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D714" type="Sprite2D" parent="seciton 1/Floor2" unique_id=655541146]
 position = Vector2(-615.2, 521.6)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D715" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D715" type="Sprite2D" parent="seciton 1/Floor2" unique_id=300359469]
 position = Vector2(-599.2, 521.6)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D716" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D716" type="Sprite2D" parent="seciton 1/Floor2" unique_id=1571139611]
 position = Vector2(-583.2, 521.6)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D717" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D717" type="Sprite2D" parent="seciton 1/Floor2" unique_id=893161898]
 position = Vector2(-567.2, 521.6)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D718" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D718" type="Sprite2D" parent="seciton 1/Floor2" unique_id=981204047]
 position = Vector2(-551.2, 521.6)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D719" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D719" type="Sprite2D" parent="seciton 1/Floor2" unique_id=1888716160]
 position = Vector2(-535.2, 521.6)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D720" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D720" type="Sprite2D" parent="seciton 1/Floor2" unique_id=1128977572]
 position = Vector2(-519.2, 521.6)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D721" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D721" type="Sprite2D" parent="seciton 1/Floor2" unique_id=287606076]
 position = Vector2(-503.2, 521.6)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D722" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D722" type="Sprite2D" parent="seciton 1/Floor2" unique_id=2113128720]
 position = Vector2(-487.2, 521.6)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D723" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D723" type="Sprite2D" parent="seciton 1/Floor2" unique_id=717056692]
 position = Vector2(-471.2, 521.6)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D724" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D724" type="Sprite2D" parent="seciton 1/Floor2" unique_id=1052847381]
 position = Vector2(-455.2, 521.6)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D725" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D725" type="Sprite2D" parent="seciton 1/Floor2" unique_id=191902272]
 position = Vector2(-439.2, 521.6)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D726" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D726" type="Sprite2D" parent="seciton 1/Floor2" unique_id=363424338]
 position = Vector2(-423.19998, 521.6)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D727" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D727" type="Sprite2D" parent="seciton 1/Floor2" unique_id=2139733975]
 position = Vector2(-407.19998, 521.6)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D728" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D728" type="Sprite2D" parent="seciton 1/Floor2" unique_id=1790902307]
 position = Vector2(-391.19998, 521.6)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D729" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D729" type="Sprite2D" parent="seciton 1/Floor2" unique_id=1314082959]
 position = Vector2(-375.19998, 521.6)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D732" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D732" type="Sprite2D" parent="seciton 1/Floor2" unique_id=298207357]
 position = Vector2(-759.2, 537.6)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D733" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D733" type="Sprite2D" parent="seciton 1/Floor2" unique_id=822505883]
 position = Vector2(-743.2, 537.6)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D734" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D734" type="Sprite2D" parent="seciton 1/Floor2" unique_id=1913850228]
 position = Vector2(-727.2, 537.6)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D735" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D735" type="Sprite2D" parent="seciton 1/Floor2" unique_id=656380604]
 position = Vector2(-711.2, 537.6)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D736" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D736" type="Sprite2D" parent="seciton 1/Floor2" unique_id=1909878737]
 position = Vector2(-695.2, 537.6)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D737" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D737" type="Sprite2D" parent="seciton 1/Floor2" unique_id=953305919]
 position = Vector2(-679.2, 537.6)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D738" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D738" type="Sprite2D" parent="seciton 1/Floor2" unique_id=1356827268]
 position = Vector2(-663.2, 537.6)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D739" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D739" type="Sprite2D" parent="seciton 1/Floor2" unique_id=540035498]
 position = Vector2(-647.2, 537.6)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D740" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D740" type="Sprite2D" parent="seciton 1/Floor2" unique_id=1853739408]
 position = Vector2(-631.2, 537.6)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D741" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D741" type="Sprite2D" parent="seciton 1/Floor2" unique_id=1797950760]
 position = Vector2(-615.2, 537.6)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D742" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D742" type="Sprite2D" parent="seciton 1/Floor2" unique_id=355060211]
 position = Vector2(-599.2, 537.6)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D743" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D743" type="Sprite2D" parent="seciton 1/Floor2" unique_id=2052678690]
 position = Vector2(-583.2, 537.6)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D744" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D744" type="Sprite2D" parent="seciton 1/Floor2" unique_id=212559954]
 position = Vector2(-567.2, 537.6)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D745" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D745" type="Sprite2D" parent="seciton 1/Floor2" unique_id=389710873]
 position = Vector2(-551.2, 537.6)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D746" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D746" type="Sprite2D" parent="seciton 1/Floor2" unique_id=1112020527]
 position = Vector2(-535.2, 537.6)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D747" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D747" type="Sprite2D" parent="seciton 1/Floor2" unique_id=959277666]
 position = Vector2(-519.2, 537.6)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D748" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D748" type="Sprite2D" parent="seciton 1/Floor2" unique_id=2128024351]
 position = Vector2(-503.2, 537.6)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D749" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D749" type="Sprite2D" parent="seciton 1/Floor2" unique_id=413919070]
 position = Vector2(-487.2, 537.6)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D750" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D750" type="Sprite2D" parent="seciton 1/Floor2" unique_id=1839764665]
 position = Vector2(-471.2, 537.6)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D751" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D751" type="Sprite2D" parent="seciton 1/Floor2" unique_id=681518394]
 position = Vector2(-455.2, 537.6)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D752" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D752" type="Sprite2D" parent="seciton 1/Floor2" unique_id=140857796]
 position = Vector2(-439.2, 537.6)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D753" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D753" type="Sprite2D" parent="seciton 1/Floor2" unique_id=1483346572]
 position = Vector2(-423.19998, 537.6)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D754" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D754" type="Sprite2D" parent="seciton 1/Floor2" unique_id=2065759771]
 position = Vector2(-407.19998, 537.6)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D755" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D755" type="Sprite2D" parent="seciton 1/Floor2" unique_id=389918671]
 position = Vector2(-391.19998, 537.6)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D756" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D756" type="Sprite2D" parent="seciton 1/Floor2" unique_id=1340766391]
 position = Vector2(-375.19998, 537.6)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D759" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D759" type="Sprite2D" parent="seciton 1/Floor2" unique_id=1403394241]
 position = Vector2(-759.2, 553.6)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D760" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D760" type="Sprite2D" parent="seciton 1/Floor2" unique_id=694783152]
 position = Vector2(-743.2, 553.6)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D761" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D761" type="Sprite2D" parent="seciton 1/Floor2" unique_id=252655663]
 position = Vector2(-727.2, 553.6)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D762" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D762" type="Sprite2D" parent="seciton 1/Floor2" unique_id=1448458052]
 position = Vector2(-711.2, 553.6)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D763" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D763" type="Sprite2D" parent="seciton 1/Floor2" unique_id=1865962176]
 position = Vector2(-695.2, 553.6)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D764" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D764" type="Sprite2D" parent="seciton 1/Floor2" unique_id=2011990539]
 position = Vector2(-679.2, 553.6)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D765" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D765" type="Sprite2D" parent="seciton 1/Floor2" unique_id=643732535]
 position = Vector2(-663.2, 553.6)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D766" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D766" type="Sprite2D" parent="seciton 1/Floor2" unique_id=1993769265]
 position = Vector2(-647.2, 553.6)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D767" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D767" type="Sprite2D" parent="seciton 1/Floor2" unique_id=2067523621]
 position = Vector2(-631.2, 553.6)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D768" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D768" type="Sprite2D" parent="seciton 1/Floor2" unique_id=819335968]
 position = Vector2(-615.2, 553.6)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D769" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D769" type="Sprite2D" parent="seciton 1/Floor2" unique_id=1400965195]
 position = Vector2(-599.2, 553.6)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D770" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D770" type="Sprite2D" parent="seciton 1/Floor2" unique_id=946032002]
 position = Vector2(-583.2, 553.6)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D771" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D771" type="Sprite2D" parent="seciton 1/Floor2" unique_id=1618519646]
 position = Vector2(-567.2, 553.6)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D772" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D772" type="Sprite2D" parent="seciton 1/Floor2" unique_id=1620678544]
 position = Vector2(-551.2, 553.6)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D773" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D773" type="Sprite2D" parent="seciton 1/Floor2" unique_id=735490066]
 position = Vector2(-535.2, 553.6)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D774" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D774" type="Sprite2D" parent="seciton 1/Floor2" unique_id=688131565]
 position = Vector2(-519.2, 553.6)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D775" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D775" type="Sprite2D" parent="seciton 1/Floor2" unique_id=350979380]
 position = Vector2(-503.2, 553.6)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D776" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D776" type="Sprite2D" parent="seciton 1/Floor2" unique_id=1321894665]
 position = Vector2(-487.2, 553.6)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D777" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D777" type="Sprite2D" parent="seciton 1/Floor2" unique_id=362704400]
 position = Vector2(-471.2, 553.6)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D778" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D778" type="Sprite2D" parent="seciton 1/Floor2" unique_id=1206917951]
 position = Vector2(-455.2, 553.6)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D779" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D779" type="Sprite2D" parent="seciton 1/Floor2" unique_id=313267941]
 position = Vector2(-439.2, 553.6)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D780" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D780" type="Sprite2D" parent="seciton 1/Floor2" unique_id=2064320964]
 position = Vector2(-423.19998, 553.6)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D781" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D781" type="Sprite2D" parent="seciton 1/Floor2" unique_id=2041923163]
 position = Vector2(-407.19998, 553.6)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D782" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D782" type="Sprite2D" parent="seciton 1/Floor2" unique_id=70897802]
 position = Vector2(-391.19998, 553.6)
 texture = ExtResource("2_8wkct")
 
-[node name="Sprite2D783" type="Sprite2D" parent="seciton 1/Floor2"]
+[node name="Sprite2D783" type="Sprite2D" parent="seciton 1/Floor2" unique_id=1193660229]
 position = Vector2(-375.19998, 553.6)
 texture = ExtResource("2_8wkct")
 
-[node name="wall" type="Node2D" parent="seciton 1"]
+[node name="wall" type="Node2D" parent="seciton 1" unique_id=179183083]
 scale = Vector2(2, 2)
 
-[node name="Sprite2D109" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D109" type="Sprite2D" parent="seciton 1/wall" unique_id=49608481]
 position = Vector2(-465.5, 561)
 texture = ExtResource("3_srtlc")
 
-[node name="Sprite2D110" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D110" type="Sprite2D" parent="seciton 1/wall" unique_id=1881045759]
 position = Vector2(-935, 561)
 texture = ExtResource("4_0qs06")
 
-[node name="Sprite2D111" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D111" type="Sprite2D" parent="seciton 1/wall" unique_id=465899080]
 position = Vector2(-532, 561)
 texture = ExtResource("4_0qs06")
 
-[node name="Sprite2D112" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D112" type="Sprite2D" parent="seciton 1/wall" unique_id=313123632]
 position = Vector2(-500.5, 561)
 texture = ExtResource("4_0qs06")
 
-[node name="Sprite2D2" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D2" type="Sprite2D" parent="seciton 1/wall" unique_id=301462525]
 position = Vector2(-516.5, 529)
 texture = ExtResource("5_ff620")
 
-[node name="Sprite2D4" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D4" type="Sprite2D" parent="seciton 1/wall" unique_id=1797599]
 position = Vector2(-500.5, 529)
 texture = ExtResource("5_ff620")
 
-[node name="Sprite2D5" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D5" type="Sprite2D" parent="seciton 1/wall" unique_id=897336542]
 position = Vector2(-484.5, 529)
 texture = ExtResource("5_ff620")
 
-[node name="Sprite2D6" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D6" type="Sprite2D" parent="seciton 1/wall" unique_id=673354527]
 position = Vector2(-919, 529)
 texture = ExtResource("5_ff620")
 
-[node name="Sprite2D7" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D7" type="Sprite2D" parent="seciton 1/wall" unique_id=1530729007]
 position = Vector2(-903, 529)
 texture = ExtResource("5_ff620")
 
-[node name="Sprite2D13" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D13" type="Sprite2D" parent="seciton 1/wall" unique_id=1585543372]
 position = Vector2(-887, 529)
 texture = ExtResource("5_ff620")
 
-[node name="Sprite2D14" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D14" type="Sprite2D" parent="seciton 1/wall" unique_id=1584347920]
 position = Vector2(-871, 529)
 texture = ExtResource("5_ff620")
 
-[node name="Sprite2D16" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D16" type="Sprite2D" parent="seciton 1/wall" unique_id=222106382]
 position = Vector2(-855, 529)
 texture = ExtResource("5_ff620")
 
-[node name="Sprite2D17" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D17" type="Sprite2D" parent="seciton 1/wall" unique_id=710818126]
 position = Vector2(-468.5, 529)
 texture = ExtResource("5_ff620")
 
-[node name="Sprite2D18" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D18" type="Sprite2D" parent="seciton 1/wall" unique_id=493354526]
 position = Vector2(-840, 684)
 texture = ExtResource("5_ff620")
 
-[node name="Sprite2D19" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D19" type="Sprite2D" parent="seciton 1/wall" unique_id=122361679]
 position = Vector2(-824, 684)
 texture = ExtResource("5_ff620")
 
-[node name="Sprite2D20" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D20" type="Sprite2D" parent="seciton 1/wall" unique_id=1771858672]
 position = Vector2(-808, 684)
 texture = ExtResource("5_ff620")
 
-[node name="Sprite2D22" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D22" type="Sprite2D" parent="seciton 1/wall" unique_id=2066527322]
 position = Vector2(-792, 684)
 texture = ExtResource("5_ff620")
 
-[node name="Sprite2D23" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D23" type="Sprite2D" parent="seciton 1/wall" unique_id=2062747163]
 position = Vector2(-776, 684)
 texture = ExtResource("5_ff620")
 
-[node name="Sprite2D27" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D27" type="Sprite2D" parent="seciton 1/wall" unique_id=667603594]
 position = Vector2(-760, 684)
 texture = ExtResource("5_ff620")
 
-[node name="Sprite2D28" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D28" type="Sprite2D" parent="seciton 1/wall" unique_id=1549643016]
 position = Vector2(-744, 684)
 texture = ExtResource("5_ff620")
 
-[node name="Sprite2D31" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D31" type="Sprite2D" parent="seciton 1/wall" unique_id=1048786928]
 position = Vector2(-967, 529)
 texture = ExtResource("6_mtfid")
 
-[node name="Sprite2D36" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D36" type="Sprite2D" parent="seciton 1/wall" unique_id=462179076]
 position = Vector2(-453.5, 529)
 texture = ExtResource("7_ykmxo")
 
-[node name="Sprite2D37" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D37" type="Sprite2D" parent="seciton 1/wall" unique_id=1360529024]
 position = Vector2(-453.5, 684)
 texture = ExtResource("8_ey0gv")
 
-[node name="Sprite2D42" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D42" type="Sprite2D" parent="seciton 1/wall" unique_id=1659043024]
 position = Vector2(-967, 545)
 texture = ExtResource("9_b55gn")
 
-[node name="Sprite2D45" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D45" type="Sprite2D" parent="seciton 1/wall" unique_id=1550015230]
 position = Vector2(-967, 589)
 texture = ExtResource("9_b55gn")
 
-[node name="Sprite2D61" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D61" type="Sprite2D" parent="seciton 1/wall" unique_id=774859790]
 position = Vector2(-967, 573)
 texture = ExtResource("9_b55gn")
 
-[node name="Sprite2D46" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D46" type="Sprite2D" parent="seciton 1/wall" unique_id=2041099222]
 position = Vector2(-967, 621)
 texture = ExtResource("9_b55gn")
 
-[node name="Sprite2D47" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D47" type="Sprite2D" parent="seciton 1/wall" unique_id=997364311]
 position = Vector2(-967, 605)
 texture = ExtResource("9_b55gn")
 
-[node name="Sprite2D49" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D49" type="Sprite2D" parent="seciton 1/wall" unique_id=1116500500]
 position = Vector2(-967, 668)
 texture = ExtResource("9_b55gn")
 
-[node name="Sprite2D58" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D58" type="Sprite2D" parent="seciton 1/wall" unique_id=1011630975]
 position = Vector2(-453.5, 561)
 texture = ExtResource("9_b55gn")
 
-[node name="Sprite2D59" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D59" type="Sprite2D" parent="seciton 1/wall" unique_id=432104226]
 position = Vector2(-453.5, 545)
 texture = ExtResource("9_b55gn")
 
-[node name="Sprite2D64" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D64" type="Sprite2D" parent="seciton 1/wall" unique_id=1165428789]
 position = Vector2(-453.5, 589)
 texture = ExtResource("9_b55gn")
 
-[node name="Sprite2D65" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D65" type="Sprite2D" parent="seciton 1/wall" unique_id=237088114]
 position = Vector2(-453.5, 576)
 texture = ExtResource("9_b55gn")
 
-[node name="Sprite2D66" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D66" type="Sprite2D" parent="seciton 1/wall" unique_id=1381963330]
 position = Vector2(-516.5, 545)
 texture = ExtResource("10_0o3js")
 
-[node name="Sprite2D67" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D67" type="Sprite2D" parent="seciton 1/wall" unique_id=913435279]
 position = Vector2(-500.5, 545)
 texture = ExtResource("10_0o3js")
 
-[node name="Sprite2D68" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D68" type="Sprite2D" parent="seciton 1/wall" unique_id=1731772273]
 position = Vector2(-484.5, 545)
 texture = ExtResource("10_0o3js")
 
-[node name="Sprite2D69" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D69" type="Sprite2D" parent="seciton 1/wall" unique_id=128276619]
 position = Vector2(-919, 545)
 texture = ExtResource("10_0o3js")
 
-[node name="Sprite2D70" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D70" type="Sprite2D" parent="seciton 1/wall" unique_id=1790116891]
 position = Vector2(-903, 545)
 texture = ExtResource("10_0o3js")
 
-[node name="Sprite2D72" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D72" type="Sprite2D" parent="seciton 1/wall" unique_id=937112426]
 position = Vector2(-887, 545)
 texture = ExtResource("10_0o3js")
 
-[node name="Sprite2D73" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D73" type="Sprite2D" parent="seciton 1/wall" unique_id=931526776]
 position = Vector2(-871, 545)
 texture = ExtResource("10_0o3js")
 
-[node name="Sprite2D75" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D75" type="Sprite2D" parent="seciton 1/wall" unique_id=1052860584]
 position = Vector2(-855, 545)
 texture = ExtResource("10_0o3js")
 
-[node name="Sprite2D76" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D76" type="Sprite2D" parent="seciton 1/wall" unique_id=1940268284]
 position = Vector2(-469.5, 545)
 texture = ExtResource("10_0o3js")
 
-[node name="Sprite2D79" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D79" type="Sprite2D" parent="seciton 1/wall" unique_id=1739302440]
 position = Vector2(-453.5, 700)
 texture = ExtResource("3_srtlc")
 
-[node name="Sprite2D81" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D81" type="Sprite2D" parent="seciton 1/wall" unique_id=2085943105]
 position = Vector2(-744, 700)
 texture = ExtResource("4_0qs06")
 
-[node name="Sprite2D83" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D83" type="Sprite2D" parent="seciton 1/wall" unique_id=2072057095]
 position = Vector2(-760, 700)
 texture = ExtResource("4_0qs06")
 
-[node name="Sprite2D87" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D87" type="Sprite2D" parent="seciton 1/wall" unique_id=1241009059]
 position = Vector2(-808, 700)
 texture = ExtResource("4_0qs06")
 
-[node name="Sprite2D88" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D88" type="Sprite2D" parent="seciton 1/wall" unique_id=595274386]
 position = Vector2(-824, 700)
 texture = ExtResource("4_0qs06")
 
-[node name="Sprite2D89" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D89" type="Sprite2D" parent="seciton 1/wall" unique_id=1757787219]
 position = Vector2(-840, 700)
 texture = ExtResource("4_0qs06")
 
-[node name="Sprite2D90" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D90" type="Sprite2D" parent="seciton 1/wall" unique_id=1746108354]
 position = Vector2(-776, 700)
 texture = ExtResource("4_0qs06")
 
-[node name="Sprite2D91" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D91" type="Sprite2D" parent="seciton 1/wall" unique_id=266366839]
 position = Vector2(-792, 700)
 texture = ExtResource("4_0qs06")
 
-[node name="Sprite2D107" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D107" type="Sprite2D" parent="seciton 1/wall" unique_id=1119683265]
 position = Vector2(-951, 561)
 texture = ExtResource("4_0qs06")
 
-[node name="Sprite2D113" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D113" type="Sprite2D" parent="seciton 1/wall" unique_id=1090827959]
 position = Vector2(-516, 561)
 texture = ExtResource("4_0qs06")
 
-[node name="Sprite2D117" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D117" type="Sprite2D" parent="seciton 1/wall" unique_id=1252736355]
 position = Vector2(-453.5, 621)
 texture = ExtResource("9_b55gn")
 
-[node name="Sprite2D118" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D118" type="Sprite2D" parent="seciton 1/wall" unique_id=858688265]
 position = Vector2(-453.5, 605)
 texture = ExtResource("9_b55gn")
 
-[node name="Sprite2D119" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D119" type="Sprite2D" parent="seciton 1/wall" unique_id=868425252]
 position = Vector2(-453.5, 668)
 texture = ExtResource("9_b55gn")
 
-[node name="Sprite2D53" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D53" type="Sprite2D" parent="seciton 1/wall" unique_id=934868029]
 position = Vector2(-951, 529)
 texture = ExtResource("5_ff620")
 
-[node name="Sprite2D54" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D54" type="Sprite2D" parent="seciton 1/wall" unique_id=712832356]
 position = Vector2(-935, 529)
 texture = ExtResource("5_ff620")
 
-[node name="Sprite2D120" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D120" type="Sprite2D" parent="seciton 1/wall" unique_id=1902527934]
 position = Vector2(-532, 529)
 texture = ExtResource("5_ff620")
 
-[node name="Sprite2D121" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D121" type="Sprite2D" parent="seciton 1/wall" unique_id=418011396]
 position = Vector2(-951, 545)
 texture = ExtResource("10_0o3js")
 
-[node name="Sprite2D122" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D122" type="Sprite2D" parent="seciton 1/wall" unique_id=1158219380]
 position = Vector2(-935, 545)
 texture = ExtResource("10_0o3js")
 
-[node name="Sprite2D123" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D123" type="Sprite2D" parent="seciton 1/wall" unique_id=819991025]
 position = Vector2(-532, 545)
 texture = ExtResource("10_0o3js")
 
-[node name="Sprite2D126" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D126" type="Sprite2D" parent="seciton 1/wall" unique_id=1738775504]
 position = Vector2(-855.5, 684)
 texture = ExtResource("5_ff620")
 
-[node name="Sprite2D127" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D127" type="Sprite2D" parent="seciton 1/wall" unique_id=1993716793]
 position = Vector2(-855.5, 700)
 texture = ExtResource("4_0qs06")
 
-[node name="Sprite2D114" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D114" type="Sprite2D" parent="seciton 1/wall" unique_id=1658063201]
 position = Vector2(-919, 561)
 texture = ExtResource("4_0qs06")
 
-[node name="Sprite2D115" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D115" type="Sprite2D" parent="seciton 1/wall" unique_id=512173029]
 position = Vector2(-903, 561)
 texture = ExtResource("4_0qs06")
 
-[node name="Sprite2D130" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D130" type="Sprite2D" parent="seciton 1/wall" unique_id=637866283]
 position = Vector2(-871.5, 561)
 texture = ExtResource("4_0qs06")
 
-[node name="Sprite2D108" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D108" type="Sprite2D" parent="seciton 1/wall" unique_id=1891709735]
 position = Vector2(-484.5, 561)
 texture = ExtResource("4_0qs06")
 
-[node name="Sprite2D131" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D131" type="Sprite2D" parent="seciton 1/wall" unique_id=1942195128]
 position = Vector2(-887, 561)
 texture = ExtResource("4_0qs06")
 
-[node name="Sprite2D132" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D132" type="Sprite2D" parent="seciton 1/wall" unique_id=1597975955]
 position = Vector2(-856, 561)
 texture = ExtResource("4_0qs06")
 
-[node name="Sprite2D134" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D134" type="Sprite2D" parent="seciton 1/wall" unique_id=1802714177]
 position = Vector2(-474.5, 561)
 texture = ExtResource("4_0qs06")
 
-[node name="Sprite2D32" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D32" type="Sprite2D" parent="seciton 1/wall" unique_id=1994152751]
 position = Vector2(-951, 684)
 texture = ExtResource("5_ff620")
 
-[node name="Sprite2D21" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D21" type="Sprite2D" parent="seciton 1/wall" unique_id=1808043538]
 position = Vector2(-967, 684)
 texture = ExtResource("11_2n2nx")
 
-[node name="Sprite2D25" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D25" type="Sprite2D" parent="seciton 1/wall" unique_id=1384451512]
 position = Vector2(-951, 700)
 texture = ExtResource("4_0qs06")
 
-[node name="Sprite2D26" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D26" type="Sprite2D" parent="seciton 1/wall" unique_id=1979193510]
 position = Vector2(-967, 700)
 texture = ExtResource("12_y2v0q")
 
-[node name="Sprite2D43" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D43" type="Sprite2D" parent="seciton 1/wall" unique_id=911567829]
 position = Vector2(-967, 557)
 texture = ExtResource("9_b55gn")
 
-[node name="Sprite2D124" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D124" type="Sprite2D" parent="seciton 1/wall" unique_id=1843349840]
 position = Vector2(-825.5, 561)
 texture = ExtResource("4_0qs06")
 
-[node name="Sprite2D125" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D125" type="Sprite2D" parent="seciton 1/wall" unique_id=723887830]
 position = Vector2(-809.5, 561)
 texture = ExtResource("4_0qs06")
 
-[node name="Sprite2D128" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D128" type="Sprite2D" parent="seciton 1/wall" unique_id=590113967]
 position = Vector2(-778, 561)
 texture = ExtResource("4_0qs06")
 
-[node name="Sprite2D3" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D3" type="Sprite2D" parent="seciton 1/wall" unique_id=289683089]
 position = Vector2(-794, 529)
 texture = ExtResource("5_ff620")
 
-[node name="Sprite2D9" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D9" type="Sprite2D" parent="seciton 1/wall" unique_id=1640771367]
 position = Vector2(-778, 529)
 texture = ExtResource("5_ff620")
 
-[node name="Sprite2D10" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D10" type="Sprite2D" parent="seciton 1/wall" unique_id=848538827]
 position = Vector2(-762, 529)
 texture = ExtResource("5_ff620")
 
-[node name="Sprite2D11" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D11" type="Sprite2D" parent="seciton 1/wall" unique_id=826918892]
 position = Vector2(-746, 529)
 texture = ExtResource("5_ff620")
 
-[node name="Sprite2D12" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D12" type="Sprite2D" parent="seciton 1/wall" unique_id=1293334010]
 position = Vector2(-730, 529)
 texture = ExtResource("5_ff620")
 
-[node name="Sprite2D15" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D15" type="Sprite2D" parent="seciton 1/wall" unique_id=2006792608]
 position = Vector2(-714, 529)
 texture = ExtResource("5_ff620")
 
-[node name="Sprite2D30" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D30" type="Sprite2D" parent="seciton 1/wall" unique_id=1822870445]
 position = Vector2(-698, 529)
 texture = ExtResource("5_ff620")
 
-[node name="Sprite2D34" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D34" type="Sprite2D" parent="seciton 1/wall" unique_id=81942156]
 position = Vector2(-682, 529)
 texture = ExtResource("5_ff620")
 
-[node name="Sprite2D74" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D74" type="Sprite2D" parent="seciton 1/wall" unique_id=860544221]
 position = Vector2(-794, 545)
 texture = ExtResource("10_0o3js")
 
-[node name="Sprite2D77" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D77" type="Sprite2D" parent="seciton 1/wall" unique_id=578880627]
 position = Vector2(-778, 545)
 texture = ExtResource("10_0o3js")
 
-[node name="Sprite2D78" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D78" type="Sprite2D" parent="seciton 1/wall" unique_id=569479273]
 position = Vector2(-762, 545)
 texture = ExtResource("10_0o3js")
 
-[node name="Sprite2D84" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D84" type="Sprite2D" parent="seciton 1/wall" unique_id=446407895]
 position = Vector2(-746, 545)
 texture = ExtResource("10_0o3js")
 
-[node name="Sprite2D85" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D85" type="Sprite2D" parent="seciton 1/wall" unique_id=270179824]
 position = Vector2(-730, 545)
 texture = ExtResource("10_0o3js")
 
-[node name="Sprite2D86" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D86" type="Sprite2D" parent="seciton 1/wall" unique_id=283552372]
 position = Vector2(-714, 545)
 texture = ExtResource("10_0o3js")
 
-[node name="Sprite2D92" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D92" type="Sprite2D" parent="seciton 1/wall" unique_id=1068944154]
 position = Vector2(-698, 545)
 texture = ExtResource("10_0o3js")
 
-[node name="Sprite2D93" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D93" type="Sprite2D" parent="seciton 1/wall" unique_id=1498904986]
 position = Vector2(-682, 545)
 texture = ExtResource("10_0o3js")
 
-[node name="Sprite2D129" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D129" type="Sprite2D" parent="seciton 1/wall" unique_id=1798115782]
 position = Vector2(-841.5, 561)
 texture = ExtResource("4_0qs06")
 
-[node name="Sprite2D133" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D133" type="Sprite2D" parent="seciton 1/wall" unique_id=736919668]
 position = Vector2(-793.5, 561)
 texture = ExtResource("4_0qs06")
 
-[node name="Sprite2D55" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D55" type="Sprite2D" parent="seciton 1/wall" unique_id=716987417]
 position = Vector2(-841.5, 529)
 texture = ExtResource("5_ff620")
 
-[node name="Sprite2D56" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D56" type="Sprite2D" parent="seciton 1/wall" unique_id=1977497124]
 position = Vector2(-825.5, 529)
 texture = ExtResource("5_ff620")
 
-[node name="Sprite2D135" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D135" type="Sprite2D" parent="seciton 1/wall" unique_id=1785791685]
 position = Vector2(-809.5, 529)
 texture = ExtResource("5_ff620")
 
-[node name="Sprite2D136" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D136" type="Sprite2D" parent="seciton 1/wall" unique_id=1619628771]
 position = Vector2(-841.5, 545)
 texture = ExtResource("10_0o3js")
 
-[node name="Sprite2D137" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D137" type="Sprite2D" parent="seciton 1/wall" unique_id=348462727]
 position = Vector2(-825.5, 545)
 texture = ExtResource("10_0o3js")
 
-[node name="Sprite2D138" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D138" type="Sprite2D" parent="seciton 1/wall" unique_id=283998528]
 position = Vector2(-809.5, 545)
 texture = ExtResource("10_0o3js")
 
-[node name="Sprite2D139" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D139" type="Sprite2D" parent="seciton 1/wall" unique_id=812667318]
 position = Vector2(-746, 561)
 texture = ExtResource("4_0qs06")
 
-[node name="Sprite2D140" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D140" type="Sprite2D" parent="seciton 1/wall" unique_id=2027789865]
 position = Vector2(-730, 561)
 texture = ExtResource("4_0qs06")
 
-[node name="Sprite2D141" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D141" type="Sprite2D" parent="seciton 1/wall" unique_id=541835631]
 position = Vector2(-698.5, 561)
 texture = ExtResource("4_0qs06")
 
-[node name="Sprite2D142" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D142" type="Sprite2D" parent="seciton 1/wall" unique_id=1332859941]
 position = Vector2(-762, 561)
 texture = ExtResource("4_0qs06")
 
-[node name="Sprite2D143" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D143" type="Sprite2D" parent="seciton 1/wall" unique_id=410091088]
 position = Vector2(-714, 561)
 texture = ExtResource("4_0qs06")
 
-[node name="Sprite2D144" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D144" type="Sprite2D" parent="seciton 1/wall" unique_id=2066748371]
 position = Vector2(-683, 561)
 texture = ExtResource("4_0qs06")
 
-[node name="Sprite2D145" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D145" type="Sprite2D" parent="seciton 1/wall" unique_id=713644360]
 position = Vector2(-657.5, 561)
 texture = ExtResource("4_0qs06")
 
-[node name="Sprite2D146" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D146" type="Sprite2D" parent="seciton 1/wall" unique_id=2047646626]
 position = Vector2(-641.5, 561)
 texture = ExtResource("4_0qs06")
 
-[node name="Sprite2D147" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D147" type="Sprite2D" parent="seciton 1/wall" unique_id=924102352]
 position = Vector2(-610, 561)
 texture = ExtResource("4_0qs06")
 
-[node name="Sprite2D35" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D35" type="Sprite2D" parent="seciton 1/wall" unique_id=1358031636]
 position = Vector2(-626, 529)
 texture = ExtResource("5_ff620")
 
-[node name="Sprite2D40" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D40" type="Sprite2D" parent="seciton 1/wall" unique_id=135974405]
 position = Vector2(-610, 529)
 texture = ExtResource("5_ff620")
 
-[node name="Sprite2D48" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D48" type="Sprite2D" parent="seciton 1/wall" unique_id=1735335303]
 position = Vector2(-594, 529)
 texture = ExtResource("5_ff620")
 
-[node name="Sprite2D50" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D50" type="Sprite2D" parent="seciton 1/wall" unique_id=1689683366]
 position = Vector2(-578, 529)
 texture = ExtResource("5_ff620")
 
-[node name="Sprite2D51" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D51" type="Sprite2D" parent="seciton 1/wall" unique_id=410346056]
 position = Vector2(-562, 529)
 texture = ExtResource("5_ff620")
 
-[node name="Sprite2D52" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D52" type="Sprite2D" parent="seciton 1/wall" unique_id=682828531]
 position = Vector2(-546, 529)
 texture = ExtResource("5_ff620")
 
-[node name="Sprite2D57" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D57" type="Sprite2D" parent="seciton 1/wall" unique_id=1565303587]
 position = Vector2(-530, 529)
 texture = ExtResource("5_ff620")
 
-[node name="Sprite2D60" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D60" type="Sprite2D" parent="seciton 1/wall" unique_id=430400071]
 position = Vector2(-514, 529)
 texture = ExtResource("5_ff620")
 
-[node name="Sprite2D94" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D94" type="Sprite2D" parent="seciton 1/wall" unique_id=148389627]
 position = Vector2(-626, 545)
 texture = ExtResource("10_0o3js")
 
-[node name="Sprite2D95" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D95" type="Sprite2D" parent="seciton 1/wall" unique_id=95278788]
 position = Vector2(-610, 545)
 texture = ExtResource("10_0o3js")
 
-[node name="Sprite2D96" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D96" type="Sprite2D" parent="seciton 1/wall" unique_id=1156156911]
 position = Vector2(-594, 545)
 texture = ExtResource("10_0o3js")
 
-[node name="Sprite2D97" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D97" type="Sprite2D" parent="seciton 1/wall" unique_id=167370797]
 position = Vector2(-578, 545)
 texture = ExtResource("10_0o3js")
 
-[node name="Sprite2D98" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D98" type="Sprite2D" parent="seciton 1/wall" unique_id=1590726363]
 position = Vector2(-562, 545)
 texture = ExtResource("10_0o3js")
 
-[node name="Sprite2D99" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D99" type="Sprite2D" parent="seciton 1/wall" unique_id=1803555078]
 position = Vector2(-546, 545)
 texture = ExtResource("10_0o3js")
 
-[node name="Sprite2D100" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D100" type="Sprite2D" parent="seciton 1/wall" unique_id=607686694]
 position = Vector2(-530, 545)
 texture = ExtResource("10_0o3js")
 
-[node name="Sprite2D101" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D101" type="Sprite2D" parent="seciton 1/wall" unique_id=689829071]
 position = Vector2(-514, 545)
 texture = ExtResource("10_0o3js")
 
-[node name="Sprite2D148" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D148" type="Sprite2D" parent="seciton 1/wall" unique_id=1296206764]
 position = Vector2(-673.5, 561)
 texture = ExtResource("4_0qs06")
 
-[node name="Sprite2D149" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D149" type="Sprite2D" parent="seciton 1/wall" unique_id=525252776]
 position = Vector2(-625.5, 561)
 texture = ExtResource("4_0qs06")
 
-[node name="Sprite2D102" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D102" type="Sprite2D" parent="seciton 1/wall" unique_id=1089531281]
 position = Vector2(-673.5, 529)
 texture = ExtResource("5_ff620")
 
-[node name="Sprite2D103" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D103" type="Sprite2D" parent="seciton 1/wall" unique_id=117780316]
 position = Vector2(-657.5, 529)
 texture = ExtResource("5_ff620")
 
-[node name="Sprite2D150" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D150" type="Sprite2D" parent="seciton 1/wall" unique_id=360490653]
 position = Vector2(-641.5, 529)
 texture = ExtResource("5_ff620")
 
-[node name="Sprite2D151" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D151" type="Sprite2D" parent="seciton 1/wall" unique_id=829752249]
 position = Vector2(-673.5, 545)
 texture = ExtResource("10_0o3js")
 
-[node name="Sprite2D152" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D152" type="Sprite2D" parent="seciton 1/wall" unique_id=1152841371]
 position = Vector2(-657.5, 545)
 texture = ExtResource("10_0o3js")
 
-[node name="Sprite2D153" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D153" type="Sprite2D" parent="seciton 1/wall" unique_id=443535450]
 position = Vector2(-641.5, 545)
 texture = ExtResource("10_0o3js")
 
-[node name="Sprite2D154" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D154" type="Sprite2D" parent="seciton 1/wall" unique_id=836585164]
 position = Vector2(-578, 561)
 texture = ExtResource("4_0qs06")
 
-[node name="Sprite2D155" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D155" type="Sprite2D" parent="seciton 1/wall" unique_id=2071192471]
 position = Vector2(-562, 561)
 texture = ExtResource("4_0qs06")
 
-[node name="Sprite2D156" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D156" type="Sprite2D" parent="seciton 1/wall" unique_id=872750289]
 position = Vector2(-530.5, 561)
 texture = ExtResource("4_0qs06")
 
-[node name="Sprite2D157" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D157" type="Sprite2D" parent="seciton 1/wall" unique_id=1170069977]
 position = Vector2(-594, 561)
 texture = ExtResource("4_0qs06")
 
-[node name="Sprite2D158" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D158" type="Sprite2D" parent="seciton 1/wall" unique_id=1812264943]
 position = Vector2(-546, 561)
 texture = ExtResource("4_0qs06")
 
-[node name="Sprite2D159" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D159" type="Sprite2D" parent="seciton 1/wall" unique_id=611765934]
 position = Vector2(-515, 561)
 texture = ExtResource("4_0qs06")
 
-[node name="Sprite2D186" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D186" type="Sprite2D" parent="seciton 1/wall" unique_id=2080773943]
 position = Vector2(-967, 636.5)
 texture = ExtResource("9_b55gn")
 
-[node name="Sprite2D189" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D189" type="Sprite2D" parent="seciton 1/wall" unique_id=1693016665]
 position = Vector2(-967, 652.5)
 texture = ExtResource("9_b55gn")
 
-[node name="Sprite2D190" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D190" type="Sprite2D" parent="seciton 1/wall" unique_id=534149063]
 position = Vector2(-453.5, 637)
 texture = ExtResource("9_b55gn")
 
-[node name="Sprite2D192" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D192" type="Sprite2D" parent="seciton 1/wall" unique_id=1343534356]
 position = Vector2(-453.5, 653)
 texture = ExtResource("9_b55gn")
 
-[node name="Sprite2D193" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D193" type="Sprite2D" parent="seciton 1/wall" unique_id=641433788]
 position = Vector2(-935, 684)
 texture = ExtResource("5_ff620")
 
-[node name="Sprite2D194" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D194" type="Sprite2D" parent="seciton 1/wall" unique_id=879021394]
 position = Vector2(-935, 700)
 texture = ExtResource("4_0qs06")
 
-[node name="Sprite2D196" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D196" type="Sprite2D" parent="seciton 1/wall" unique_id=1861226054]
 position = Vector2(-919, 700)
 texture = ExtResource("4_0qs06")
 
-[node name="Sprite2D197" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D197" type="Sprite2D" parent="seciton 1/wall" unique_id=1185245038]
 position = Vector2(-903, 684)
 texture = ExtResource("5_ff620")
 
-[node name="Sprite2D198" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D198" type="Sprite2D" parent="seciton 1/wall" unique_id=1104547074]
 position = Vector2(-903, 700)
 texture = ExtResource("4_0qs06")
 
-[node name="Sprite2D199" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D199" type="Sprite2D" parent="seciton 1/wall" unique_id=1575491705]
 position = Vector2(-887, 684)
 texture = ExtResource("5_ff620")
 
-[node name="Sprite2D200" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D200" type="Sprite2D" parent="seciton 1/wall" unique_id=1215112298]
 position = Vector2(-887, 700)
 texture = ExtResource("4_0qs06")
 
-[node name="Sprite2D201" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D201" type="Sprite2D" parent="seciton 1/wall" unique_id=1342053949]
 position = Vector2(-871, 684)
 texture = ExtResource("5_ff620")
 
-[node name="Sprite2D202" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D202" type="Sprite2D" parent="seciton 1/wall" unique_id=693985931]
 position = Vector2(-871, 700)
 texture = ExtResource("4_0qs06")
 
-[node name="Sprite2D203" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D203" type="Sprite2D" parent="seciton 1/wall" unique_id=180333317]
 position = Vector2(-549.5, 684)
 texture = ExtResource("5_ff620")
 
-[node name="Sprite2D204" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D204" type="Sprite2D" parent="seciton 1/wall" unique_id=1181329934]
 position = Vector2(-549.5, 700)
 texture = ExtResource("4_0qs06")
 
-[node name="Sprite2D205" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D205" type="Sprite2D" parent="seciton 1/wall" unique_id=1965059032]
 position = Vector2(-533.5, 684)
 texture = ExtResource("5_ff620")
 
-[node name="Sprite2D206" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D206" type="Sprite2D" parent="seciton 1/wall" unique_id=1988887293]
 position = Vector2(-533.5, 700)
 texture = ExtResource("4_0qs06")
 
-[node name="Sprite2D207" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D207" type="Sprite2D" parent="seciton 1/wall" unique_id=249811287]
 position = Vector2(-517.5, 684)
 texture = ExtResource("5_ff620")
 
-[node name="Sprite2D208" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D208" type="Sprite2D" parent="seciton 1/wall" unique_id=1333645710]
 position = Vector2(-517.5, 700)
 texture = ExtResource("4_0qs06")
 
-[node name="Sprite2D209" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D209" type="Sprite2D" parent="seciton 1/wall" unique_id=484176872]
 position = Vector2(-501.5, 684)
 texture = ExtResource("5_ff620")
 
-[node name="Sprite2D210" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D210" type="Sprite2D" parent="seciton 1/wall" unique_id=481971291]
 position = Vector2(-501.5, 700)
 texture = ExtResource("4_0qs06")
 
-[node name="Sprite2D211" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D211" type="Sprite2D" parent="seciton 1/wall" unique_id=1482625959]
 position = Vector2(-485.5, 684)
 texture = ExtResource("5_ff620")
 
-[node name="Sprite2D212" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D212" type="Sprite2D" parent="seciton 1/wall" unique_id=43415500]
 position = Vector2(-485.5, 700)
 texture = ExtResource("4_0qs06")
 
-[node name="Sprite2D214" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D214" type="Sprite2D" parent="seciton 1/wall" unique_id=1566008785]
 position = Vector2(-469.5, 700)
 texture = ExtResource("4_0qs06")
 
-[node name="Sprite2D29" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D29" type="Sprite2D" parent="seciton 1/wall" unique_id=2096488534]
 position = Vector2(-712.5, 684)
 texture = ExtResource("5_ff620")
 
-[node name="Sprite2D80" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D80" type="Sprite2D" parent="seciton 1/wall" unique_id=1485852893]
 position = Vector2(-699.5, 684)
 texture = ExtResource("5_ff620")
 
-[node name="Sprite2D215" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D215" type="Sprite2D" parent="seciton 1/wall" unique_id=177691961]
 position = Vector2(-666, 684)
 texture = ExtResource("5_ff620")
 
-[node name="Sprite2D216" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D216" type="Sprite2D" parent="seciton 1/wall" unique_id=499613540]
 position = Vector2(-664.5, 684)
 texture = ExtResource("5_ff620")
 
-[node name="Sprite2D232" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D232" type="Sprite2D" parent="seciton 1/wall" unique_id=457557899]
 position = Vector2(-682, 684)
 texture = ExtResource("5_ff620")
 
-[node name="Sprite2D233" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D233" type="Sprite2D" parent="seciton 1/wall" unique_id=2018871738]
 position = Vector2(-693.5, 684)
 texture = ExtResource("5_ff620")
 
-[node name="Sprite2D217" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D217" type="Sprite2D" parent="seciton 1/wall" unique_id=866854002]
 position = Vector2(-648.5, 684)
 texture = ExtResource("5_ff620")
 
-[node name="Sprite2D218" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D218" type="Sprite2D" parent="seciton 1/wall" unique_id=1441630943]
 position = Vector2(-632.5, 684)
 texture = ExtResource("5_ff620")
 
-[node name="Sprite2D219" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D219" type="Sprite2D" parent="seciton 1/wall" unique_id=1792579260]
 position = Vector2(-616.5, 684)
 texture = ExtResource("5_ff620")
 
-[node name="Sprite2D220" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D220" type="Sprite2D" parent="seciton 1/wall" unique_id=572346361]
 position = Vector2(-616.5, 700)
 texture = ExtResource("4_0qs06")
 
-[node name="Sprite2D221" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D221" type="Sprite2D" parent="seciton 1/wall" unique_id=564766687]
 position = Vector2(-632.5, 700)
 texture = ExtResource("4_0qs06")
 
-[node name="Sprite2D222" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D222" type="Sprite2D" parent="seciton 1/wall" unique_id=1012226470]
 position = Vector2(-680.5, 700)
 texture = ExtResource("4_0qs06")
 
-[node name="Sprite2D223" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D223" type="Sprite2D" parent="seciton 1/wall" unique_id=1266193771]
 position = Vector2(-696.5, 700)
 texture = ExtResource("4_0qs06")
 
-[node name="Sprite2D224" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D224" type="Sprite2D" parent="seciton 1/wall" unique_id=339063219]
 position = Vector2(-712.5, 700)
 texture = ExtResource("4_0qs06")
 
-[node name="Sprite2D225" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D225" type="Sprite2D" parent="seciton 1/wall" unique_id=886700839]
 position = Vector2(-648.5, 700)
 texture = ExtResource("4_0qs06")
 
-[node name="Sprite2D226" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D226" type="Sprite2D" parent="seciton 1/wall" unique_id=562829074]
 position = Vector2(-664.5, 700)
 texture = ExtResource("4_0qs06")
 
-[node name="Sprite2D227" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D227" type="Sprite2D" parent="seciton 1/wall" unique_id=75592327]
 position = Vector2(-728, 684)
 texture = ExtResource("5_ff620")
 
-[node name="Sprite2D228" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D228" type="Sprite2D" parent="seciton 1/wall" unique_id=1799538776]
 position = Vector2(-728, 700)
 texture = ExtResource("4_0qs06")
 
-[node name="Sprite2D229" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D229" type="Sprite2D" parent="seciton 1/wall" unique_id=1513574331]
 position = Vector2(-585, 684)
 texture = ExtResource("5_ff620")
 
-[node name="Sprite2D230" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D230" type="Sprite2D" parent="seciton 1/wall" unique_id=19834002]
 position = Vector2(-569, 684)
 texture = ExtResource("5_ff620")
 
-[node name="Sprite2D239" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D239" type="Sprite2D" parent="seciton 1/wall" unique_id=723068963]
 position = Vector2(-569, 700)
 texture = ExtResource("4_0qs06")
 
-[node name="Sprite2D240" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D240" type="Sprite2D" parent="seciton 1/wall" unique_id=1371277325]
 position = Vector2(-585, 700)
 texture = ExtResource("4_0qs06")
 
-[node name="Sprite2D243" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D243" type="Sprite2D" parent="seciton 1/wall" unique_id=1461701307]
 position = Vector2(-600.5, 684)
 texture = ExtResource("5_ff620")
 
-[node name="Sprite2D244" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D244" type="Sprite2D" parent="seciton 1/wall" unique_id=982170754]
 position = Vector2(-600.5, 700)
 texture = ExtResource("4_0qs06")
 
-[node name="Sprite2D231" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D231" type="Sprite2D" parent="seciton 1/wall" unique_id=429695015]
 position = Vector2(-565.5, 684)
 texture = ExtResource("5_ff620")
 
-[node name="Sprite2D241" type="Sprite2D" parent="seciton 1/wall"]
+[node name="Sprite2D241" type="Sprite2D" parent="seciton 1/wall" unique_id=59189323]
 position = Vector2(-565.5, 700)
 texture = ExtResource("4_0qs06")
 
-[node name="WallCollision" type="StaticBody2D" parent="seciton 1"]
+[node name="WallCollision" type="StaticBody2D" parent="seciton 1" unique_id=1638500970]
+position = Vector2(0, -1)
 collision_layer = 65
 collision_mask = 0
 
-[node name="InteriorWall" type="CollisionShape2D" parent="seciton 1/WallCollision"]
-position = Vector2(-1453, 1386)
+[node name="InteriorWall" type="CollisionShape2D" parent="seciton 1/WallCollision" unique_id=944045595]
+position = Vector2(-1903, 1387)
+shape = SubResource("RectangleShape2D_7ujw3")
+
+[node name="InteriorWall10" type="CollisionShape2D" parent="seciton 1/WallCollision" unique_id=1117258961]
+position = Vector2(-1389.5, 1388)
+shape = SubResource("RectangleShape2D_qrcko")
+
+[node name="InteriorWall9" type="CollisionShape2D" parent="seciton 1/WallCollision" unique_id=1042840798]
+position = Vector2(-1397, 1413)
 shape = SubResource("RectangleShape2D_716oc")
 
-[node name="InnerRightWall" type="CollisionShape2D" parent="seciton 1/WallCollision"]
+[node name="InteriorWall2" type="CollisionShape2D" parent="seciton 1/WallCollision" unique_id=664010621]
+position = Vector2(-1709.5, 1159.25)
+shape = SubResource("RectangleShape2D_01g5v")
+
+[node name="InteriorWall3" type="CollisionShape2D" parent="seciton 1/WallCollision" unique_id=1659786397]
+position = Vector2(-1572.75, 1234)
+shape = SubResource("RectangleShape2D_4ortt")
+
+[node name="InteriorWall6" type="CollisionShape2D" parent="seciton 1/WallCollision" unique_id=466928674]
+position = Vector2(-1787.375, 1204.125)
+shape = SubResource("RectangleShape2D_t5n54")
+
+[node name="InteriorWall7" type="CollisionShape2D" parent="seciton 1/WallCollision" unique_id=2117923274]
+position = Vector2(-1336, 1198)
+shape = SubResource("RectangleShape2D_t5n54")
+
+[node name="InteriorWall8" type="CollisionShape2D" parent="seciton 1/WallCollision" unique_id=685468435]
+position = Vector2(-1079, 1226.0625)
+shape = SubResource("RectangleShape2D_j6dyl")
+
+[node name="InteriorWall4" type="CollisionShape2D" parent="seciton 1/WallCollision" unique_id=791363415]
+position = Vector2(-1208.375, 1155.125)
+shape = SubResource("RectangleShape2D_tjjyv")
+
+[node name="InteriorWall5" type="CollisionShape2D" parent="seciton 1/WallCollision" unique_id=1890783869]
+position = Vector2(-1611.1875, 1300.0625)
+shape = SubResource("RectangleShape2D_11t3f")
+
+[node name="InnerRightWall" type="CollisionShape2D" parent="seciton 1/WallCollision" unique_id=711063478]
 position = Vector2(-1936, 1226.5)
 shape = SubResource("RectangleShape2D_xxwm5")
 
-[node name="TopWallRight" type="CollisionShape2D" parent="seciton 1/WallCollision"]
+[node name="TopWallRight" type="CollisionShape2D" parent="seciton 1/WallCollision" unique_id=998106485]
 position = Vector2(-1423.5, 1088)
 shape = SubResource("RectangleShape2D_c5oyp")
 
-[node name="RightWall" type="CollisionShape2D" parent="seciton 1/WallCollision"]
+[node name="RightWall" type="CollisionShape2D" parent="seciton 1/WallCollision" unique_id=681256026]
 position = Vector2(-906, 1232)
 shape = SubResource("RectangleShape2D_3g2bm")
 
-[node name="Door" type="Node2D" parent="seciton 1"]
+[node name="Door" type="Node2D" parent="seciton 1" unique_id=323909018]
 position = Vector2(-526, -65)
 metadata/_edit_group_ = true
 
-[node name="ExitDoor" parent="seciton 1/Door" instance=ExtResource("13_4wuvb")]
+[node name="ExitDoor" parent="seciton 1/Door" unique_id=1152849868 instance=ExtResource("13_4wuvb")]
 position = Vector2(-1311.0001, 1450)
 scale = Vector2(0.99999994, 0.99999994)
 script = null
@@ -1799,26 +1875,26 @@ metadata/_edit_use_anchors_ = true
 position = Vector2(-0.99999857, 6.5)
 scale = Vector2(0.9999998, 0.9999998)
 
-[node name="Door2" type="Sprite2D" parent="seciton 1/Door/ExitDoor"]
+[node name="Door2" type="Sprite2D" parent="seciton 1/Door/ExitDoor" unique_id=1618843107]
 position = Vector2(-1.0000076, 2)
 scale = Vector2(2.031249, 1.7812493)
 texture = ExtResource("14_1eyuy")
 
-[node name="Rbed3" type="Node2D" parent="seciton 1"]
+[node name="Rbed3" type="Node2D" parent="seciton 1" unique_id=1264966652]
 position = Vector2(-1290, 1279)
 scale = Vector2(3, 3)
 metadata/_edit_group_ = true
 
-[node name="Sprite2D13" type="Sprite2D" parent="seciton 1/Rbed3"]
+[node name="Sprite2D13" type="Sprite2D" parent="seciton 1/Rbed3" unique_id=1009913101]
 position = Vector2(18, 1)
 texture = ExtResource("15_d8os2")
 
-[node name="Sprite2D14" type="Sprite2D" parent="seciton 1/Rbed3"]
+[node name="Sprite2D14" type="Sprite2D" parent="seciton 1/Rbed3" unique_id=1325369801]
 position = Vector2(17, 16)
 rotation = -3.1415925
 texture = ExtResource("16_nmghp")
 
-[node name="BedHide" parent="seciton 1/Rbed3" instance=ExtResource("17_2tqov")]
+[node name="BedHide" parent="seciton 1/Rbed3" unique_id=1000641969 instance=ExtResource("17_2tqov")]
 position = Vector2(-23.5, -7.5)
 scale = Vector2(0.33333, 0.33333)
 metadata/_edit_group_ = true
@@ -1837,20 +1913,20 @@ position = Vector2(140.2514, 29.250292)
 position = Vector2(-15.750153, 19.125183)
 shape = SubResource("RectangleShape2D_00t3p")
 
-[node name="Coloured_round_table" type="Node2D" parent="seciton 1"]
+[node name="Coloured_round_table" type="Node2D" parent="seciton 1" unique_id=913866595]
 position = Vector2(-1741, 1186)
 scale = Vector2(3, 3)
 metadata/_edit_group_ = true
 
-[node name="Sprite2D" type="Sprite2D" parent="seciton 1/Coloured_round_table"]
+[node name="Sprite2D" type="Sprite2D" parent="seciton 1/Coloured_round_table" unique_id=522261489]
 position = Vector2(59, -5)
 texture = ExtResource("50_tolgh")
 
-[node name="Sprite2D2" type="Sprite2D" parent="seciton 1/Coloured_round_table"]
+[node name="Sprite2D2" type="Sprite2D" parent="seciton 1/Coloured_round_table" unique_id=1639434051]
 position = Vector2(75, -5)
 texture = ExtResource("51_drnmo")
 
-[node name="TableHide" parent="seciton 1/Coloured_round_table" instance=ExtResource("17_2tqov")]
+[node name="TableHide" parent="seciton 1/Coloured_round_table" unique_id=1801039995 instance=ExtResource("17_2tqov")]
 position = Vector2(67, -5)
 scale = Vector2(0.33333, 0.33333)
 
@@ -1862,127 +1938,127 @@ shape = SubResource("RectangleShape2D_5e8h6")
 position = Vector2(-1.5, -1.5000305)
 shape = SubResource("RectangleShape2D_nee7v")
 
-[node name="curved table" type="Node2D" parent="seciton 1"]
+[node name="curved table" type="Node2D" parent="seciton 1" unique_id=1087282820]
 position = Vector2(-1996, 1358)
 scale = Vector2(3, 3)
 
-[node name="Sprite2D10" type="Sprite2D" parent="seciton 1/curved table"]
+[node name="Sprite2D10" type="Sprite2D" parent="seciton 1/curved table" unique_id=1922264073]
 position = Vector2(119.50032, -65.83333)
 texture = ExtResource("28_xge03")
 
-[node name="Sprite2D11" type="Sprite2D" parent="seciton 1/curved table"]
+[node name="Sprite2D11" type="Sprite2D" parent="seciton 1/curved table" unique_id=218497591]
 position = Vector2(72.83332, -65.83333)
 texture = ExtResource("29_023vb")
 
-[node name="Sprite2D13" type="Sprite2D" parent="seciton 1/curved table"]
+[node name="Sprite2D13" type="Sprite2D" parent="seciton 1/curved table" unique_id=354649002]
 position = Vector2(72.83357, -50.00002)
 texture = ExtResource("30_igrmu")
 
-[node name="Sprite2D15" type="Sprite2D" parent="seciton 1/curved table"]
+[node name="Sprite2D15" type="Sprite2D" parent="seciton 1/curved table" unique_id=389439447]
 position = Vector2(72.83357, -37.333332)
 texture = ExtResource("31_0dims")
 
-[node name="Sprite2D6" type="Sprite2D" parent="seciton 1/curved table"]
+[node name="Sprite2D6" type="Sprite2D" parent="seciton 1/curved table" unique_id=1414878453]
 position = Vector2(104.00032, -65.83333)
 texture = ExtResource("39_nktx4")
 
-[node name="Sprite2D7" type="Sprite2D" parent="seciton 1/curved table"]
+[node name="Sprite2D7" type="Sprite2D" parent="seciton 1/curved table" unique_id=1515678167]
 position = Vector2(88.50032, -65.83333)
 texture = ExtResource("40_f4ah8")
 
-[node name="Sprite2D12" type="Sprite2D" parent="seciton 1/curved table"]
+[node name="Sprite2D12" type="Sprite2D" parent="seciton 1/curved table" unique_id=1525763360]
 position = Vector2(223.83331, -67.49999)
 texture = ExtResource("29_023vb")
 
-[node name="Sprite2D14" type="Sprite2D" parent="seciton 1/curved table"]
+[node name="Sprite2D14" type="Sprite2D" parent="seciton 1/curved table" unique_id=657303965]
 position = Vector2(223.83357, -51.666687)
 texture = ExtResource("30_igrmu")
 
-[node name="Sprite2D16" type="Sprite2D" parent="seciton 1/curved table"]
+[node name="Sprite2D16" type="Sprite2D" parent="seciton 1/curved table" unique_id=779882955]
 position = Vector2(223.83357, -39)
 texture = ExtResource("31_0dims")
 
-[node name="Sprite2D17" type="Sprite2D" parent="seciton 1/curved table"]
+[node name="Sprite2D17" type="Sprite2D" parent="seciton 1/curved table" unique_id=232395475]
 position = Vector2(308.83, -18.333061)
 texture = ExtResource("31_0dims")
 
-[node name="Sprite2D8" type="Sprite2D" parent="seciton 1/curved table"]
+[node name="Sprite2D8" type="Sprite2D" parent="seciton 1/curved table" unique_id=177305300]
 position = Vector2(239.50032, -67.49999)
 texture = ExtResource("40_f4ah8")
 
-[node name="curved table 2" type="Node2D" parent="seciton 1"]
+[node name="curved table 2" type="Node2D" parent="seciton 1" unique_id=1944214840]
 position = Vector2(-2302, 1139)
 scale = Vector2(3, 3)
 
-[node name="Sprite2D17" type="Sprite2D" parent="seciton 1/curved table 2"]
+[node name="Sprite2D17" type="Sprite2D" parent="seciton 1/curved table 2" unique_id=2009341750]
 position = Vector2(196.16667, 32.166668)
 texture = ExtResource("27_k3olw")
 
-[node name="Sprite2D18" type="Sprite2D" parent="seciton 1/curved table 2"]
+[node name="Sprite2D18" type="Sprite2D" parent="seciton 1/curved table 2" unique_id=1085407655]
 position = Vector2(212.16667, 32.166668)
 texture = ExtResource("28_n1x3f")
 
-[node name="Sprite2D19" type="Sprite2D" parent="seciton 1/curved table 2"]
+[node name="Sprite2D19" type="Sprite2D" parent="seciton 1/curved table 2" unique_id=1574077121]
 position = Vector2(373.16663, 5.5)
 texture = ExtResource("27_k3olw")
 
-[node name="Sprite2D20" type="Sprite2D" parent="seciton 1/curved table 2"]
+[node name="Sprite2D20" type="Sprite2D" parent="seciton 1/curved table 2" unique_id=392460136]
 position = Vector2(389.16663, 5.5)
 texture = ExtResource("28_n1x3f")
 
-[node name="Sprite2D12" type="Sprite2D" parent="seciton 1/curved table 2"]
+[node name="Sprite2D12" type="Sprite2D" parent="seciton 1/curved table 2" unique_id=622155411]
 position = Vector2(227.99992, 32.166668)
 texture = ExtResource("32_w824r")
 
-[node name="Sprite2D14" type="Sprite2D" parent="seciton 1/curved table 2"]
+[node name="Sprite2D14" type="Sprite2D" parent="seciton 1/curved table 2" unique_id=739012569]
 position = Vector2(227.99992, 47.833355)
 texture = ExtResource("34_4dnk1")
 
-[node name="Sprite2D16" type="Sprite2D" parent="seciton 1/curved table 2"]
+[node name="Sprite2D16" type="Sprite2D" parent="seciton 1/curved table 2" unique_id=2062474819]
 position = Vector2(227.99968, 63.666668)
 texture = ExtResource("33_17bii")
 
-[node name="Sprite2D13" type="Sprite2D" parent="seciton 1/curved table 2"]
+[node name="Sprite2D13" type="Sprite2D" parent="seciton 1/curved table 2" unique_id=57535225]
 position = Vector2(404.83334, 5.500002)
 texture = ExtResource("32_w824r")
 
-[node name="Sprite2D15" type="Sprite2D" parent="seciton 1/curved table 2"]
+[node name="Sprite2D15" type="Sprite2D" parent="seciton 1/curved table 2" unique_id=1290137652]
 position = Vector2(404.83334, 21.166689)
 texture = ExtResource("34_4dnk1")
 
-[node name="Sprite2D21" type="Sprite2D" parent="seciton 1/curved table 2"]
+[node name="Sprite2D21" type="Sprite2D" parent="seciton 1/curved table 2" unique_id=2106295509]
 position = Vector2(404.83337, 37.166687)
 texture = ExtResource("34_4dnk1")
 
-[node name="Sprite2D22" type="Sprite2D" parent="seciton 1/curved table 2"]
+[node name="Sprite2D22" type="Sprite2D" parent="seciton 1/curved table 2" unique_id=450359846]
 position = Vector2(404.83337, 41.833374)
 texture = ExtResource("34_4dnk1")
 
-[node name="Sprite2D6" type="Sprite2D" parent="seciton 1/curved table 2"]
+[node name="Sprite2D6" type="Sprite2D" parent="seciton 1/curved table 2" unique_id=36185224]
 position = Vector2(259.83334, 32.166687)
 texture = ExtResource("39_nktx4")
 
-[node name="Sprite2D8" type="Sprite2D" parent="seciton 1/curved table 2"]
+[node name="Sprite2D8" type="Sprite2D" parent="seciton 1/curved table 2" unique_id=1327396689]
 position = Vector2(357.33334, 5.5)
 texture = ExtResource("39_nktx4")
 
-[node name="Sprite2D7" type="Sprite2D" parent="seciton 1/curved table 2"]
+[node name="Sprite2D7" type="Sprite2D" parent="seciton 1/curved table 2" unique_id=1495531708]
 position = Vector2(243.83334, 32.166687)
 texture = ExtResource("40_f4ah8")
 
-[node name="Sprite2D23" type="Sprite2D" parent="seciton 1/curved table 2"]
+[node name="Sprite2D23" type="Sprite2D" parent="seciton 1/curved table 2" unique_id=632631909]
 position = Vector2(275.83334, 32.166687)
 texture = ExtResource("27_k3olw")
 
-[node name="Sprite2D24" type="Sprite2D" parent="seciton 1/curved table 2"]
+[node name="Sprite2D24" type="Sprite2D" parent="seciton 1/curved table 2" unique_id=503060502]
 position = Vector2(291.83334, 32.166687)
 texture = ExtResource("28_n1x3f")
 
-[node name="Door2" type="Node2D" parent="seciton 1"]
+[node name="Door2" type="Node2D" parent="seciton 1" unique_id=1420917446]
 position = Vector2(373, -67)
 metadata/_edit_group_ = true
 
-[node name="ExitDoor" parent="seciton 1/Door2" instance=ExtResource("13_4wuvb")]
+[node name="ExitDoor" parent="seciton 1/Door2" unique_id=1759537712 instance=ExtResource("13_4wuvb")]
 position = Vector2(-1311.0001, 1450)
 scale = Vector2(0.99999994, 0.99999994)
 metadata/_edit_group_ = true
@@ -1997,12 +2073,12 @@ metadata/_edit_use_anchors_ = true
 position = Vector2(-0.99999857, 6.5)
 scale = Vector2(0.9999998, 0.9999998)
 
-[node name="Door2" type="Sprite2D" parent="seciton 1/Door2/ExitDoor"]
+[node name="Door2" type="Sprite2D" parent="seciton 1/Door2/ExitDoor" unique_id=990125391]
 position = Vector2(-1.0000076, 2)
 scale = Vector2(2.031249, 1.7812493)
 texture = ExtResource("14_1eyuy")
 
-[node name="SofaHide" parent="seciton 1" instance=ExtResource("17_2tqov")]
+[node name="SofaHide" parent="seciton 1" unique_id=428550645 instance=ExtResource("17_2tqov")]
 position = Vector2(-1568, 1276)
 fade_self_only = true
 metadata/_edit_group_ = true
@@ -2015,51 +2091,219 @@ shape = SubResource("RectangleShape2D_lfrac")
 position = Vector2(1, 26.000267)
 shape = SubResource("RectangleShape2D_u801f")
 
-[node name="sofa1" type="Node2D" parent="seciton 1/SofaHide"]
+[node name="sofa1" type="Node2D" parent="seciton 1/SofaHide" unique_id=1422388488]
 position = Vector2(35.000305, 50.000507)
 scale = Vector2(3.00003, 3.00003)
 
-[node name="Sprite2D" type="Sprite2D" parent="seciton 1/SofaHide/sofa1"]
+[node name="Sprite2D" type="Sprite2D" parent="seciton 1/SofaHide/sofa1" unique_id=837182700]
 position = Vector2(-8.833334, -15.5)
 texture = ExtResource("66_mn8xv")
 
-[node name="Sprite2D3" type="Sprite2D" parent="seciton 1/SofaHide/sofa1"]
+[node name="Sprite2D3" type="Sprite2D" parent="seciton 1/SofaHide/sofa1" unique_id=411203422]
 position = Vector2(-8.833334, 0.5)
 texture = ExtResource("67_1vaix")
 
-[node name="characters" type="Node2D" parent="."]
+[node name="characters" type="Node2D" parent="." unique_id=964852908]
 
-[node name="Dog01" parent="characters" instance=ExtResource("69_4smau")]
-position = Vector2(1793, 1780)
-patrol_route = NodePath("../../Patrol Routes/Dog01Route")
-metadata/_edit_group_ = true
-
-[node name="VisionCone" parent="characters/Dog01" index="2"]
-ray_count = 20
-
-[node name="Visual" parent="characters/Dog01" index="5"]
-sprite_frames = ExtResource("70_4kcis")
-animation = &"Bark"
-
-[node name="Dog02" parent="characters" instance=ExtResource("69_4smau")]
-position = Vector2(1448, 1880)
-patrol_route = NodePath("../../Patrol Routes/Dog02Route")
+[node name="Dog02" parent="characters" unique_id=1581623067 instance=ExtResource("69_4smau")]
+position = Vector2(1801, 1903)
+patrol_route = NodePath("../../Patrol Routes/Dog 2")
 metadata/_edit_group_ = true
 
 [node name="VisionCone" parent="characters/Dog02" index="2"]
 ray_count = 20
 
-[node name="Visual" parent="characters/Dog02" index="5"]
+[node name="Visual" parent="characters/Dog02" index="6"]
+sprite_frames = ExtResource("70_4kcis")
+animation = &"Bark"
+
+[node name="Dog01" parent="characters" unique_id=2023490837 instance=ExtResource("69_4smau")]
+position = Vector2(1447, 1893)
+patrol_route = NodePath("../../Patrol Routes/Dog 1")
+metadata/_edit_group_ = true
+
+[node name="VisionCone" parent="characters/Dog01" index="2"]
+ray_count = 20
+
+[node name="Visual" parent="characters/Dog01" index="6"]
 sprite_frames = ExtResource("71_hq8tn")
 animation = &"Bark"
 
-[node name="Cat" parent="." instance=ExtResource("72_vwyt6")]
+[node name="Mouse02" parent="characters" unique_id=1634676632 instance=ExtResource("37_01g5v")]
+position = Vector2(1777, 1858)
+patrol_route = NodePath("../../Patrol Routes/mouse 2")
+
+[node name="Mouse01" parent="characters" unique_id=614338540 instance=ExtResource("37_01g5v")]
+position = Vector2(1438, 1917)
+patrol_route = NodePath("../../Patrol Routes/mouse 1")
+
+[node name="Cat" parent="." unique_id=740952704 instance=ExtResource("72_vwyt6")]
 position = Vector2(1119, 1914)
+
+[node name="Patrol Routes" type="Node2D" parent="." unique_id=161098672]
+
+[node name="Dog 1" type="Node2D" parent="Patrol Routes" unique_id=1628463669]
+
+[node name="Marker2D" type="Marker2D" parent="Patrol Routes/Dog 1" unique_id=452528829]
+position = Vector2(1447, 1894)
+
+[node name="Marker2D2" type="Marker2D" parent="Patrol Routes/Dog 1" unique_id=228802650]
+position = Vector2(1670, 1897)
+
+[node name="Marker2D3" type="Marker2D" parent="Patrol Routes/Dog 1" unique_id=1350202774]
+position = Vector2(1447, 1894)
+
+[node name="Dog 2" type="Node2D" parent="Patrol Routes" unique_id=391773245]
+
+[node name="Marker2D" type="Marker2D" parent="Patrol Routes/Dog 2" unique_id=312878546]
+position = Vector2(1802, 1906)
+
+[node name="Marker2D2" type="Marker2D" parent="Patrol Routes/Dog 2" unique_id=32153557]
+position = Vector2(1804, 1768)
+
+[node name="Marker2D3" type="Marker2D" parent="Patrol Routes/Dog 2" unique_id=993568406]
+position = Vector2(1802, 1905)
+
+[node name="mouse 1" type="Node2D" parent="Patrol Routes" unique_id=160235057]
+
+[node name="Marker2D" type="Marker2D" parent="Patrol Routes/mouse 1" unique_id=797000228]
+position = Vector2(1438, 1918)
+
+[node name="Marker2D2" type="Marker2D" parent="Patrol Routes/mouse 1" unique_id=1680438956]
+position = Vector2(1439, 1846)
+
+[node name="Marker2D3" type="Marker2D" parent="Patrol Routes/mouse 1" unique_id=740473008]
+position = Vector2(1438, 1917)
+
+[node name="mouse 2" type="Node2D" parent="Patrol Routes" unique_id=252165773]
+
+[node name="Marker2D" type="Marker2D" parent="Patrol Routes/mouse 2" unique_id=1377489307]
+position = Vector2(1777, 1857)
+
+[node name="Marker2D2" type="Marker2D" parent="Patrol Routes/mouse 2" unique_id=698975120]
+position = Vector2(1844, 1858)
+
+[node name="Marker2D3" type="Marker2D" parent="Patrol Routes/mouse 2" unique_id=736959223]
+position = Vector2(1777, 1857)
+
+[node name="Cactus7" type="Node2D" parent="." unique_id=1759250604]
+position = Vector2(2726, 1622)
+
+[node name="Sprite2D" type="Sprite2D" parent="Cactus7" unique_id=2000820199]
+position = Vector2(-759, 288)
+scale = Vector2(3, 3)
+texture = ExtResource("38_01g5v")
+
+[node name="CactusHazard" type="Area2D" parent="Cactus7" unique_id=376298386]
+position = Vector2(-759, 288)
+collision_layer = 128
+collision_mask = 2
+script = ExtResource("39_4ortt")
+
+[node name="CactusCollision" type="CollisionShape2D" parent="Cactus7/CactusHazard" unique_id=1645731812]
+position = Vector2(-2.5, -2.5)
+shape = SubResource("RectangleShape2D_fqclw")
+
+[node name="Labels" type="Node2D" parent="." unique_id=2102346806]
+texture_filter = 1
+position = Vector2(892, 1504)
+
+[node name="Label" type="Label" parent="Labels" unique_id=1836387719]
+z_index = -100
+offset_left = 324.0
+offset_top = 369.0
+offset_right = 766.0
+offset_bottom = 565.0
+scale = Vector2(0.25, 0.25)
+theme_override_constants/line_spacing = -12
+theme_override_font_sizes/font_size = 50
+text = "Press W/A/S/D
+To Move"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Label2" type="Label" parent="Labels" unique_id=609688582]
+z_index = -100
+offset_left = 564.0
+offset_top = 220.0
+offset_right = 1209.0
+offset_bottom = 460.0
+scale = Vector2(0.25, 0.25)
+theme_override_constants/line_spacing = -12
+theme_override_font_sizes/font_size = 50
+text = "Hide under 
+transparent 
+surfaces"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Label3" type="Label" parent="Labels" unique_id=1884282909]
+z_index = -100
+offset_left = 596.0
+offset_top = 369.0
+offset_right = 1241.0
+offset_bottom = 609.0
+scale = Vector2(0.25, 0.25)
+theme_override_constants/line_spacing = -12
+theme_override_font_sizes/font_size = 50
+text = "Avoid the Dog 
+and catch the Rats"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Label5" type="Label" parent="Labels" unique_id=1361545692]
+z_index = -100
+offset_left = 775.0
+offset_top = 266.0
+offset_right = 1474.0
+offset_bottom = 506.0
+scale = Vector2(0.25, 0.25)
+theme_override_constants/line_spacing = -12
+theme_override_font_sizes/font_size = 50
+text = "Being seen by the dog 
+Increases their anger which
+further increases their speed"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Label4" type="Label" parent="Labels" unique_id=971886042]
+z_index = -100
+offset_left = 995.0
+offset_top = 346.0
+offset_right = 1640.0
+offset_bottom = 586.0
+scale = Vector2(0.25, 0.25)
+theme_override_constants/line_spacing = -12
+theme_override_font_sizes/font_size = 50
+text = "Be careful 
+of cactuses"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Label6" type="Label" parent="Labels" unique_id=25598132]
+z_index = -100
+offset_left = 996.0
+offset_top = 258.0
+offset_right = 1641.0
+offset_bottom = 498.0
+scale = Vector2(0.25, 0.25)
+theme_override_constants/line_spacing = -12
+theme_override_font_sizes/font_size = 50
+text = "Completing the levels 
+quickly and catching 
+all the rats will
+yield the most points"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="HUD" parent="." unique_id=716651068 instance=ExtResource("2_hud")]
+
+[node name="ResultsScreen" parent="." unique_id=953825058 instance=ExtResource("3_results")]
 
 [editable path="seciton 1/Door/ExitDoor"]
 [editable path="seciton 1/Rbed3/BedHide"]
 [editable path="seciton 1/Coloured_round_table/TableHide"]
 [editable path="seciton 1/Door2/ExitDoor"]
 [editable path="seciton 1/SofaHide"]
-[editable path="characters/Dog01"]
 [editable path="characters/Dog02"]
+[editable path="characters/Dog01"]

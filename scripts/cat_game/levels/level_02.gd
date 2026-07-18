@@ -24,6 +24,7 @@ var _hud: HUD = null
 var _results: ResultsScreen = null
 
 func _ready() -> void:
+	MusicManager.play_music("cat_game")
 	_hud     = get_node_or_null("HUD") as HUD
 	_results = get_node_or_null("ResultsScreen") as ResultsScreen
 
@@ -93,6 +94,8 @@ func _on_level_completed() -> void:
 	if not _level_active:
 		return
 	_level_active = false
+	if _hud:
+		_hud.play_finish_sound()
 	_cat.disable_input()
 	for enemy in get_tree().get_nodes_in_group("enemy"):
 		if enemy.has_method("disable"):
