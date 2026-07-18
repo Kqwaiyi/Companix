@@ -113,7 +113,7 @@ func _on_tourn_btn_pressed() -> void:
 		
 	var target_scene := ""
 	if _current_pet.name == "Cat":
-		target_scene = "res://scenes/cat_game/core/main.tscn"
+		target_scene = GameState.get_resume_level("")
 	elif _current_pet.name == "Snake":
 		target_scene = GlobalSnaketower.get_resume_level("")
 		

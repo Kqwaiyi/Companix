@@ -9,7 +9,6 @@ extends Node2D
 @export var time_penalty_per_second: float  = 20.0
 @export var anger_per_detection: float      = 20.0
 @export var total_mice: int                 = 3
-@export var next_scene_path: String         = ""
 
 var _elapsed_time: float = 0.0
 var _current_score: int  = 0
@@ -122,7 +121,7 @@ func _on_level_completed() -> void:
 			level_total,
 			prev_total,
 			GameState.total_score,
-			next_scene_path
+			GameState.get_next_level(scene_file_path)
 		)
 
 func _on_catch_area_body_entered(_body: Node) -> void:
