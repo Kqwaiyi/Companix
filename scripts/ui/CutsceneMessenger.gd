@@ -304,19 +304,20 @@ func _display_next_bubble() -> void:
 
 	# Animate the bubble pop-in
 	_play_bubble_animation(bubble, sender)
-	
-	if _current_index == _lines.size() and not _is_cutscene_completed(_current_key):
-		_mark_cutscene_completed(_current_key)
-		if not _contact_histories.has(_current_contact):
-			_contact_histories[_current_contact] = []
-		for l in _lines:
-			_contact_histories[_current_contact].append(l)
 
 func _finish_playback() -> void:
 	_is_playing = false
 	_advance_indicator.hide()
 	_stop_indicator_animation()
 	_scroll_to_bottom()
+
+func _check_for_completion() -> void:
+	if _current_index == _lines.size() and not _is_cutscene_completed(_current_key):
+		_mark_cutscene_completed(_current_key)
+		if not _contact_histories.has(_current_contact):
+			_contact_histories[_current_contact] = []
+		for l in _lines:
+			_contact_histories[_current_contact].append(l)
 
 
 # ═══════════════════════════════════════════════════════════════════════
@@ -514,6 +515,7 @@ func _start_decrypt_phase(bubble: Control) -> void:
 			
 		_is_processing_bubble = false
 		_current_bubble_node = null
+		_check_for_completion()
 		_advance_indicator.show()
 		_start_indicator_animation()
 		_scroll_to_bottom()
@@ -568,6 +570,7 @@ func _complete_bubble_animation() -> void:
 			
 	_is_processing_bubble = false
 	_current_bubble_node = null
+	_check_for_completion()
 	_advance_indicator.show()
 	_start_indicator_animation()
 	_scroll_to_bottom()

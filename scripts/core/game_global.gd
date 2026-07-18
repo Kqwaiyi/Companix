@@ -4,10 +4,10 @@ extends Node
 ## USER DEFINED GAMESTATE. DO NOT TOUCH
 enum StoryState {
 	NONE,
-	PHASE1_EXPOSITION, # Black screen exposition
-	PHASE1_APARTMENT, # Dialogue: "Finally... 12 hours..."
-	PHASE1_TASK_CHECK_HOLOGRAM, # Task: "Use the S62 Hologram..."
-	PHASE1_IRSMAIN1, # Chat with Immediate Response System
+	PHASE1_EXPOSITION,
+	PHASE1_APARTMENT,
+	PHASE1_TASK_CHECK_HOLOGRAM,
+	PHASE1_IRSMAIN1,
 	PHASE1_IRSDIALOGUE1,
 	PHASE1_IRSMAIN2,
 	PHASE1_IRSDIALOGUE2,
@@ -15,10 +15,10 @@ enum StoryState {
 	PHASE1_IRSDIALOGUE3,
 	PHASE1_IRSMAIN4,
 	PHASE1_IRSDIALOGUE4,
-	PHASE1_TASK_GO_TO_PET_WORLD, # Prompts player to check petworld
+	PHASE1_TASK_GO_TO_PET_WORLD,
 
-	PHASE2_PETWORLD_ENTRY, # Enters the petworld
-	PHASE2_TASK_GO_TO_MESSENGER, # Prompts player to check messenger
+	PHASE2_PETWORLD_ENTRY,
+	PHASE2_TASK_GO_TO_MESSENGER,
 
 	PHASE3_LOANCHAT1,
 	PHASE3_LOANDIALOGUE1,
@@ -60,39 +60,65 @@ func advance_story_state(new_state: StoryState) -> void:
 	story_state_changed.emit(new_state)
 	_handle_state_entry(new_state)
 
+func _advance_with_delay(new_state: StoryState, delay: float = 0.8) -> void:
+	if delay > 0.0:
+		await get_tree().create_timer(delay).timeout
+	advance_story_state(new_state)
+
 func _handle_state_entry(state: StoryState) -> void:
 	match state:
-		StoryState.TASK_CHECK_HOLOGRAM:
+		StoryState.PHASE1_APARTMENT:
+			if DialogueManager: DialogueManager.start_dialogue("res://scenes/ui/dialogues/phase1_apartment.gd")
+		StoryState.PHASE1_TASK_CHECK_HOLOGRAM:
 			if TaskManager: TaskManager.show_task("NEW DIRECTIVE", "Use the S62 Hologram to send her a message.")
-		StoryState.CUTSCENE_ARS_EMERGENCY:
-			CutsceneMessenger.queue_cutscene("ars_emergency")
-		StoryState.TASK_GO_TO_PET_WORLD:
-			if TaskManager: TaskManager.show_task("NEW DIRECTIVE", "Terminate the conversation and go to the pet world.")
-		StoryState.TASK_CHECK_MESSENGER:
-			if TaskManager: TaskManager.show_task("NEW NOTIFICATION", "Go to messenger to check your loan.")
-			CutsceneMessenger.queue_cutscene("loan_bot")
-		StoryState.TASK_GO_TO_PET_WORLD_2:
-			if TaskManager: TaskManager.show_task("NEW DIRECTIVE", "Open your hologram and head to the pet world.")
-		StoryState.TASK_JOIN_TOURNAMENT:
-			if TaskManager: TaskManager.show_task("NEW DIRECTIVE", "Choose a pet and 'join tournament'.")
+		StoryState.PHASE1_IRSMAIN1:
+			if CutsceneMessenger: CutsceneMessenger.queue_cutscene("phase1_irschat1")
+		StoryState.PHASE1_IRSDIALOGUE1:
+			if DialogueManager: DialogueManager.start_dialogue("res://scenes/ui/dialogues/phase1_irsdialogue1.gd")
+		StoryState.PHASE1_IRSMAIN2:
+			if CutsceneMessenger: CutsceneMessenger.queue_cutscene("phase1_irschat2")
+		StoryState.PHASE1_IRSDIALOGUE2:
+			if DialogueManager: DialogueManager.start_dialogue("res://scenes/ui/dialogues/phase1_irsdialogue2.gd")
+		StoryState.PHASE1_IRSMAIN3:
+			if CutsceneMessenger: CutsceneMessenger.queue_cutscene("phase1_irschat3")
+		StoryState.PHASE1_IRSDIALOGUE3:
+			if DialogueManager: DialogueManager.start_dialogue("res://scenes/ui/dialogues/phase1_irsdialogue3.gd")
+		StoryState.PHASE1_IRSMAIN4:
+			if CutsceneMessenger: CutsceneMessenger.queue_cutscene("phase1_irschat4")
+		StoryState.PHASE1_IRSDIALOGUE4:
+			if DialogueManager: DialogueManager.start_dialogue("res://scenes/ui/dialogues/phase1_irsdialogue4.gd")
+		StoryState.PHASE1_TASK_GO_TO_PET_WORLD:
+			if TaskManager: TaskManager.show_task("NEW DIRECTIVE", "Click X at the top right corner, reopen the hologram display, and go to the pet world.")
 
-func _on_dialogue_finished(file_path: String) -> void:
+func _on_dialogue_finished(_file_path: String) -> void:
 	match current_story_state:
-		StoryState.SCENE_1_APARTMENT_INTRO:
-			advance_story_state(StoryState.TASK_CHECK_HOLOGRAM)
-		StoryState.SCENE_1_PET_WORLD_DIALOGUE:
-			advance_story_state(StoryState.TASK_CHECK_MESSENGER)
-		StoryState.SCENE_2_DOOR:
-			advance_story_state(StoryState.TASK_GO_TO_PET_WORLD_2)
+		StoryState.PHASE1_APARTMENT:
+			_advance_with_delay(StoryState.PHASE1_TASK_CHECK_HOLOGRAM)
+		StoryState.PHASE1_IRSDIALOGUE1:
+			_advance_with_delay(StoryState.PHASE1_IRSMAIN2)
+		StoryState.PHASE1_IRSDIALOGUE2:
+			_advance_with_delay(StoryState.PHASE1_IRSMAIN3)
+		StoryState.PHASE1_IRSDIALOGUE3:
+			_advance_with_delay(StoryState.PHASE1_IRSMAIN4)
+		StoryState.PHASE1_IRSDIALOGUE4:
+			_advance_with_delay(StoryState.PHASE1_TASK_GO_TO_PET_WORLD)
 
 func _on_cutscene_completed(key: String) -> void:
 	match current_story_state:
-		StoryState.CUTSCENE_ARS_EMERGENCY:
-			if key == "ars_emergency":
-				advance_story_state(StoryState.TASK_GO_TO_PET_WORLD)
-		StoryState.CUTSCENE_LOAN_BOT:
-			if key == "loan_bot":
-				advance_story_state(StoryState.SCENE_2_DOOR)
+		StoryState.PHASE1_IRSMAIN1:
+			if key == "phase1_irschat1":
+				_advance_with_delay(StoryState.PHASE1_IRSDIALOGUE1)
+		StoryState.PHASE1_IRSMAIN2:
+			if key == "phase1_irschat2":
+				_advance_with_delay(StoryState.PHASE1_IRSDIALOGUE2, 1.5)
+		StoryState.PHASE1_IRSMAIN3:
+			if key == "phase1_irschat3":
+				_advance_with_delay(StoryState.PHASE1_IRSDIALOGUE3, 3.2)
+		StoryState.PHASE1_IRSMAIN4:
+			if key == "phase1_irschat4":
+				_advance_with_delay(StoryState.PHASE1_IRSDIALOGUE4, 2.5)
 
 func _on_task_acknowledged() -> void:
-	pass
+	match current_story_state:
+		StoryState.PHASE1_TASK_CHECK_HOLOGRAM:
+			_advance_with_delay(StoryState.PHASE1_IRSMAIN1)
