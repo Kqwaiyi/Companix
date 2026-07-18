@@ -60,7 +60,7 @@ const _TY_M  := 305.0   # near vertical centre (standalone impact lines)
 var _canvas    : CanvasLayer   # layer 1 — bg, image, story text
 var _ui_canvas : CanvasLayer   # layer 10 — "PRESS SPACE" prompt
 var _bg        : ColorRect
-var _img_rect  : TextureRect
+var _img       : Sprite2D
 var _pool      : Array[Control] = []
 var _advance_requested := false
 var _already_running   := false
@@ -113,12 +113,12 @@ func _build_nodes() -> void:
 	_bg.size    = Vector2(1280.0, 720.0)
 	_canvas.add_child(_bg)
 
-	_img_rect               = TextureRect.new()
-	_img_rect.size          = Vector2(1280.0, 720.0)
-	_img_rect.stretch_mode  = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
-	_img_rect.pivot_offset  = Vector2(640.0, 360.0)
-	_img_rect.modulate.a    = 0.0
-	_canvas.add_child(_img_rect)
+	# Sprite2D: manually fit to screen — works correctly at any source resolution.
+	_img            = Sprite2D.new()
+	_img.position   = Vector2(640.0, 360.0)   # centre of 1280 × 720
+	_img.centered   = true
+	_img.modulate.a = 0.0
+	_canvas.add_child(_img)
 
 	_ui_canvas       = CanvasLayer.new()
 	_ui_canvas.layer = 10
@@ -264,6 +264,14 @@ func _appear(n: Control, dur: float = 0.25) -> void:
 	t.tween_property(n, "modulate:a", 1.0, dur)
 	await t.finished
 
+# Like _appear() but reveals all characters first — use for labels that fade in
+# without a following _type() call (title cards, thanks screen, etc.).
+func _appear_full(n: Control, dur: float = 0.25) -> void:
+	_set_chars(n, -1)
+	var t := create_tween()
+	t.tween_property(n, "modulate:a", 1.0, dur)
+	await t.finished
+
 func _dim(n: Control, alpha: float = 0.35, dur: float = 0.35) -> void:
 	if not is_instance_valid(n): return
 	create_tween().tween_property(n, "modulate:a", alpha, dur)
@@ -295,27 +303,44 @@ func _show_image(path: String, hold_override: float = -1.0, do_zoom: bool = true
 		await _hold(hold_time)
 		return
 
-	_img_rect.texture    = load(path) as Texture2D
-	_img_rect.scale      = Vector2.ONE
-	_img_rect.modulate.a = 0.0
+	var tex := load(path) as Texture2D
+	if not tex:
+		await _hold(hold_time)
+		return
 
-	# Subtle Ken Burns: 1.00 → 1.03 over the full visible duration
+	_img.texture   = tex
+	_img.modulate.a = 0.0
+
+	# Scale image to fit entirely within 1280 × 720, centred, aspect-preserved.
+	var img_size   := tex.get_size()
+	var fit_scale  : float = min(1280.0 / img_size.x, 720.0 / img_size.y)
+	_img.scale     = Vector2(fit_scale, fit_scale)
+
+	# Subtle Ken Burns: scale grows by 3 % over the full visible duration.
 	if do_zoom:
+		var zoom_end  := Vector2(fit_scale * 1.03, fit_scale * 1.03)
 		var total_dur := image_fade_in + hold_time + image_fade_out
-		create_tween().tween_property(_img_rect, "scale", Vector2(1.03, 1.03), total_dur)
+		create_tween().tween_property(_img, "scale", zoom_end, total_dur)
 
 	var tw := create_tween()
-	tw.tween_property(_img_rect, "modulate:a", 1.0, image_fade_in)
+	tw.tween_property(_img, "modulate:a", 1.0, image_fade_in)
 	await tw.finished
 
-	await _hold(hold_time)
+	# Skippable hold — show prompt and wait for either the timer or player input.
+	_show_prompt()
+	var start_ms : int = Time.get_ticks_msec()
+	var hold_ms  : int = int(hold_time * 1000.0)
+	while Time.get_ticks_msec() - start_ms < hold_ms and not _advance_requested:
+		await get_tree().process_frame
+	_advance_requested = false   # consume here so the next text page isn't skipped too
+	_hide_prompt()
 
 	tw = create_tween()
-	tw.tween_property(_img_rect, "modulate:a", 0.0, image_fade_out)
+	tw.tween_property(_img, "modulate:a", 0.0, image_fade_out)
 	await tw.finished
 
-	_img_rect.texture = null
-	_img_rect.scale   = Vector2.ONE
+	_img.texture = null
+	_img.scale   = Vector2.ONE
 	await _hold(0.4)
 
 # ═════════════════════════════════════════════════════════════════════════════
@@ -327,13 +352,13 @@ func _show_title_card(number: String, title: String, accent: Color) -> void:
 	var num_lbl := _lbl(number, 14, dim_accent,
 						Vector2(_CX, 268.0), _TW_C,
 						HORIZONTAL_ALIGNMENT_CENTER, _f_lt)
-	await _appear(num_lbl, 0.5)
+	await _appear_full(num_lbl, 0.5)
 	await _hold(0.2)
 
 	var title_lbl := _lbl(title, 52, accent,
 						  Vector2(_CX, 308.0), _TW_C,
 						  HORIZONTAL_ALIGNMENT_CENTER, _f_sb)
-	await _appear(title_lbl, 0.8)
+	await _appear_full(title_lbl, 0.8)
 	await _hold(title_hold)
 	await _clear(0.7)
 	await _hold(0.3)
@@ -347,13 +372,13 @@ func _show_thanks(accent: Color) -> void:
 	var thanks := _lbl("THANKS FOR PLAYING", 44, _OFF_W,
 						Vector2(_CX, 255.0), _TW_C,
 						HORIZONTAL_ALIGNMENT_CENTER, _f_sb)
-	await _appear(thanks, thanks_fade_in)
+	await _appear_full(thanks, thanks_fade_in)
 
 	var game := _lbl("EMBERBORNE", 17,
 					 Color(accent.r, accent.g, accent.b, 0.55),
 					 Vector2(_CX, 322.0), _TW_C,
 					 HORIZONTAL_ALIGNMENT_CENTER, _f_lt)
-	await _appear(game, 0.9)
+	await _appear_full(game, 0.9)
 
 	await _hold(1.0)
 
@@ -361,7 +386,7 @@ func _show_thanks(accent: Color) -> void:
 					 Color(_OFF_W.r, _OFF_W.g, _OFF_W.b, 0.38),
 					 Vector2(_CX, 412.0), _TW_C,
 					 HORIZONTAL_ALIGNMENT_CENTER, _f_lt)
-	await _appear(hint, 0.6)
+	await _appear_full(hint, 0.6)
 
 	await _continue()
 
@@ -383,6 +408,8 @@ func _fade_music(to_db: float = -80.0, dur: float = 2.0) -> void:
 #  ENDING SELECTION
 # ═════════════════════════════════════════════════════════════════════════════
 func _determine_ending() -> int:
+	if debug_force_ending in [1, 2, 3]:
+		return debug_force_ending
 	var score := GameState.total_score if GameState else 0
 	if score >= ending_3_min_points:
 		return 3
@@ -415,13 +442,18 @@ func _run() -> void:
 		_ACC_E1 if ending == 1 else (_ACC_E2 if ending == 2 else _ACC_E3)
 	)
 
+	# Fade to black, then quit. Change return_scene_path in the Inspector
+	# if you'd prefer to return to a hub scene instead of quitting.
 	await _clear(0.6)
-	await _hold(0.4)
+	await _hold(0.5)
 
-	if SceneManager:
-		SceneManager.change_scene_to_file(return_scene_path, 1.2)
+	if return_scene_path != "":
+		if SceneManager:
+			SceneManager.change_scene_to_file(return_scene_path, 1.2)
+		else:
+			get_tree().change_scene_to_file(return_scene_path)
 	else:
-		get_tree().change_scene_to_file(return_scene_path)
+		get_tree().quit()
 
 # ═════════════════════════════════════════════════════════════════════════════
 #  ENDING 1 — LIFE CONTRACT  (dusty rose, bleak → bittersweet)
