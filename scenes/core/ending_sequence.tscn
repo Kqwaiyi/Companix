@@ -4,5 +4,4 @@
 
 [node name="EndingSequence" type="Node" unique_id=180672046]
 script = ExtResource("1_end")
-debug_force_ending = 3
 return_scene_path = ""
