@@ -54,12 +54,14 @@ var _voice_call_icon: TextureRect
 var _video_call_icon: TextureRect
 var _menu_icon: TextureRect
 var _chat_scroll: ScrollContainer
+var _chat_screen: VBoxContainer
 var _chat_vbox: VBoxContainer
 var _advance_indicator: Label
 
 # ─── Playback State ──────────────────────────────────────────────────
 var _lines: Array = []
 var _sender_data: Dictionary = {}
+var _current_contact: String = ""
 var _current_index: int = 0
 var _current_key: String = ""
 var _is_playing: bool = false
@@ -81,6 +83,9 @@ var _back_button_tween: Tween = null
 # ─── Completion Tracking ─────────────────────────────────────────────
 # Static var persists across scene loads within a single game session.
 static var _completed_cutscenes: Dictionary = {}
+static var _contact_histories: Dictionary = {}
+static var _contact_profile_pics: Dictionary = {}
+static var selected_contact: String = ""
 
 # ─── External Queueing API ───────────────────────────────────────────
 static var queued_cutscene_key: String = "test"
@@ -100,10 +105,9 @@ func _ready() -> void:
 	_build_ui()
 	_advance_indicator.hide()
 
-	# Automatically open the queued cutscene
-	if queued_cutscene_key != "":
-		# Defer to ensure the scene tree is fully set up
-		call_deferred("open_scene", queued_cutscene_key)
+	if selected_contact != "":
+		_open_chat_for_contact(selected_contact)
+		selected_contact = ""
 
 
 # ═══════════════════════════════════════════════════════════════════════
@@ -113,6 +117,7 @@ func _ready() -> void:
 ## Opens and plays (or redisplays) a cutscene by its dictionary key.
 ## Call this after the scene has been loaded into the SubViewport.
 func open_scene(key: String) -> void:
+	_abort_cutscene()
 	if not CUTSCENE_PATHS.has(key):
 		push_error("CutsceneMessenger: Unknown cutscene key: " + key)
 		return
@@ -124,35 +129,97 @@ func open_scene(key: String) -> void:
 		return
 
 	_sender_data = script.get_sender()
-	_lines = script.get_lines()
-
-	# Pre-calculate timestamps based on real system time
-	var time_dict = Time.get_time_dict_from_system()
-	var current_hour = time_dict.hour
-	var current_minute = time_dict.minute
+	var new_lines = script.get_lines()
+	var contact_name = _sender_data.get("name", "Unknown")
+	_current_contact = contact_name
 	
-	for i in range(_lines.size()):
-		_lines[i]["timestamp"] = "%02d:%02d" % [current_hour, current_minute]
-		# Add 1 to 3 minutes random offset for next message
-		var offset = (randi() % 3) + 1
-		current_minute += offset
-		if current_minute >= 60:
-			current_minute = current_minute % 60
-			current_hour = (current_hour + 1) % 24
+	_contact_profile_pics[contact_name] = _sender_data.get("profile_picture", "")
 
-	# Populate header bar
-	_sender_name.text = _sender_data.get("name", "Unknown")
+	var current_unix = Time.get_unix_time_from_system()
+	var history = _contact_histories.get(contact_name, [])
+	var latest_history_unix = 0.0
+	if history.size() > 0:
+		latest_history_unix = history.back().get("unix_time", 0.0)
+		
+	var n = new_lines.size()
+	if n > 0:
+		var times = []
+		times.resize(n)
+		times[n-1] = current_unix
+		for i in range(n-2, -1, -1):
+			times[i] = times[i+1] - (randi() % 120 + 60)
+			
+		if times[0] <= latest_history_unix:
+			var available = current_unix - latest_history_unix
+			if available <= 0:
+				for i in range(n):
+					times[i] = latest_history_unix + (i + 1) * 60
+			else:
+				var interval = available / float(n)
+				for i in range(n):
+					times[i] = latest_history_unix + (i + 1) * interval
+					
+		for i in range(n):
+			new_lines[i]["unix_time"] = times[i]
+			var local_unix = times[i] + Time.get_time_zone_from_system()["bias"] * 60
+			var t_dict = Time.get_time_dict_from_unix_time(local_unix)
+			new_lines[i]["timestamp"] = "%02d:%02d" % [t_dict.hour, t_dict.minute]
+
+	_lines = new_lines
+
+	_sender_name.text = contact_name
 	var pfp_path: String = _sender_data.get("profile_picture", "")
 	if pfp_path != "" and ResourceLoader.exists(pfp_path):
 		_profile_picture.texture = load(pfp_path)
 
-	# Check if already completed
+
+	for child in _chat_vbox.get_children():
+		if child.name != "TopPad":
+			child.queue_free()
+
+	_is_playing = false
+	for line in history:
+		var bubble = _create_bubble(line)
+		_chat_vbox.add_child(bubble)
+
 	if _is_cutscene_completed(key):
 		if key == queued_cutscene_key:
 			has_unread_cutscene = false
-		_display_full_history()
+		for line in _lines:
+			var bubble = _create_bubble(line)
+			_chat_vbox.add_child(bubble)
+		await get_tree().process_frame
+		_scroll_to_bottom()
 	else:
 		_start_playback(key)
+
+func _open_chat_for_contact(contact_name: String) -> void:
+	_abort_cutscene()
+	if queued_cutscene_key != "" and not _is_cutscene_completed(queued_cutscene_key):
+		var script = load(CUTSCENE_PATHS.get(queued_cutscene_key, ""))
+		if script != null and script.get_sender().get("name", "Unknown") == contact_name:
+			open_scene(queued_cutscene_key)
+			return
+			
+	_current_contact = contact_name
+
+	_sender_name.text = contact_name
+	var pfp_path = _contact_profile_pics.get(contact_name, "")
+	if pfp_path != "" and ResourceLoader.exists(pfp_path):
+		_profile_picture.texture = load(pfp_path)
+		
+	for child in _chat_vbox.get_children():
+		if child.name != "TopPad":
+			child.queue_free()
+			
+	_is_playing = false
+	var history = _contact_histories.get(contact_name, [])
+	for line in history:
+		var bubble = _create_bubble(line)
+		_chat_vbox.add_child(bubble)
+		
+	await get_tree().process_frame
+	_scroll_to_bottom()
 
 
 # ═══════════════════════════════════════════════════════════════════════
@@ -207,7 +274,7 @@ func _display_next_bubble() -> void:
 	if sender == "them":
 		msg_label.text = "typing..."
 	else:
-		msg_label.text = _scramble_string(line.get("text", ""))
+		_update_decrypt(0.0, msg_label, line.get("text", ""))
 		
 	_chat_vbox.add_child(bubble)
 	_current_index += 1
@@ -218,17 +285,14 @@ func _display_next_bubble() -> void:
 func _finish_playback() -> void:
 	_is_playing = false
 	_mark_cutscene_completed(_current_key)
+	
+	if not _contact_histories.has(_current_contact):
+		_contact_histories[_current_contact] = []
+	for line in _lines:
+		_contact_histories[_current_contact].append(line)
+		
 	_advance_indicator.hide()
 	_stop_indicator_animation()
-	_scroll_to_bottom()
-
-func _display_full_history() -> void:
-	for line in _lines:
-		var bubble = _create_bubble(line)
-		_chat_vbox.add_child(bubble)
-	_is_playing = false
-	# Wait a frame for layout then scroll
-	await get_tree().process_frame
 	_scroll_to_bottom()
 
 
@@ -411,7 +475,7 @@ func _start_decrypt_phase(bubble: Control) -> void:
 	var final_text = bubble.get_meta("final_text", "")
 	var sender = bubble.get_meta("sender", "them")
 	
-	msg_label.text = _scramble_string(final_text)
+	_update_decrypt(0.0, msg_label, final_text)
 	
 	_decrypt_tween = create_tween()
 	_decrypt_tween.tween_method(_update_decrypt.bind(msg_label, final_text), 0.0, 1.0, 0.5)
@@ -435,8 +499,14 @@ func _start_decrypt_phase(bubble: Control) -> void:
 func _update_decrypt(progress: float, msg_label: RichTextLabel, final_text: String) -> void:
 	var reveal_count = int(progress * final_text.length())
 	var revealed = final_text.substr(0, reveal_count)
-	var scrambled_len = final_text.length() - reveal_count
-	var scrambled = _scramble_string(final_text.substr(reveal_count, scrambled_len))
+	
+	var remaining_len = final_text.length() - reveal_count
+	var tip_len = min(remaining_len, 3)
+	
+	var scrambled = ""
+	if tip_len > 0:
+		scrambled = _scramble_string(final_text.substr(reveal_count, tip_len))
+		
 	msg_label.text = revealed + scrambled
 
 func _scramble_string(text: String) -> String:
@@ -536,11 +606,31 @@ func _on_back_button_down() -> void:
 	_back_button_tween = create_tween()
 	_back_button_tween.tween_property(_back_button, "scale", Vector2(0.9, 0.9), 0.05).set_ease(Tween.EASE_OUT)
 
+func _abort_cutscene() -> void:
+	if _bubble_tween and _bubble_tween.is_valid():
+		_bubble_tween.kill()
+	if _typing_tween and _typing_tween.is_valid():
+		_typing_tween.kill()
+	if _expand_tween and _expand_tween.is_valid():
+		_expand_tween.kill()
+	if _decrypt_tween and _decrypt_tween.is_valid():
+		_decrypt_tween.kill()
+	if _indicator_tween and _indicator_tween.is_valid():
+		_indicator_tween.kill()
+		
+	if _audio_typing: _audio_typing.stop()
+		
+	_is_processing_bubble = false
+	_current_bubble_node = null
+	_is_playing = false
+	_advance_indicator.hide()
+
 func _on_back_button_pressed() -> void:
+	_abort_cutscene()
+	
 	var laptops = get_tree().get_nodes_in_group("laptop_ui")
 	if laptops.size() > 0:
-		laptops[0].change_scene("res://scenes/ui/DesktopScreen.tscn", 0.5)
-
+		laptops[0].change_scene("res://scenes/ui/CutsceneMessengerList.tscn", 0.5)
 
 # ═══════════════════════════════════════════════════════════════════════
 # UI CONSTRUCTION (programmatic)
