@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cax2e23214"]
 
-[ext_resource type="Script" path="res://scripts/ui/TaskOverlay.gd" id="1_overlay"]
-[ext_resource type="Shader" path="res://shaders/ui_scanline.gdshader" id="2_shader"]
+[ext_resource type="Script" uid="uid://dofr0vb6vysim" path="res://scripts/ui/TaskOverlay.gd" id="1_overlay"]
+[ext_resource type="Shader" uid="uid://chj6a6rxi66x1" path="res://shaders/ui_scanline.gdshader" id="2_shader"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel"]
 bg_color = Color(0.05, 0.05, 0.08, 0.95)
@@ -23,11 +23,11 @@ shader_parameter/scanline_count = 150.0
 shader_parameter/velocity = 1.0
 shader_parameter/color = Color(0.2, 0.7, 0.9, 0.15)
 
-[node name="TaskOverlay" type="CanvasLayer"]
+[node name="TaskOverlay" type="CanvasLayer" unique_id=488818177]
 layer = 115
 script = ExtResource("1_overlay")
 
-[node name="PopupBox" type="PanelContainer" parent="."]
+[node name="PopupBox" type="PanelContainer" parent="." unique_id=988045197]
 anchors_preset = -1
 anchor_top = 0.72
 anchor_right = 1.0
@@ -39,60 +39,60 @@ grow_horizontal = 2
 grow_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
 
-[node name="ScanlineOverlay" type="ColorRect" parent="PopupBox"]
+[node name="ScanlineOverlay" type="ColorRect" parent="PopupBox" unique_id=890458718]
 material = SubResource("ShaderMaterial_scanline")
 layout_mode = 2
 mouse_filter = 2
 
-[node name="CornerDecorations" type="Control" parent="PopupBox"]
+[node name="CornerDecorations" type="Control" parent="PopupBox" unique_id=865704440]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="PopupBox"]
+[node name="MarginContainer" type="MarginContainer" parent="PopupBox" unique_id=1534823564]
 layout_mode = 2
 theme_override_constants/margin_left = 24
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 24
 theme_override_constants/margin_bottom = 20
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PopupBox/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="PopupBox/MarginContainer" unique_id=470427157]
 layout_mode = 2
 theme_override_constants/separation = 12
 
-[node name="HBoxHeader" type="HBoxContainer" parent="PopupBox/MarginContainer/VBoxContainer"]
+[node name="HBoxHeader" type="HBoxContainer" parent="PopupBox/MarginContainer/VBoxContainer" unique_id=2040690973]
 layout_mode = 2
 
-[node name="StatusPulse" type="ColorRect" parent="PopupBox/MarginContainer/VBoxContainer/HBoxHeader"]
+[node name="StatusPulse" type="ColorRect" parent="PopupBox/MarginContainer/VBoxContainer/HBoxHeader" unique_id=410349729]
 custom_minimum_size = Vector2(8, 8)
 layout_mode = 2
 size_flags_vertical = 4
 color = Color(0.3, 0.85, 1, 1)
 
-[node name="TitleLabel" type="Label" parent="PopupBox/MarginContainer/VBoxContainer/HBoxHeader"]
+[node name="TitleLabel" type="Label" parent="PopupBox/MarginContainer/VBoxContainer/HBoxHeader" unique_id=770021727]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_colors/font_color = Color(0.3, 0.85, 1, 1)
 theme_override_font_sizes/font_size = 28
 text = "NEW DIRECTIVE"
 
-[node name="DescriptionLabel" type="RichTextLabel" parent="PopupBox/MarginContainer/VBoxContainer"]
+[node name="DescriptionLabel" type="RichTextLabel" parent="PopupBox/MarginContainer/VBoxContainer" unique_id=946346329]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/default_color = Color(0.9, 0.9, 0.9, 1)
 theme_override_font_sizes/normal_font_size = 22
 theme_override_font_sizes/bold_font_size = 22
-theme_override_font_sizes/italics_font_size = 22
 theme_override_font_sizes/bold_italics_font_size = 22
+theme_override_font_sizes/italics_font_size = 22
 bbcode_enabled = true
+text = "Task Description"
 fit_content = true
 scroll_active = false
-text = "Task Description"
 
-[node name="AdvanceIndicator" type="Label" parent="PopupBox/MarginContainer/VBoxContainer"]
+[node name="AdvanceIndicator" type="Label" parent="PopupBox/MarginContainer/VBoxContainer" unique_id=269516952]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.3, 0.85, 1, 0.8)
 theme_override_font_sizes/font_size = 16
-text = "[SPACE] TO ACKNOWLEDGE"
+text = "[E] TO ACKNOWLEDGE"
 horizontal_alignment = 1
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=2077476750]

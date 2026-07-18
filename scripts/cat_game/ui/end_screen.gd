@@ -17,7 +17,7 @@ var _rainbow_active: bool = false
 var _rainbow_hue: float = 0.0
 var _place: int = 0
 
-var dummy_names: Array[String] = ["CatLover99", "PawMaster", "PixelCat", "SpeedyPaws", "ScratchKing", "Meowz", "NyanNyan", "FelineGood", "KittyKat", "Purrfect"]
+var dummy_names: Array[String] = ["CatLover99", "PawMaster", "PixelCat", "SpeedyPaws", "ScratchKing", "Meowz", "NyanNyan", "FelineGood", "KittyKat", "Purrfect", "NineLives", "MeowMaster", "WhiskerWizard", "TailChaser", "PurrMachine"]
 
 @onready var _score_row: HBoxContainer = $Panel/VBox/ScoreCenter/ScoreRow
 @onready var _bracket_label: Label = $Panel/VBox/BracketLabel
@@ -255,41 +255,47 @@ func _generate_leaderboard(player_place: int, player_score: int) -> void:
 			_create_entry(str(i) + ".", dummy_names[name_idx], top3_scores[i-1])
 			name_idx += 1
 			
-	if player_place <= 3:
-		for i in range(4, 7):
-			var s: int = maxi(top3_scores[2] - randi_range(100, 500) * (i - 3), 0)
-			_create_entry(str(i) + ".", dummy_names[name_idx], s)
-			name_idx += 1
-		_create_separator()
-		return
-	
-	if player_place <= 7:
-		for i in range(4, player_place + 3):
+	if player_place <= 9:
+		var last_score: int = top3_scores[2]
+		for i in range(4, 10):
 			if i == player_place:
 				_create_entry(str(i) + ".", "You", player_score, true)
+				last_score = player_score
 			else:
-				var s: int = player_score - randi_range(20, 150) * (i - player_place)
+				var s: int
 				if i < player_place:
-					s = player_score + randi_range(20, 150) * (player_place - i)
+					var gap: int = last_score - player_score
+					var steps_left: int = player_place - i + 1
+					s = last_score - maxi(1, gap / steps_left) - randi_range(0, 50)
+					s = maxi(s, player_score + 1)
+				else:
+					s = last_score - randi_range(50, 200)
+					
 				_create_entry(str(i) + ".", dummy_names[name_idx], maxi(s, 0))
+				last_score = maxi(s, 0)
 				name_idx += 1
-		_create_separator()
+		
+		if player_place < 9991:
+			_create_separator()
 		return
 		
-	# Player is > 7
+	# Player is > 9
 	_create_separator()
 	
+	var above_score: int = player_score + randi_range(50, 200) * 2
 	for i in range(player_place - 2, player_place):
-		var s: int = player_score + randi_range(20, 100) * (player_place - i)
-		_create_entry(str(i) + ".", dummy_names[name_idx], s)
+		_create_entry(str(i) + ".", dummy_names[name_idx], above_score)
+		above_score -= randi_range(20, 100)
+		above_score = maxi(above_score, player_score + 1)
 		name_idx += 1
 		
 	_create_entry(str(player_place) + ".", "You", player_score, true)
 	
-	for i in range(player_place + 1, mini(player_place + 3, 10001)):
-		var s: int = player_score - randi_range(20, 100) * (i - player_place)
-		_create_entry(str(i) + ".", dummy_names[name_idx], maxi(s, 0))
+	var below_score: int = player_score
+	for i in range(player_place + 1, mini(player_place + 4, 10001)):
+		below_score -= randi_range(20, 100)
+		_create_entry(str(i) + ".", dummy_names[name_idx], maxi(below_score, 0))
 		name_idx += 1
 		
-	if player_place < 9998:
+	if player_place < 9997:
 		_create_separator()

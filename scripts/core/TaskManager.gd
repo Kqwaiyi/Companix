@@ -19,7 +19,7 @@ func _input(event: InputEvent) -> void:
 	if not _is_active:
 		return
 
-	if event.is_action_pressed("dialogue_advance"):
+	if event.is_action_pressed("task_advance"):
 		if _overlay.is_typewriter_playing():
 			_overlay.complete_typewriter()
 		else:
@@ -33,7 +33,7 @@ func _process(_delta: float) -> void:
 	if not _is_active:
 		return
 	for action in InputMap.get_actions():
-		if action == "dialogue_advance":
+		if action == "task_advance":
 			continue
 		if Input.is_action_pressed(action):
 			Input.action_release(action)

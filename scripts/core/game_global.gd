@@ -30,6 +30,7 @@ enum StoryState {
 	PHASE4_TASK_JOIN_TOURNAMENT
 }
 
+var is_laptop_open: bool = false
 var current_story_state: StoryState = StoryState.NONE
 signal story_state_changed(new_state: StoryState)
 
@@ -76,7 +77,7 @@ func _handle_state_entry(state: StoryState) -> void:
 		StoryState.PHASE1_APARTMENT:
 			if DialogueManager: DialogueManager.start_dialogue("res://scenes/ui/dialogues/phase1_apartment.gd")
 		StoryState.PHASE1_TASK_CHECK_HOLOGRAM:
-			if TaskManager: TaskManager.show_task("NEW DIRECTIVE", "Use the S62 Hologram to send her a message.")
+			if TaskManager: TaskManager.show_task("NEW OBJECTIVE", "Use the S62 Hologram to send her a message.")
 		StoryState.PHASE1_IRSMAIN1:
 			if CutsceneMessenger: CutsceneMessenger.queue_cutscene("phase1_irschat1")
 		StoryState.PHASE1_IRSDIALOGUE1:
@@ -94,11 +95,11 @@ func _handle_state_entry(state: StoryState) -> void:
 		StoryState.PHASE1_IRSDIALOGUE4:
 			if DialogueManager: DialogueManager.start_dialogue("res://scenes/ui/dialogues/phase1_irsdialogue4.gd")
 		StoryState.PHASE1_TASK_GO_TO_PET_WORLD:
-			if TaskManager: TaskManager.show_task("NEW DIRECTIVE", "Click X at the top right corner, reopen the hologram display, and go to the pet world.")
+			if TaskManager: TaskManager.show_task("NEW OBJECTIVE", "Click X at the top right corner, reopen the hologram display (or simply the back button at the top left), and go to the pet world.")
 		StoryState.PHASE2_PETWORLD_ENTRY:
 			if DialogueManager: DialogueManager.start_dialogue("res://scenes/ui/dialogues/phase2_petworlddialogue.gd")
 		StoryState.PHASE2_TASK_GO_TO_MESSENGER:
-			if TaskManager: TaskManager.show_task("NEW DIRECTIVE", "Go to messenger")
+			if TaskManager: TaskManager.show_task("NEW OBJECTIVE", "Go to messenger")
 		StoryState.PHASE3_LOANCHAT1:
 			if CutsceneMessenger: CutsceneMessenger.queue_cutscene("phase3_loanchat1")
 		StoryState.PHASE3_LOANDIALOGUE1:
@@ -114,9 +115,9 @@ func _handle_state_entry(state: StoryState) -> void:
 				await get_tree().create_timer(1.0).timeout
 				advance_story_state(StoryState.PHASE4_TASK_GO_TO_PET_WORLD_)
 		StoryState.PHASE4_TASK_GO_TO_PET_WORLD_:
-			if TaskManager: TaskManager.show_task("NEW DIRECTIVE", "Open your hologram and head to the pet world")
+			if TaskManager: TaskManager.show_task("NEW OBJECTIVE", "Open your hologram display and head to the pet world")
 		StoryState.PHASE4_TASK_JOIN_TOURNAMENT:
-			if TaskManager: TaskManager.show_task("NEW DIRECTIVE", "Choose (click on) a pet and click join tournament")
+			if TaskManager: TaskManager.show_task("NEW OBJECTIVE", "Choose (click on) a pet and click join tournament")
 
 func _on_dialogue_finished(_file_path: String) -> void:
 	match current_story_state:

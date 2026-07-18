@@ -124,10 +124,10 @@ func _populate_conversation_list() -> void:
 		pfp_style.border_width_top = 1
 		pfp_style.border_width_bottom = 1
 		pfp_style.border_color = COLOR_SEPARATOR
-		pfp_style.corner_radius_top_left = 4
-		pfp_style.corner_radius_top_right = 4
-		pfp_style.corner_radius_bottom_left = 4
-		pfp_style.corner_radius_bottom_right = 4
+		pfp_style.corner_radius_top_left = 24
+		pfp_style.corner_radius_top_right = 24
+		pfp_style.corner_radius_bottom_left = 24
+		pfp_style.corner_radius_bottom_right = 24
 		pfp_style.content_margin_left = 3
 		pfp_style.content_margin_right = 3
 		pfp_style.content_margin_top = 3
@@ -141,6 +141,24 @@ func _populate_conversation_list() -> void:
 		pfp.expand_mode = TextureRect.EXPAND_FIT_WIDTH_PROPORTIONAL
 		pfp.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 		pfp.size_flags_vertical = Control.SIZE_SHRINK_CENTER
+		var circle_shader = Shader.new()
+		circle_shader.code = """
+		shader_type canvas_item;
+		void fragment() {
+			float aspect = TEXTURE_PIXEL_SIZE.y / TEXTURE_PIXEL_SIZE.x;
+			vec2 uv = UV - vec2(0.5, 0.5);
+			if (aspect > 1.0) {
+				uv.x *= aspect;
+			} else {
+				uv.y /= aspect;
+			}
+			float d = length(uv);
+			COLOR.a *= 1.0 - smoothstep(0.48, 0.5, d);
+		}
+		"""
+		var circle_mat = ShaderMaterial.new()
+		circle_mat.shader = circle_shader
+		pfp.material = circle_mat
 		var pfp_path = CutsceneMessenger._contact_profile_pics.get(c_name, "")
 		if pfp_path != "" and ResourceLoader.exists(pfp_path):
 			pfp.texture = load(pfp_path)

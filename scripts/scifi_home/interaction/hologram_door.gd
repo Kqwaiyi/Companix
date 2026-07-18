@@ -34,7 +34,7 @@ func _process(delta: float) -> void:
 	if _prompt.visible and not _is_interacting:
 		_prompt_container.position.y = _base_prompt_y + sin(Time.get_ticks_msec() * 0.003) * 6.0
 	
-	if _player_in_zone and not _is_interacting and Input.is_action_just_pressed("interact"):
+	if _player_in_zone and not _is_interacting and not GameGlobal.is_laptop_open and Input.is_action_just_pressed("interact"):
 		_confirm_prompt()
 
 func _draw() -> void:

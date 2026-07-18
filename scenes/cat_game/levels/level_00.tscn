@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" path="res://scenes/cat_game/environment/exit_door.tscn" id="7_door"]
 [ext_resource type="PackedScene" path="res://scenes/cat_game/ui/hud.tscn" id="8_hud"]
 [ext_resource type="PackedScene" uid="uid://cmquucfy2ckxe" path="res://scenes/cat_game/ui/results_screen.tscn" id="9_results"]
+[ext_resource type="Script" uid="uid://bsoa08gnlhoau" path="res://scripts/cat_game/levels/level_02.gd" id="100_level"]
 
 [sub_resource type="GDScript" id="GDScript_yex6o"]
 script/source = "## scripts/levels/level_01.gd
@@ -201,7 +202,11 @@ size = Vector2(90, 60)
 [sub_resource type="NavigationPolygon" id="nav_poly"]
 
 [node name="Level01" type="Node2D"]
-script = SubResource("GDScript_yex6o")
+script = ExtResource("100_level")
+required_mice = 3
+starting_score = 0
+maximum_time_bonus = 1000
+total_mice = 5
 
 [node name="Environment" type="Node2D" parent="."]
 
@@ -535,7 +540,7 @@ position = Vector2(388, 832)
 
 [node name="Characters" type="Node2D" parent="."]
 
-[node name="Cat" parent="Characters" instance=ExtResource("2_cat")]
+[node name="Cat" parent="." instance=ExtResource("2_cat")]
 position = Vector2(220, 820)
 
 [node name="Human01" parent="Characters" instance=ExtResource("3_human")]
@@ -571,3 +576,4 @@ position = Vector2(195, 840)
 [node name="HUD" parent="." instance=ExtResource("8_hud")]
 
 [node name="ResultsScreen" parent="." instance=ExtResource("9_results")]
+
