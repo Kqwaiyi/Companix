@@ -14,6 +14,7 @@ var _initial_pos: Vector2
 var _target: Vector2
 var _moving := false
 var _timer  := 0.0
+var _forced_idle_timer := 0.0
 
 func _ready() -> void:
 	_initial_pos = position
@@ -21,6 +22,12 @@ func _ready() -> void:
 	_next_state()
 
 func _physics_process(delta: float) -> void:
+	if _forced_idle_timer > 0.0:
+		_forced_idle_timer -= delta
+		velocity = Vector2.ZERO
+		move_and_slide()
+		return
+
 	_timer -= delta
 	if _timer <= 0.0:
 		_next_state()
@@ -40,6 +47,13 @@ func _physics_process(delta: float) -> void:
 		velocity = Vector2.ZERO
 
 	move_and_slide()
+
+func force_idle(duration: float) -> void:
+	_forced_idle_timer = duration
+	_moving = false
+	velocity = Vector2.ZERO
+	if _visual and _visual.sprite_frames and _visual.sprite_frames.has_animation("idle"):
+		_visual.play("idle")
 
 func _next_state() -> void:
 	var anim: String = ANIMS[randi() % ANIMS.size()]
