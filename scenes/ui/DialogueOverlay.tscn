@@ -23,16 +23,35 @@ border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
 border_color = Color(0.2, 0.6, 0.8, 0.6)
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
+corner_radius_top_left = 48
+corner_radius_top_right = 48
+corner_radius_bottom_right = 48
+corner_radius_bottom_left = 48
 shadow_color = Color(0.2, 0.7, 0.9, 0.3)
 shadow_size = 4
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_sep"]
 color = Color(0.2, 0.7, 0.9, 0.6)
 thickness = 2
+
+[sub_resource type="Shader" id="Shader_circle"]
+code = "shader_type canvas_item;
+
+void fragment() {
+    vec2 center = vec2(0.5, 0.5);
+    float radius = 0.5;
+    float dist = distance(UV, center);
+    
+    // Smooth anti-aliased edge
+    float alpha = smoothstep(radius, radius - 0.02, dist);
+    
+    COLOR = texture(TEXTURE, UV);
+    COLOR.a *= alpha;
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_circle"]
+shader = SubResource("Shader_circle")
 
 [node name="DialogueOverlay" type="CanvasLayer" unique_id=1492543932]
 layer = 110
@@ -68,6 +87,7 @@ size_flags_vertical = 4
 theme_override_styles/panel = SubResource("StyleBoxFlat_portrait")
 
 [node name="Portrait" type="TextureRect" parent="DialogueBox/MarginContainer/HBoxContainer/PortraitContainer" unique_id=413958130]
+material = SubResource("ShaderMaterial_circle")
 layout_mode = 2
 expand_mode = 1
 stretch_mode = 5

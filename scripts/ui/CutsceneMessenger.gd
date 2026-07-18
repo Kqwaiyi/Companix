@@ -737,6 +737,24 @@ func _build_ui() -> void:
 	_profile_picture.custom_minimum_size = Vector2(36, 36)
 	_profile_picture.expand_mode = TextureRect.EXPAND_FIT_WIDTH_PROPORTIONAL
 	_profile_picture.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+	var circle_shader = Shader.new()
+	circle_shader.code = """
+	shader_type canvas_item;
+	void fragment() {
+		float aspect = TEXTURE_PIXEL_SIZE.y / TEXTURE_PIXEL_SIZE.x;
+		vec2 uv = UV - vec2(0.5, 0.5);
+		if (aspect > 1.0) {
+			uv.x *= aspect;
+		} else {
+			uv.y /= aspect;
+		}
+		float d = length(uv);
+		COLOR.a *= 1.0 - smoothstep(0.48, 0.5, d);
+	}
+	"""
+	var circle_mat = ShaderMaterial.new()
+	circle_mat.shader = circle_shader
+	_profile_picture.material = circle_mat
 	header_hbox.add_child(_profile_picture)
 
 	# Sender name
