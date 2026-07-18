@@ -6,6 +6,7 @@ func _ready():
 	print("Press '2' to test global transition (0.0s fade).")
 	print("Press '3' to test LaptopUI transition (0.5s fade).")
 	print("Press '4' to test LaptopUI transition (0.0s fade).")
+	print("Press '6' to test TaskManager.")
 
 func _input(event):
 	if event is InputEventKey and event.pressed:
@@ -39,3 +40,6 @@ func _input(event):
 				laptop_node.open_laptop()
 			else:
 				print("LaptopUI node not found in TestScene!")
+		elif event.keycode == KEY_6:
+			print("Testing TaskManager...")
+			TaskManager.show_task("NEW DIRECTIVE", "Objective updated: Retrieve the [sz=24][sh rate=20.0 level=5]lost artifact[/sh][/sz] in the ruins.")

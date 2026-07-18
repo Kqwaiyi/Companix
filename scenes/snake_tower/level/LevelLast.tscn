@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://clecag4wxry7o"]
+[gd_scene format=3 uid="uid://d1kul3apgbxua"]
 
 [ext_resource type="Script" uid="uid://dxms4gcjfm8pd" path="res://scripts/snake_tower/level/LevelLast.gd" id="1_levellast"]
 

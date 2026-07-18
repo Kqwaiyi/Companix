@@ -69,9 +69,9 @@ const CUTSCENE_PATHS: Dictionary = {
 
 ---
 
-## 3. The External Queueing API & Notification Badge
+## 3. The External API: Queueing & Signals
 
-The Messenger provides a globally accessible API for other scripts (e.g., triggers, level managers, or event buses) to seamlessly queue the next conversation.
+The Messenger provides a globally accessible API for other scripts (e.g., triggers, level managers, or event buses) to seamlessly queue conversations and react to their completion.
 
 ### Queueing a Cutscene
 
@@ -80,12 +80,20 @@ Call the static function from anywhere:
 CutsceneMessenger.queue_cutscene("mission_1")
 ```
 
+### Reacting to Completion
+
+The main `CutsceneMessenger` node emits a signal the exact moment a cutscene is internally marked as completed (which occurs instantly when the final dialogue bubble spawns):
+```gdscript
+signal cutscene_completed(key: String)
+```
+You can connect to this signal from your level controllers to trigger events (e.g., unlocking a door, spawning enemies) immediately after the player receives the final message.
+
 ### How the Notification System Works
 
 1. **Activation**: Calling `queue_cutscene()` checks if the cutscene is already completed. If it is unread, it sets `has_unread_cutscene = true` and updates `queued_cutscene_key`.
 2. **Desktop Visuals**: The `DesktopAppButton` script continuously polls this flag. If `true`, a neon-glowing, pulsing notification badge (with a secondary radar ping ripple) automatically appears on the Messenger's desktop icon.
 3. **List Visuals**: The `CutsceneMessengerList` will render this queued conversation at the top of the list, complete with a breathing red notification badge and the real first line of the cutscene extracted for the hover preview.
-4. **Resolution**: The unread flag (and thus the notification badges) is **only** cleared when the player actually finishes the cutscene inside the chat view.
+4. **Early Resolution**: The unread flag (and thus the notification badges) is cleared instantly the moment the final message bubble spawns on-screen in the chat view, even before its decryption animation finishes. This allows the player to safely exit the chat early without losing progress.
 
 ---
 

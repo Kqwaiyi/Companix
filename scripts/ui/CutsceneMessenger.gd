@@ -1,6 +1,8 @@
 class_name CutsceneMessenger
 extends Control
 
+signal cutscene_completed(key: String)
+
 @export var sfx_incoming: AudioStream = null
 @export var sfx_typing: AudioStream = null
 @export var sfx_outgoing: AudioStream = null
@@ -16,7 +18,6 @@ extends Control
 # Maps string keys → res:// paths to cutscene .gd data files.
 const CUTSCENE_PATHS: Dictionary = {
 	"test": "res://scenes/ui/cutscenes/test_cutscene.gd",
-	"voss_2": "res://scenes/ui/cutscenes/voss_continuation.gd",
 }
 
 # ─── Color Palette (gray-green, WhatsApp-inspired, sci-fi) ──────────
@@ -252,6 +253,7 @@ func _mark_cutscene_completed(key: String) -> void:
 	_completed_cutscenes[key] = true
 	if key == queued_cutscene_key:
 		has_unread_cutscene = false
+	cutscene_completed.emit(key)
 
 func _start_playback(_key: String) -> void:
 	_current_index = 0
@@ -282,16 +284,16 @@ func _display_next_bubble() -> void:
 
 	# Animate the bubble pop-in
 	_play_bubble_animation(bubble, sender)
+	
+	if _current_index == _lines.size() and not _is_cutscene_completed(_current_key):
+		_mark_cutscene_completed(_current_key)
+		if not _contact_histories.has(_current_contact):
+			_contact_histories[_current_contact] = []
+		for l in _lines:
+			_contact_histories[_current_contact].append(l)
 
 func _finish_playback() -> void:
 	_is_playing = false
-	_mark_cutscene_completed(_current_key)
-	
-	if not _contact_histories.has(_current_contact):
-		_contact_histories[_current_contact] = []
-	for line in _lines:
-		_contact_histories[_current_contact].append(line)
-		
 	_advance_indicator.hide()
 	_stop_indicator_animation()
 	_scroll_to_bottom()
