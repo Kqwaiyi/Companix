@@ -78,6 +78,14 @@ func _build_digits() -> void:
 
 func _animate() -> void:
 	await get_tree().create_timer(0.3).timeout
+	
+	var total_steps: int = 12
+	var temp_idx: int = 0
+	for i in range(_digit_vals.size()):
+		total_steps += maxi(4, 10 - temp_idx * 2)
+		temp_idx += 1
+		
+	var step_delay: float = 3.0 / float(total_steps)
 
 	# Shuffle all digits together.
 	for _shuffle_step: int in range(12):
@@ -85,7 +93,7 @@ func _animate() -> void:
 			var random_index: int = randi() % 10
 			label.text = _SHUFFLE[random_index]
 
-		await get_tree().create_timer(0.03).timeout
+		await get_tree().create_timer(step_delay).timeout
 
 	# Reveal digits one at a time from left to right.
 	var digit_idx = 0
@@ -97,7 +105,7 @@ func _animate() -> void:
 				var random_index: int = randi() % 10
 				_digit_labels[j].text = _SHUFFLE[random_index]
 
-			await get_tree().create_timer(0.03).timeout
+			await get_tree().create_timer(step_delay).timeout
 
 		_digit_labels[digit_idx].text = str(_digit_vals[i])
 		_digit_labels[digit_idx].add_theme_color_override(

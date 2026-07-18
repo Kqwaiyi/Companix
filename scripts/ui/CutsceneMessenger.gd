@@ -254,6 +254,9 @@ func _mark_cutscene_completed(key: String) -> void:
 	if key == queued_cutscene_key:
 		has_unread_cutscene = false
 	cutscene_completed.emit(key)
+	
+	if GameGlobal and GameGlobal.has_method("_on_cutscene_completed"):
+		GameGlobal._on_cutscene_completed(key)
 
 func _start_playback(_key: String) -> void:
 	_current_index = 0
