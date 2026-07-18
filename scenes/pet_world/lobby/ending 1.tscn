@@ -85,6 +85,7 @@ sources/0 = SubResource("TileSetAtlasSource_mq7y1")
 script = ExtResource("1_cmg1n")
 
 [node name="Sprite2D2" type="Sprite2D" parent="." unique_id=537930130]
+visible = false
 position = Vector2(3.2789536, -2.8750076)
 scale = Vector2(0.63603, 0.6437301)
 texture = ExtResource("2_kesak")
