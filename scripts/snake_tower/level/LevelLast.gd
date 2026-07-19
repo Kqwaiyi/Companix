@@ -23,6 +23,8 @@ var _rainbow_hue: float = 0.0
 @onready var _panel = $Panel
 
 var _sfx_player: AudioStreamPlayer
+var _hover_sfx: AudioStreamPlayer
+var _click_sfx: AudioStreamPlayer
 
 var dummy_names = ["GamerPro99", "SnakeKing", "EmberSnek", "FastBoi", "SpeedRunner", "SnekMaster", "SlipperySnek", "Venom", "Ouroboros", "GridWalker", "LongSnek", "PixelSnake", "AppleEater", "TombRaider", "GhostSnek"]
 
@@ -45,6 +47,16 @@ func _ready():
 	_sfx_player = AudioStreamPlayer.new()
 	_sfx_player.stream = load("res://assets/music/snake tower/leaderboard.mp3")
 	add_child(_sfx_player)
+	
+	_hover_sfx = AudioStreamPlayer.new()
+	_hover_sfx.stream = preload("res://assets/sounds/other_ui/other_ui_hover.mp3")
+	add_child(_hover_sfx)
+	
+	_click_sfx = AudioStreamPlayer.new()
+	_click_sfx.stream = preload("res://assets/sounds/other_ui/other_ui_click.mp3")
+	add_child(_click_sfx)
+	
+	_setup_ui_button($BackButton)
 	
 	_build_digits()
 	_animate()
@@ -308,3 +320,33 @@ func _on_back_button_pressed():
 		laptops[0].change_scene("res://scenes/pet_world/lobby/mainlobby.tscn", 0.5)
 	else:
 		SceneManager.change_scene_to_file("res://scenes/pet_world/lobby/mainlobby.tscn")
+
+func _setup_ui_button(btn: Button):
+	btn.set_meta("original_scale", btn.scale)
+	
+	# Compensate for changing the pivot offset while scaled
+	var default_pivot = Vector2.ZERO
+	var new_pivot = btn.size / 2.0
+	if btn.pivot_offset == default_pivot:
+		btn.position -= new_pivot * (Vector2(1.0, 1.0) - btn.scale)
+		btn.pivot_offset = new_pivot
+	
+	btn.mouse_entered.connect(_on_btn_hover.bind(btn))
+	btn.mouse_exited.connect(_on_btn_exit.bind(btn))
+	btn.button_down.connect(_on_btn_click)
+
+func _on_btn_hover(btn: Button):
+	if _hover_sfx:
+		_hover_sfx.play()
+	var orig_scale = btn.get_meta("original_scale")
+	var tween = create_tween()
+	tween.tween_property(btn, "scale", orig_scale * 1.1, 0.1).set_trans(Tween.TRANS_SINE)
+
+func _on_btn_exit(btn: Button):
+	var orig_scale = btn.get_meta("original_scale")
+	var tween = create_tween()
+	tween.tween_property(btn, "scale", orig_scale, 0.1).set_trans(Tween.TRANS_SINE)
+
+func _on_btn_click():
+	if _click_sfx:
+		_click_sfx.play()

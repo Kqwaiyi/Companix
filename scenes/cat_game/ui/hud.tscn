@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" path="res://assets/ui/Loot/cat.png" id="2_cat"]
 [ext_resource type="Texture2D" path="res://assets/ui/Loot/Clock.png" id="3_clock"]
 [ext_resource type="Texture2D" path="res://assets/ui/Loot/rat.png" id="4_rat"]
+[ext_resource type="Script" path="res://scripts/cat_game/ui/hover_button.gd" id="script_hover_btn"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel"]
 bg_color = Color(0.898, 0.816, 0.663, 1)
@@ -305,3 +306,4 @@ theme_override_colors/font_pressed_color = Color(0.18, 0.12, 0.07, 1)
 theme_override_styles/normal = SubResource("StyleBoxFlat_back_normal")
 theme_override_styles/hover = SubResource("StyleBoxFlat_back_hover")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_back_pressed")
+script = ExtResource("script_hover_btn")

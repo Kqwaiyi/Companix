@@ -4,10 +4,21 @@ var _is_transitioning: bool = false
 var time_label: Label = null
 @export var home_scene_path: String = "res://scenes/pet_world/lobby/mainlobby.tscn"
 
+var hover_sound: AudioStreamPlayer
+var click_sound: AudioStreamPlayer
+
 func _enter_tree():
 	LevelManager.reset()
 
 func _ready():
+	hover_sound = AudioStreamPlayer.new()
+	hover_sound.stream = preload("res://assets/sounds/other_ui/other_ui_hover.mp3")
+	add_child(hover_sound)
+	
+	click_sound = AudioStreamPlayer.new()
+	click_sound.stream = preload("res://assets/sounds/other_ui/other_ui_click.mp3")
+	add_child(click_sound)
+
 	MusicManager.play_music("snake_tower")
 	# Start the timer whenever a level is loaded (handles direct editor runs)
 	get_tree().call_group("minigame_time_trackers", "start_time")
@@ -17,6 +28,10 @@ func _ready():
 	
 	var ui_layer = get_node_or_null("UILayer")
 	if ui_layer:
+		for child in ui_layer.get_children():
+			if child is Button:
+				_setup_ui_button(child)
+				
 		if scene_file_path != "res://scenes/snake_tower/level/Level1.tscn" and scene_file_path != "res://scenes/snake_tower/level/LevelLast.tscn":
 			time_label = Label.new()
 			ui_layer.add_child(time_label)
@@ -89,3 +104,33 @@ func return_to_home():
 	GlobalSnaketower.reset_attempt_timer()
 	MusicManager.play_music("pet_world", true)
 	_switch_level(home_scene_path)
+
+func _setup_ui_button(btn: Button):
+	btn.set_meta("original_scale", btn.scale)
+	
+	# Compensate for changing the pivot offset while scaled
+	var default_pivot = Vector2.ZERO
+	var new_pivot = btn.size / 2.0
+	if btn.pivot_offset == default_pivot:
+		btn.position -= new_pivot * (Vector2(1.0, 1.0) - btn.scale)
+		btn.pivot_offset = new_pivot
+	
+	btn.mouse_entered.connect(_on_btn_hover.bind(btn))
+	btn.mouse_exited.connect(_on_btn_exit.bind(btn))
+	btn.button_down.connect(_on_btn_click)
+
+func _on_btn_hover(btn: Button):
+	if hover_sound:
+		hover_sound.play()
+	var orig_scale = btn.get_meta("original_scale")
+	var tween = create_tween()
+	tween.tween_property(btn, "scale", orig_scale * 1.1, 0.1).set_trans(Tween.TRANS_SINE)
+
+func _on_btn_exit(btn: Button):
+	var orig_scale = btn.get_meta("original_scale")
+	var tween = create_tween()
+	tween.tween_property(btn, "scale", orig_scale, 0.1).set_trans(Tween.TRANS_SINE)
+
+func _on_btn_click():
+	if click_sound:
+		click_sound.play()
