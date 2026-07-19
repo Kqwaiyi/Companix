@@ -12,6 +12,8 @@ const _OFF_WHITE    := Color(0.918, 0.910, 0.894, 1.0)
 const _BRIGHT_WHITE := Color(1.000, 1.000, 1.000, 1.0)
 const _CYAN         := Color(0.376, 0.847, 0.937, 1.0)
 
+const _SPACE_SFX := preload("res://assets/music/space_notification.mp3")
+
 # ─── Layout ───────────────────────────────────────────────────────────────────
 const _ML  := 130.0
 const _NW  := 1620.0
@@ -33,6 +35,8 @@ var _prompt    : Label
 var _prompt_bg : ColorRect
 var _prompt_ln : ColorRect
 var _prompt_tw : Tween
+
+var _sfx_player : AudioStreamPlayer
 
 var _f_reg  : FontFile
 var _f_bold : FontFile
@@ -57,6 +61,10 @@ func _ready() -> void:
 	_ui_canvas.layer = 10
 	add_child(_ui_canvas)
 
+	_sfx_player = AudioStreamPlayer.new()
+	_sfx_player.bus = "Master"
+	add_child(_sfx_player)
+
 	_f_reg  = _load_font(_F_REG)
 	_f_bold = _load_font(_F_BOLD)
 	_f_sb   = _load_font(_F_SB)
@@ -77,7 +85,14 @@ func _unhandled_input(event: InputEvent) -> void:
 			and event.keycode == KEY_SPACE \
 			and event.pressed \
 			and not event.echo:
-		_advance_requested = true
+		if not _advance_requested:
+			_advance_requested = true
+			_play_space_sfx()
+
+func _play_space_sfx() -> void:
+	if _sfx_player and _SPACE_SFX:
+		_sfx_player.stream = _SPACE_SFX
+		_sfx_player.play()
 
 # ─── Prompt ───────────────────────────────────────────────────────────────────
 func _make_prompt() -> void:
@@ -126,6 +141,7 @@ func _hide_prompt() -> void:
 # If Space was already pressed during the preceding _type() the advance flag
 # is still set, so this returns immediately (one press = skip type + advance).
 func _continue() -> void:
+	_advance_requested = false
 	_show_prompt()
 	while not _advance_requested:
 		await get_tree().process_frame
@@ -241,6 +257,7 @@ func _clear(fade: float = 0.45, gap: float = 0.0) -> void:
 #  BEAT 1 – Year card
 # ═════════════════════════════════════════════════════════════════════════════
 func _b1() -> void:
+	_advance_requested = false
 	var year := _lbl(
 		"Y E A R    2 5 1 1",
 		24, _CYAN,
@@ -257,6 +274,7 @@ func _b1() -> void:
 #  BEAT 2 – Tech advancement  (auto-flows between lines, Space at end)
 # ═════════════════════════════════════════════════════════════════════════════
 func _b2() -> void:
+	_advance_requested = false
 	const Y0  := 212.0
 	const GAP := 70.0
 	const SZ  := 22
@@ -290,6 +308,7 @@ func _b2() -> void:
 #  BEAT 3 – Contrast line
 # ═════════════════════════════════════════════════════════════════════════════
 func _b3() -> void:
+	_advance_requested = false
 	var contrast := _lbl(
 		"But life has not become easier.",
 		40, _BRIGHT_WHITE,
@@ -305,6 +324,7 @@ func _b3() -> void:
 #  BEAT 4 – Economic reality  (auto-flows, Space at end)
 # ═════════════════════════════════════════════════════════════════════════════
 func _b4() -> void:
+	_advance_requested = false
 	const RY  := 240.0
 	const RG  := 74.0
 	const RSZ := 22
@@ -333,6 +353,7 @@ func _b4() -> void:
 #  BEAT 5 – Virtual Pets reveal  (setup auto-flows into impact)
 # ═════════════════════════════════════════════════════════════════════════════
 func _b5() -> void:
+	_advance_requested = false
 	var setup := _rtl(
 		"As real pets became too expensive for many households,\ncompanies created an alternative:",
 		21, _OFF_WHITE, Vector2(_ML, 292.0))
@@ -356,6 +377,7 @@ func _b5() -> void:
 #  BEAT 6 – Evolution  (auto-flows, Space at end)
 # ═════════════════════════════════════════════════════════════════════════════
 func _b6() -> void:
+	_advance_requested = false
 	const EY  := 224.0
 	const EG  := 74.0
 
@@ -391,6 +413,7 @@ func _b6() -> void:
 #  BEAT 7 – "But to some..."  (neutral auto-flows into impact)
 # ═════════════════════════════════════════════════════════════════════════════
 func _b7() -> void:
+	_advance_requested = false
 	var neutral := _rtl("To most people, they are still only software to pass the time.",
 						21, _OFF_WHITE, Vector2(_ML, 312.0))
 	await _type(neutral, 0.013)
@@ -413,6 +436,7 @@ func _b7() -> void:
 #  BEAT 8 – "They are family."
 # ═════════════════════════════════════════════════════════════════════════════
 func _b8() -> void:
+	_advance_requested = false
 	var family := _lbl(
 		"They are family.",
 		54, _BRIGHT_WHITE,

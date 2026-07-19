@@ -19,7 +19,7 @@ texture = ExtResource("2_sn")
 
 [node name="MoveAudio" type="AudioStreamPlayer" parent="." unique_id=98992891]
 stream = ExtResource("4_move")
-volume_db = -15.0
+volume_db = -17.0
 pitch_scale = 1.5
 mix_target = 1
 

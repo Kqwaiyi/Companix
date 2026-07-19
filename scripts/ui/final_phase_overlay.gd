@@ -49,6 +49,12 @@ func _show_prompt() -> void:
 func _confirm_prompt() -> void:
 	_is_interacting = true
 	
+	var click_audio := AudioStreamPlayer.new()
+	click_audio.stream = load("res://assets/sounds/futuristic_ui/Click.mp3")
+	get_tree().root.add_child(click_audio)
+	click_audio.play()
+	click_audio.finished.connect(click_audio.queue_free)
+	
 	if _current_tween and _current_tween.is_valid():
 		_current_tween.kill()
 		

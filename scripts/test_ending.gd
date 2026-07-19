@@ -1,7 +1,7 @@
 extends Node
 
-@export var cat_game_place: int = 3
-@export var snake_tower_place: int = 1
+@export var cat_game_place: int = 312
+@export var snake_tower_place: int = 122
 
 func _ready() -> void:
 	print("--- RUNNING ENDING TEST ---")

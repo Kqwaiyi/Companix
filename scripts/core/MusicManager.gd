@@ -17,10 +17,13 @@ var _target_volume_db: float = 0.0
 var _music_tracks: Dictionary = {
 	"main_menu":   { "path": "res://assets/music/main_menu_music.mp3",          "volume_db": -10 },
 	"cat_game":    { "path": "res://assets/music/cat_game/cat_game_BGM.mp3",          "volume_db": -15 },
-	"snake_tower": { "path": "res://assets/music/snake tower/snake_tower_BGM.mp3",    "volume_db": -10 },
+	"snake_tower": { "path": "res://assets/music/snake tower/snake_tower_BGM.mp3",    "volume_db": -15 },
 	"pet_world":   { "path": "res://assets/music/pet_world/pet_world_BGM.mp3",        "volume_db": -15 },
 	"scifi_home":  { "path": "res://assets/music/scifi-world/scifi_home_BGM.mp3",     "volume_db": -15 },
 	"exposition":  { "path": "res://assets/music/Exposition_ending_1.mp3",            "volume_db": -22 },
+	"ending_1":    { "path": "res://assets/music/Exposition_ending_1.mp3",            "volume_db": -24 },
+	"ending_2":    { "path": "res://assets/music/ending_2_3.mp3",                     "volume_db": -24 },
+	"ending_3":    { "path": "res://assets/music/ending_2_3.mp3",                     "volume_db": -24 },
 }
 
 func _ready() -> void:
@@ -36,12 +39,16 @@ func _ready() -> void:
 
 ## Starts playing music from the given path or dictionary key.
 ## If repeat is true, it loops with a 3.5s delay.
-func play_music(path: String, repeat: bool = true, custom_fade_in: float = -1.0, custom_fade_out: float = -1.0) -> void:
+func play_music(path: String, repeat: bool = true, custom_fade_in: float = -1.0, custom_fade_out: float = -1.0, custom_volume: float = 100.0) -> void:
 	# If a dictionary key is provided, resolve it to the full path and read its volume.
 	if _music_tracks.has(path):
 		var entry: Dictionary = _music_tracks[path]
 		_target_volume_db = entry.get("volume_db", 0.0)
 		path = entry["path"]
+		
+	# Override volume if a custom one is provided
+	if custom_volume != 100.0:
+		_target_volume_db = custom_volume
 
 	# If the requested music is already playing, do nothing.
 	if _current_path == path and _audio_player.playing:

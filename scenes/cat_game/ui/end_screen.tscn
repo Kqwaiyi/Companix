@@ -1,55 +1,7 @@
 [gd_scene format=3 uid="uid://cae1w4ffii4j5"]
 
 [ext_resource type="Script" uid="uid://ve3iv3hgdh8x" path="res://scripts/cat_game/ui/end_screen.gd" id="1_end"]
-[ext_resource type="Script" path="res://scripts/cat_game/ui/hover_button.gd" id="script_hover_btn"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_back_normal"]
-bg_color = Color(0.898, 0.816, 0.663, 1)
-border_width_left = 3
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 3
-border_color = Color(0.216, 0.149, 0.086, 1)
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
-content_margin_left = 8.0
-content_margin_top = 6.0
-content_margin_right = 8.0
-content_margin_bottom = 6.0
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_back_hover"]
-bg_color = Color(0.82, 0.73, 0.55, 1)
-border_width_left = 3
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 3
-border_color = Color(0.216, 0.149, 0.086, 1)
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
-content_margin_left = 8.0
-content_margin_top = 6.0
-content_margin_right = 8.0
-content_margin_bottom = 6.0
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_back_pressed"]
-bg_color = Color(0.68, 0.58, 0.42, 1)
-border_width_left = 3
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 3
-border_color = Color(0.216, 0.149, 0.086, 1)
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
-content_margin_left = 8.0
-content_margin_top = 6.0
-content_margin_right = 8.0
-content_margin_bottom = 6.0
+[ext_resource type="Script" uid="uid://iuome4ql4vdp" path="res://scripts/cat_game/ui/hover_button.gd" id="script_hover_btn"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel"]
 content_margin_left = 24.0
@@ -68,6 +20,54 @@ corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 shadow_color = Color(0.05, 0.02, 0.01, 0.5)
 shadow_size = 14
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_back_normal"]
+content_margin_left = 8.0
+content_margin_top = 6.0
+content_margin_right = 8.0
+content_margin_bottom = 6.0
+bg_color = Color(0.898, 0.816, 0.663, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.216, 0.149, 0.086, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_back_pressed"]
+content_margin_left = 8.0
+content_margin_top = 6.0
+content_margin_right = 8.0
+content_margin_bottom = 6.0
+bg_color = Color(0.68, 0.58, 0.42, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.216, 0.149, 0.086, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_back_hover"]
+content_margin_left = 8.0
+content_margin_top = 6.0
+content_margin_right = 8.0
+content_margin_bottom = 6.0
+bg_color = Color(0.82, 0.73, 0.55, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.216, 0.149, 0.086, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
 
 [node name="EndScreen" type="Control" unique_id=1007942508]
 layout_mode = 3
@@ -153,12 +153,12 @@ offset_top = 32.0
 offset_right = 126.0
 offset_bottom = 126.0
 theme_override_colors/font_color = Color(0.18, 0.12, 0.07, 1)
-theme_override_colors/font_hover_color = Color(0.18, 0.12, 0.07, 1)
 theme_override_colors/font_pressed_color = Color(0.18, 0.12, 0.07, 1)
+theme_override_colors/font_hover_color = Color(0.18, 0.12, 0.07, 1)
 theme_override_font_sizes/font_size = 25
 theme_override_styles/normal = SubResource("StyleBoxFlat_back_normal")
-theme_override_styles/hover = SubResource("StyleBoxFlat_back_hover")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_back_pressed")
+theme_override_styles/hover = SubResource("StyleBoxFlat_back_hover")
 text = "Back
 ⬅"
 script = ExtResource("script_hover_btn")

@@ -17,11 +17,10 @@ extends Node
 @export var text_speed     : float = 0.028   # seconds per character (narration)
 @export var slow_speed     : float = 0.040   # seconds per character (emotional)
 
-# ─── Audio — assign AudioStreams in the Inspector ────────────────────────────
-@export_category("Audio")
-@export var music_ending_1 : AudioStream   # bleak / bittersweet
-@export var music_ending_2 : AudioStream   # restrained / hopeful
-@export var music_ending_3 : AudioStream   # warm / triumphant
+# ─── Audio ───────────────────────────────────────────────────────────────────
+# Music tracks are now handled by MusicManager ("ending_1", "ending_2", "ending_3")
+
+const _SPACE_SFX := preload("res://assets/music/space_notification.mp3")
 
 # ─── Return scene — change if your hub scene moves ───────────────────────────
 @export_category("Scene")
@@ -70,7 +69,7 @@ var _prompt_bg : ColorRect
 var _prompt_ln : ColorRect
 var _prompt_tw : Tween
 
-var _music_player : AudioStreamPlayer
+var _sfx_player : AudioStreamPlayer
 
 var _f_bold : FontFile
 var _f_sb   : FontFile
@@ -124,9 +123,9 @@ func _build_nodes() -> void:
 	_ui_canvas.layer = 10
 	add_child(_ui_canvas)
 
-	_music_player     = AudioStreamPlayer.new()
-	_music_player.bus = "Master"
-	add_child(_music_player)
+	_sfx_player       = AudioStreamPlayer.new()
+	_sfx_player.bus   = "Master"
+	add_child(_sfx_player)
 
 # ─── Input ────────────────────────────────────────────────────────────────────
 func _unhandled_input(event: InputEvent) -> void:
@@ -135,9 +134,16 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventKey and event.pressed and not event.echo:
 		if event.keycode in [KEY_SPACE, KEY_ENTER, KEY_KP_ENTER]:
 			_advance_requested = true
+			_play_space_sfx()
 	elif event is InputEventMouseButton and event.pressed:
 		if (event as InputEventMouseButton).button_index == MOUSE_BUTTON_LEFT:
 			_advance_requested = true
+			_play_space_sfx()
+
+func _play_space_sfx() -> void:
+	if _sfx_player and _SPACE_SFX:
+		_sfx_player.stream = _SPACE_SFX
+		_sfx_player.play()
 
 # ─── Prompt ───────────────────────────────────────────────────────────────────
 func _make_prompt() -> void:
@@ -182,6 +188,7 @@ func _hide_prompt() -> void:
 
 # Waits for Space / Enter / click.  If already set from a skip, returns immediately.
 func _continue() -> void:
+	_advance_requested = false
 	_show_prompt()
 	while not _advance_requested:
 		await get_tree().process_frame
@@ -291,6 +298,7 @@ func _clear(fade: float = 0.4, gap: float = 0.0) -> void:
 	_pool.clear()
 	if gap > 0.0:
 		await _hold(gap)
+	_advance_requested = false
 
 # ═════════════════════════════════════════════════════════════════════════════
 #  IMAGE BEAT
@@ -327,6 +335,7 @@ func _show_image(path: String, hold_override: float = -1.0, do_zoom: bool = true
 	await tw.finished
 
 	# Skippable hold — show prompt and wait for either the timer or player input.
+	_advance_requested = false
 	_show_prompt()
 	var start_ms : int = Time.get_ticks_msec()
 	var hold_ms  : int = int(hold_time * 1000.0)
@@ -342,6 +351,7 @@ func _show_image(path: String, hold_override: float = -1.0, do_zoom: bool = true
 	_img.texture = null
 	_img.scale   = Vector2.ONE
 	await _hold(0.4)
+	_advance_requested = false
 
 # ═════════════════════════════════════════════════════════════════════════════
 #  TITLE CARD
@@ -391,18 +401,15 @@ func _show_thanks(accent: Color) -> void:
 	await _continue()
 
 # ─── Music helpers ────────────────────────────────────────────────────────────
-func _start_music(stream: AudioStream, target_db: float = -14.0) -> void:
-	if not stream:
+func _start_music(track_key: String, target_db: float = -14.0) -> void:
+	if track_key == "":
 		return
-	_music_player.stream    = stream
-	_music_player.volume_db = -80.0
-	_music_player.play()
-	create_tween().tween_property(_music_player, "volume_db", target_db, 2.5)
+	if MusicManager:
+		MusicManager.play_music(track_key, true, 2.5, -1.0, target_db)
 
 func _fade_music(to_db: float = -80.0, dur: float = 2.0) -> void:
-	if not _music_player.playing:
-		return
-	create_tween().tween_property(_music_player, "volume_db", to_db, dur)
+	if MusicManager:
+		MusicManager.stop_music(false, dur)
 
 # ═════════════════════════════════════════════════════════════════════════════
 #  ENDING SELECTION
@@ -477,7 +484,7 @@ func _run() -> void:
 #  Accent hex for BBCode: #C4717A
 # ═════════════════════════════════════════════════════════════════════════════
 func _run_ending_1() -> void:
-	_start_music(music_ending_1)
+	_start_music("ending_1", -24.0)
 
 	await _show_title_card("ENDING  01", "LIFE  CONTRACT", _ACC_E1)
 
@@ -582,7 +589,7 @@ func _run_ending_1() -> void:
 #  Accent hex for BBCode: #60D8EF
 # ═════════════════════════════════════════════════════════════════════════════
 func _run_ending_2() -> void:
-	_start_music(music_ending_2)
+	_start_music("ending_2", -24.0)
 
 	await _show_title_card("ENDING  02", "A  NEW  START", _ACC_E2)
 
@@ -687,7 +694,7 @@ func _run_ending_2() -> void:
 #  Accent hex for BBCode: #D4A847
 # ═════════════════════════════════════════════════════════════════════════════
 func _run_ending_3() -> void:
-	_start_music(music_ending_3, -24.0)
+	_start_music("ending_3", -24.0)
 
 	await _show_title_card("ENDING  03", "MADE  FOR  THIS", _ACC_E3)
 
