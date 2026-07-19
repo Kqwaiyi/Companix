@@ -125,7 +125,16 @@ func _on_play_pressed() -> void:
 func _on_credits_pressed() -> void:
 	click_audio.play()
 	
-	var credits_string = "SYSTEM IDENTIFICATION\nProject: COMPANIX\nStatus: Online\n\nCREDITS LOG\n> Lead Developer: Player 1\n> Visual Engineering: Artificial Intelligence\n> Audio Architecture: Synthesis Engine\n\n// End of file."
+	var credits_string = "
+GMC GAMEJAM SUBMISSION
+Project: COMPANIX
+Status: Online
+	
+CREDITS LOG
+> Billy (discord @chikyu1750)
+> Steven (discord @kqwaiiyii)
+	
+// End of file."
 	
 	if credits_terminal.has_method("type_text"):
 		credits_terminal.type_text(credits_string, 0.02)

@@ -30,7 +30,7 @@ func type_text(new_text: String, char_delay: float = 0.02) -> void:
 	modulate.a = 1.0
 	
 	# Start audio
-	_audio_player.volume_db = -25.0
+	_audio_player.volume_db = -10.0
 	_audio_player.pitch_scale = 1.0
 	_audio_player.play()
 	
