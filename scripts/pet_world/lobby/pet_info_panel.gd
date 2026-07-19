@@ -28,8 +28,20 @@ var _tourn_btn        : Button
 
 var _tween: Tween
 
+var _hover_sfx: AudioStreamPlayer
+var _click_sfx: AudioStreamPlayer
+
 func _ready() -> void:
 	layer = 20
+	
+	_hover_sfx = AudioStreamPlayer.new()
+	_hover_sfx.stream = preload("res://assets/sounds/other_ui/other_ui_hover.mp3")
+	add_child(_hover_sfx)
+	
+	_click_sfx = AudioStreamPlayer.new()
+	_click_sfx.stream = preload("res://assets/sounds/other_ui/other_ui_click.mp3")
+	add_child(_click_sfx)
+	
 	_build_ui()
 	visible = false
 
@@ -301,6 +313,9 @@ func _add_buttons(parent: VBoxContainer) -> void:
 	_pet_btn.add_theme_font_size_override("font_size", 14)
 	_style_btn(_pet_btn, Color(0.90, 0.62, 0.28), Color(0.28, 0.14, 0.03))
 	_pet_btn.pressed.connect(_on_pet_btn_pressed)
+	_pet_btn.mouse_entered.connect(_on_btn_hover.bind(_pet_btn))
+	_pet_btn.mouse_exited.connect(_on_btn_exit.bind(_pet_btn))
+	_pet_btn.button_down.connect(_on_btn_click)
 	parent.add_child(_pet_btn)
 
 	_tourn_btn = Button.new()
@@ -309,6 +324,9 @@ func _add_buttons(parent: VBoxContainer) -> void:
 	_tourn_btn.add_theme_font_size_override("font_size", 13)
 	_style_btn(_tourn_btn, Color(0.52, 0.68, 0.42), Color(0.10, 0.28, 0.06))
 	_tourn_btn.pressed.connect(_on_tourn_btn_pressed)
+	_tourn_btn.mouse_entered.connect(_on_btn_hover.bind(_tourn_btn))
+	_tourn_btn.mouse_exited.connect(_on_btn_exit.bind(_tourn_btn))
+	_tourn_btn.button_down.connect(_on_btn_click)
 	parent.add_child(_tourn_btn)
 
 func _style_btn(btn: Button, bg: Color, fg: Color) -> void:
@@ -339,3 +357,18 @@ func _style_btn(btn: Button, bg: Color, fg: Color) -> void:
 	btn.add_theme_color_override("font_hover_color",    fg)
 	btn.add_theme_color_override("font_pressed_color",  fg)
 	btn.add_theme_color_override("font_disabled_color", Color(fg.r, fg.g, fg.b, 0.45))
+
+func _on_btn_hover(btn: Button):
+	if _hover_sfx:
+		_hover_sfx.play()
+	btn.pivot_offset = btn.size / 2.0
+	var tween = create_tween()
+	tween.tween_property(btn, "scale", Vector2(1.1, 1.1), 0.1).set_trans(Tween.TRANS_SINE)
+
+func _on_btn_exit(btn: Button):
+	var tween = create_tween()
+	tween.tween_property(btn, "scale", Vector2(1.0, 1.0), 0.1).set_trans(Tween.TRANS_SINE)
+
+func _on_btn_click():
+	if _click_sfx:
+		_click_sfx.play()

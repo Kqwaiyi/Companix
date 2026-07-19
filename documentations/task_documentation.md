@@ -1,6 +1,6 @@
 # Technical Documentation: Task Notification Module
 
-This document serves as a technical reference for the `TaskManager` module. It provides context on the design patterns, responsibilities, visual effects, and specific implementations of this system in the Emberborne Godot project.
+This document serves as a technical reference for the `TaskManager` module. It provides context on the design patterns, responsibilities, visual effects, and specific implementations of this system in the Companix Godot project.
 
 ---
 

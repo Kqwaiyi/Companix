@@ -1,6 +1,6 @@
 # Cat Game — Project Technical Documentation
 
-> **Scope:** This document covers the `cat_game` section of the Emberborne project exclusively.  
+> **Scope:** This document covers the `cat_game` section of the Companix project exclusively.  
 > All references to `snake_tower` and `pet_world` are out of scope.  
 > Written against the codebase state as of **July 2026**.
 

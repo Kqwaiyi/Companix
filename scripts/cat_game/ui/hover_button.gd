@@ -10,17 +10,17 @@ func _ready() -> void:
 	mouse_entered.connect(_on_mouse_entered)
 	mouse_exited.connect(_on_mouse_exited)
 	button_down.connect(_on_button_down)
-	
-	# Set pivot to the center for proper scaling
-	pivot_offset = size / 2.0
 
 func _on_mouse_entered() -> void:
 	_play_transient_sound(HOVER_SOUND)
 	
+	# Set pivot dynamically in case size changed after _ready (e.g. containers)
+	pivot_offset = size / 2.0
+	
 	if _tween and _tween.is_valid():
 		_tween.kill()
 	_tween = create_tween()
-	_tween.tween_property(self, "scale", Vector2(1.1, 1.1), 0.1).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+	_tween.tween_property(self, "scale", Vector2(1.03, 1.03), 0.1).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
 
 func _on_mouse_exited() -> void:
 	if _tween and _tween.is_valid():

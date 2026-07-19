@@ -2,7 +2,7 @@
 
 ## Overview
 
-The `CutsceneMessenger` is a texting-app-style cutscene runner designed for Emberborne's futuristic UI. Rather than presenting dialogue in a traditional visual novel format, conversations play out dynamically inside the Laptop SubViewport, mimicking a secure messaging application (e.g., WhatsApp, Signal). 
+The `CutsceneMessenger` is a texting-app-style cutscene runner designed for Companix's futuristic UI. Rather than presenting dialogue in a traditional visual novel format, conversations play out dynamically inside the Laptop SubViewport, mimicking a secure messaging application (e.g., WhatsApp, Signal). 
 
 It features a dual-scene architecture, dynamic diegetic timestamps, text decryption sequences, typing indicators, active telemetry UI animations, and a robust external queueing API that integrates deeply with the Desktop UI to display unread notification badges.
 

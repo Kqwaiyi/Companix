@@ -1,6 +1,6 @@
 # Technical Documentation: SceneManager Architecture
 
-This document serves as a technical reference for the `SceneManager` module. It provides context on the design patterns, responsibilities, and specific implementations of this system in the Emberborne Godot project.
+This document serves as a technical reference for the `SceneManager` module. It provides context on the design patterns, responsibilities, and specific implementations of this system in the Companix Godot project.
 
 ---
 

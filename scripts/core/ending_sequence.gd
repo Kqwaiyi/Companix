@@ -374,7 +374,7 @@ func _show_thanks(accent: Color) -> void:
 						HORIZONTAL_ALIGNMENT_CENTER, _f_sb)
 	await _appear_full(thanks, thanks_fade_in)
 
-	var game := _lbl("EMBERBORNE", 17,
+	var game := _lbl("COMPANIX", 17,
 					 Color(accent.r, accent.g, accent.b, 0.55),
 					 Vector2(_CX, 322.0), _TW_C,
 					 HORIZONTAL_ALIGNMENT_CENTER, _f_lt)

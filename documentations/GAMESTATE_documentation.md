@@ -1,6 +1,6 @@
 # Technical Documentation: Gamestate & Story Orchestration
 
-This document details the central state machine inside `GameGlobal` (`res://scripts/core/game_global.gd`), which orchestrates the storyline progression in Emberborne. 
+This document details the central state machine inside `GameGlobal` (`res://scripts/core/game_global.gd`), which orchestrates the storyline progression in Companix. 
 
 ---
 

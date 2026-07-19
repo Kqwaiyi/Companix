@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bi1jkjod1gksn" path="res://scripts/cat_game/ui/results_screen.gd" id="1_results"]
 [ext_resource type="Texture2D" uid="uid://c31eweol7rhif" path="res://assets/ui/Loot/cat.png" id="2_cat"]
+[ext_resource type="Script" path="res://scripts/cat_game/ui/hover_button.gd" id="script_hover_btn"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel"]
 content_margin_left = 16.0
@@ -308,3 +309,4 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_pressed")
 theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
 theme_override_styles/focus = SubResource("StyleBoxFlat_btn_focus")
 text = "NEXT  >"
+script = ExtResource("script_hover_btn")

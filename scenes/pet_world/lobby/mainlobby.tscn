@@ -10,6 +10,7 @@
 [ext_resource type="AudioStream" uid="uid://d4ccaq4w36wue" path="res://assets/music/pet_world/cat_pet.mp3" id="7_catpet"]
 [ext_resource type="AudioStream" uid="uid://dnk60du6ku8hk" path="res://assets/music/pet_world/snake hiss.mp3" id="8_snakehiss"]
 [ext_resource type="Texture2D" uid="uid://bho4rvclvjjcd" path="res://assets/sprites/messenger/icon_back.svg" id="9_iconback"]
+[ext_resource type="Script" path="res://scripts/cat_game/ui/hover_button.gd" id="script_hover_btn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mq7y1"]
 size = Vector2(20, 305.48358)
@@ -188,10 +189,10 @@ pitch_scale = 0.6
 [node name="BackLayer" type="CanvasLayer" parent="." unique_id=1732842315]
 
 [node name="BackButton" type="Button" parent="BackLayer" unique_id=201706222]
-offset_left = 10.0
-offset_top = 10.0
-offset_right = 104.0
-offset_bottom = 104.0
+offset_left = 32.0
+offset_top = 32.0
+offset_right = 126.0
+offset_bottom = 126.0
 theme_override_colors/font_color = Color(0.18, 0.12, 0.07, 1)
 theme_override_colors/font_pressed_color = Color(0.18, 0.12, 0.07, 1)
 theme_override_colors/font_hover_color = Color(0.18, 0.12, 0.07, 1)
@@ -207,3 +208,4 @@ text = "Back"
 icon = ExtResource("9_iconback")
 icon_alignment = 1
 vertical_icon_alignment = 2
+script = ExtResource("script_hover_btn")
