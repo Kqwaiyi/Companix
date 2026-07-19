@@ -131,7 +131,6 @@ func _on_mouse_entered():
 	_hover_tween.tween_property(hover_glow, "modulate:a", 0.12, 0.2).set_ease(Tween.EASE_OUT)
 	_hover_tween.tween_method(_set_hover_intensity, _get_hover_intensity(), 1.0, 0.2).set_ease(Tween.EASE_OUT)
 	_hover_tween.tween_property(panel, "scale", Vector2(1.04, 1.04), 0.15).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BACK)
-	_hover_tween.tween_property(icon_rect, "modulate", Color(0.5, 1.0, 1.0), 0.2).set_ease(Tween.EASE_OUT)
 
 func _on_mouse_exited():
 	app_unhovered.emit()
@@ -144,7 +143,6 @@ func _on_mouse_exited():
 	_hover_tween.tween_property(hover_glow, "modulate:a", 0.0, 0.15).set_ease(Tween.EASE_IN)
 	_hover_tween.tween_method(_set_hover_intensity, _get_hover_intensity(), 0.0, 0.15).set_ease(Tween.EASE_IN)
 	_hover_tween.tween_property(panel, "scale", Vector2(1.0, 1.0), 0.15).set_ease(Tween.EASE_IN)
-	_hover_tween.tween_property(icon_rect, "modulate", Color(1.0, 1.0, 1.0), 0.15).set_ease(Tween.EASE_IN)
 
 func _on_button_down():
 	if click_sound.stream:

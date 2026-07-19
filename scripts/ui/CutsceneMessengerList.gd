@@ -171,6 +171,8 @@ func _populate_conversation_list() -> void:
 		inner_hbox.add_child(text_vbox)
 		
 		var name_lbl = Label.new()
+		var _bold_font = load("res://assets/fonts/Chakra_Petch/ChakraPetch-Bold.ttf")
+		name_lbl.add_theme_font_override("font", _bold_font)
 		name_lbl.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		name_lbl.text = c_name
 		name_lbl.add_theme_color_override("font_color", COLOR_BUBBLE_TEXT)
@@ -178,6 +180,8 @@ func _populate_conversation_list() -> void:
 		text_vbox.add_child(name_lbl)
 		
 		var sub_lbl = Label.new()
+		var _custom_font_sub = load("res://assets/fonts/Chakra_Petch/ChakraPetch-Regular.ttf")
+		sub_lbl.add_theme_font_override("font", _custom_font_sub)
 		sub_lbl.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		if is_queued:
 			sub_lbl.text = "[ STATUS: UNREAD MESSAGES ]"
@@ -200,6 +204,8 @@ func _populate_conversation_list() -> void:
 		inner_hbox.add_child(telemetry_vbox)
 		
 		var ping_lbl = Label.new()
+		var _custom_font_ping = load("res://assets/fonts/Chakra_Petch/ChakraPetch-Regular.ttf")
+		ping_lbl.add_theme_font_override("font", _custom_font_ping)
 		ping_lbl.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		ping_lbl.text = "PING: %dms" % randi_range(12, 45)
 		ping_lbl.add_theme_color_override("font_color", Color(0.5, 0.7, 0.6, 0.7))
@@ -208,6 +214,8 @@ func _populate_conversation_list() -> void:
 		telemetry_vbox.add_child(ping_lbl)
 		
 		var hex_lbl = Label.new()
+		var _custom_font_hex = load("res://assets/fonts/Chakra_Petch/ChakraPetch-Regular.ttf")
+		hex_lbl.add_theme_font_override("font", _custom_font_hex)
 		hex_lbl.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		hex_lbl.text = "[0x%04X]" % randi_range(0x1000, 0xFFFF)
 		hex_lbl.add_theme_color_override("font_color", Color(0.5, 0.7, 0.6, 0.5))
@@ -456,6 +464,8 @@ func _build_ui() -> void:
 	lh_hbox.add_child(list_back)
 	
 	var list_title = Label.new()
+	var _bold_font = load("res://assets/fonts/Chakra_Petch/ChakraPetch-Bold.ttf")
+	list_title.add_theme_font_override("font", _bold_font)
 	list_title.text = "Messages"
 	list_title.add_theme_color_override("font_color", COLOR_HEADER_TEXT)
 	list_title.add_theme_font_size_override("font_size", 16)
@@ -494,12 +504,16 @@ func _build_ui() -> void:
 	lh_hbox.add_child(preview_vbox)
 	
 	var preview_name = Label.new()
+	var _custom_font_prevname = load("res://assets/fonts/Chakra_Petch/ChakraPetch-Regular.ttf")
+	preview_name.add_theme_font_override("font", _custom_font_prevname)
 	preview_name.add_theme_color_override("font_color", COLOR_BUBBLE_TEXT)
 	preview_name.add_theme_font_size_override("font_size", 13)
 	preview_name.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
 	preview_vbox.add_child(preview_name)
 	
 	var preview_msg = Label.new()
+	var _custom_font_prevmsg = load("res://assets/fonts/Chakra_Petch/ChakraPetch-Regular.ttf")
+	preview_msg.add_theme_font_override("font", _custom_font_prevmsg)
 	preview_msg.add_theme_color_override("font_color", COLOR_HEADER_TEXT)
 	preview_msg.add_theme_font_size_override("font_size", 11)
 	preview_msg.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT

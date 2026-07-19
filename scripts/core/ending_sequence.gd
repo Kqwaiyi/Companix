@@ -391,13 +391,13 @@ func _show_thanks(accent: Color) -> void:
 	await _continue()
 
 # ─── Music helpers ────────────────────────────────────────────────────────────
-func _start_music(stream: AudioStream) -> void:
+func _start_music(stream: AudioStream, target_db: float = -14.0) -> void:
 	if not stream:
 		return
 	_music_player.stream    = stream
 	_music_player.volume_db = -80.0
 	_music_player.play()
-	create_tween().tween_property(_music_player, "volume_db", -14.0, 2.5)
+	create_tween().tween_property(_music_player, "volume_db", target_db, 2.5)
 
 func _fade_music(to_db: float = -80.0, dur: float = 2.0) -> void:
 	if not _music_player.playing:
@@ -407,13 +407,29 @@ func _fade_music(to_db: float = -80.0, dur: float = 2.0) -> void:
 # ═════════════════════════════════════════════════════════════════════════════
 #  ENDING SELECTION
 # ═════════════════════════════════════════════════════════════════════════════
+func get_points(place: int) -> int:
+	if place <= 0 or place > 8:
+		return 0
+	return int(100.0 * pow(0.6, place - 1))
+
 func _determine_ending() -> int:
 	if debug_force_ending in [1, 2, 3]:
 		return debug_force_ending
-	var score := GameState.total_score if GameState else 0
-	if score >= ending_3_min_points:
+		
+	var cat_place := 8
+	var snake_place := 8
+	
+	if GameGlobal:
+		var raw_cat := GameGlobal.get_minigame_finish_place("cat_game")
+		var raw_snake := GameGlobal.get_minigame_finish_place("snake_tower")
+		if raw_cat > 0: cat_place = raw_cat
+		if raw_snake > 0: snake_place = raw_snake
+		
+	var total_pts := get_points(cat_place) + get_points(snake_place)
+	
+	if total_pts >= 72:
 		return 3
-	elif score >= ending_2_min_points:
+	elif total_pts >= 30:
 		return 2
 	return 1
 
@@ -671,7 +687,7 @@ func _run_ending_2() -> void:
 #  Accent hex for BBCode: #D4A847
 # ═════════════════════════════════════════════════════════════════════════════
 func _run_ending_3() -> void:
-	_start_music(music_ending_3)
+	_start_music(music_ending_3, -24.0)
 
 	await _show_title_card("ENDING  03", "MADE  FOR  THIS", _ACC_E3)
 

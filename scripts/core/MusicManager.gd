@@ -15,10 +15,12 @@ var _repeat_delay: float = 3.5
 var _target_volume_db: float = 0.0
 
 var _music_tracks: Dictionary = {
+	"main_menu":   { "path": "res://assets/music/main_menu_music.mp3",          "volume_db": -10 },
 	"cat_game":    { "path": "res://assets/music/cat_game/cat_game_BGM.mp3",          "volume_db": -15 },
 	"snake_tower": { "path": "res://assets/music/snake tower/snake_tower_BGM.mp3",    "volume_db": -10 },
 	"pet_world":   { "path": "res://assets/music/pet_world/pet_world_BGM.mp3",        "volume_db": -15 },
 	"scifi_home":  { "path": "res://assets/music/scifi-world/scifi_home_BGM.mp3",     "volume_db": -15 },
+	"exposition":  { "path": "res://assets/music/Exposition_ending_1.mp3",            "volume_db": -22 },
 }
 
 func _ready() -> void:
@@ -34,7 +36,7 @@ func _ready() -> void:
 
 ## Starts playing music from the given path or dictionary key.
 ## If repeat is true, it loops with a 3.5s delay.
-func play_music(path: String, repeat: bool = true) -> void:
+func play_music(path: String, repeat: bool = true, custom_fade_in: float = -1.0, custom_fade_out: float = -1.0) -> void:
 	# If a dictionary key is provided, resolve it to the full path and read its volume.
 	if _music_tracks.has(path):
 		var entry: Dictionary = _music_tracks[path]
@@ -51,11 +53,11 @@ func play_music(path: String, repeat: bool = true) -> void:
 
 	# If something is currently playing, we need to crossfade/stop it first
 	if _audio_player.playing:
-		_fade_out_and_play(path, repeat)
+		_fade_out_and_play(path, repeat, custom_fade_in, custom_fade_out)
 	else:
-		_start_track(path, repeat)
+		_start_track(path, repeat, custom_fade_in)
 
-func _fade_out_and_play(path: String, repeat: bool) -> void:
+func _fade_out_and_play(path: String, repeat: bool, custom_fade_in: float, custom_fade_out: float) -> void:
 	_repeat = false # Prevent it from looping while fading out
 	_timer.stop()
 
@@ -63,14 +65,15 @@ func _fade_out_and_play(path: String, repeat: bool) -> void:
 		_fade_tween.kill()
 
 	_fade_tween = create_tween()
-	_fade_tween.tween_property(_audio_player, "volume_db", -80.0, fade_out_duration)
+	var actual_fade_out = fade_out_duration if custom_fade_out < 0 else custom_fade_out
+	_fade_tween.tween_property(_audio_player, "volume_db", -80.0, actual_fade_out)
 	_fade_tween.tween_callback(func():
 		_audio_player.stop()
 		music_stopped.emit()
-		_start_track(path, repeat)
+		_start_track(path, repeat, custom_fade_in)
 	)
 
-func _start_track(path: String, repeat: bool) -> void:
+func _start_track(path: String, repeat: bool, custom_fade_in: float) -> void:
 	_current_path = path
 	_repeat = repeat
 
@@ -84,12 +87,13 @@ func _start_track(path: String, repeat: bool) -> void:
 		if _fade_tween and _fade_tween.is_valid():
 			_fade_tween.kill()
 		_fade_tween = create_tween()
-		_fade_tween.tween_property(_audio_player, "volume_db", _target_volume_db, fade_in_duration)
+		var actual_fade_in = fade_in_duration if custom_fade_in < 0 else custom_fade_in
+		_fade_tween.tween_property(_audio_player, "volume_db", _target_volume_db, actual_fade_in)
 	else:
 		push_error("MusicManager: Could not load audio stream from path: " + path)
 
 ## Stops the currently playing music and cancels the repeat timer.
-func stop_music(instant: bool = false) -> void:
+func stop_music(instant: bool = false, custom_fade_out: float = -1.0) -> void:
 	_repeat = false
 	_timer.stop()
 	_current_path = ""
@@ -106,7 +110,8 @@ func stop_music(instant: bool = false) -> void:
 		if _fade_tween and _fade_tween.is_valid():
 			_fade_tween.kill()
 		_fade_tween = create_tween()
-		_fade_tween.tween_property(_audio_player, "volume_db", -80.0, fade_out_duration)
+		var actual_fade_out = fade_out_duration if custom_fade_out < 0 else custom_fade_out
+		_fade_tween.tween_property(_audio_player, "volume_db", -80.0, actual_fade_out)
 		_fade_tween.tween_callback(func():
 			_audio_player.stop()
 			music_stopped.emit()

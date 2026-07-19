@@ -27,7 +27,8 @@ enum StoryState {
 
 	PHASE4_DOOR,
 	PHASE4_TASK_GO_TO_PET_WORLD_,
-	PHASE4_TASK_JOIN_TOURNAMENT
+	PHASE4_TASK_JOIN_TOURNAMENT,
+	FINAL
 }
 
 var is_laptop_open: bool = false
@@ -38,6 +39,9 @@ var minigame_finishes: Dictionary = {}
 var snaketower_final_place: int = 0
 var cat_game_final_place: int = 0
 
+var final_phase_overlay_scene: PackedScene = preload("res://scenes/ui/final_phase_overlay.tscn")
+var final_overlay_instance: Node = null
+
 func _ready() -> void:
 	if DialogueManager:
 		DialogueManager.dialogue_finished.connect(_on_dialogue_finished)
@@ -47,6 +51,9 @@ func _ready() -> void:
 
 func set_minigame_finish_place(minigame_name: String, place: int) -> void:
 	minigame_finishes[minigame_name] = place
+	
+	if minigame_finishes.has("cat_game") and minigame_finishes.has("snake_tower"):
+		advance_story_state(StoryState.FINAL)
 
 func get_minigame_finish_place(minigame_name: String) -> int:
 	return minigame_finishes.get(minigame_name, 0)
@@ -110,7 +117,7 @@ func _handle_state_entry(state: StoryState) -> void:
 			if DialogueManager: DialogueManager.start_dialogue("res://scenes/ui/dialogues/phase3_loandialogue2.gd")
 		StoryState.PHASE4_DOOR:
 			if SceneManager:
-				SceneManager.change_scene_to_file("res://scenes/scifi_home/the_home/map.tscn", 2.0)
+				SceneManager.change_scene_with_text("res://scenes/scifi_home/the_home/map.tscn", "3 Months Later...", 2.0)
 				await SceneManager.transition_finished
 				await get_tree().create_timer(1.0).timeout
 				advance_story_state(StoryState.PHASE4_TASK_GO_TO_PET_WORLD_)
@@ -118,6 +125,10 @@ func _handle_state_entry(state: StoryState) -> void:
 			if TaskManager: TaskManager.show_task("NEW OBJECTIVE", "Open your hologram display and head to the pet world")
 		StoryState.PHASE4_TASK_JOIN_TOURNAMENT:
 			if TaskManager: TaskManager.show_task("NEW OBJECTIVE", "Choose (click on) a pet and click join tournament")
+		StoryState.FINAL:
+			if not final_overlay_instance:
+				final_overlay_instance = final_phase_overlay_scene.instantiate()
+				add_child(final_overlay_instance)
 
 func _on_dialogue_finished(_file_path: String) -> void:
 	match current_story_state:

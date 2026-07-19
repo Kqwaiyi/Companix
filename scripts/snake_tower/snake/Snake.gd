@@ -78,20 +78,18 @@ func add_segment(pos: Vector2i):
 			needs_add_child = false
 		else:
 			var sprite = Sprite2D.new()
-			sprite.texture = preload("res://icon.svg")
+			sprite.texture = preload("res://assets/snakecharacter/snake_head.png")
 			sprite.centered = true
-			sprite.scale = Vector2(GlobalSnaketower.TILE_SIZE / 128.0, GlobalSnaketower.TILE_SIZE / 128.0)
-			sprite.modulate = Color(0.1, 0.4, 0.8) # Head
+			sprite.scale = Vector2(GlobalSnaketower.TILE_SIZE / 2000.0, GlobalSnaketower.TILE_SIZE / 2000.0)
 			node = sprite
 	else:
 		if tail_scene:
 			node = tail_scene.instantiate()
 		else:
 			var sprite = Sprite2D.new()
-			sprite.texture = preload("res://icon.svg")
+			sprite.texture = preload("res://assets/snakecharacter/snake_body.png")
 			sprite.centered = true
-			sprite.scale = Vector2(GlobalSnaketower.TILE_SIZE / 128.0, GlobalSnaketower.TILE_SIZE / 128.0)
-			sprite.modulate = Color(0.2, 0.6, 1.0) # Body fallback
+			sprite.scale = Vector2(GlobalSnaketower.TILE_SIZE / 2000.0, GlobalSnaketower.TILE_SIZE / 2000.0)
 			node = sprite
 			
 	if needs_add_child:
@@ -209,10 +207,9 @@ func move_segments(target: Vector2i, grow: bool, dir: Vector2i = Vector2i.ZERO):
 			node = tail_scene.instantiate()
 		else:
 			var sprite = Sprite2D.new()
-			sprite.texture = preload("res://icon.svg")
+			sprite.texture = preload("res://assets/snakecharacter/snake_body.png")
 			sprite.centered = true
-			sprite.scale = Vector2(GlobalSnaketower.TILE_SIZE / 128.0, GlobalSnaketower.TILE_SIZE / 128.0)
-			sprite.modulate = Color(0.2, 0.6, 1.0)
+			sprite.scale = Vector2(GlobalSnaketower.TILE_SIZE / 2000.0, GlobalSnaketower.TILE_SIZE / 2000.0)
 			node = sprite
 		add_child(node)
 		visual_nodes.append(node)

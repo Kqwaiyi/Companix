@@ -4,6 +4,7 @@
 [ext_resource type="Shader" uid="uid://b7jyur0212rr5" path="res://assets/shaders/traveling_border.gdshader" id="2_shader"]
 [ext_resource type="AudioStream" uid="uid://drwayjq2metbf" path="res://assets/sounds/futuristic_ui/Hover.mp3" id="3_i82s7"]
 [ext_resource type="AudioStream" uid="uid://02rg4nx2rmwt" path="res://assets/sounds/futuristic_ui/Click.mp3" id="4_s12w8"]
+[ext_resource type="FontFile" uid="uid://dy72jq30eobqs" path="res://assets/fonts/Chakra_Petch/ChakraPetch-Regular.ttf" id="font_regular"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel"]
 bg_color = Color(0.01, 0.03, 0.06, 0.9)
@@ -127,6 +128,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_badge")
 [node name="Label" type="Label" parent="ButtonPanel/NotificationBadgeContainer/Badge" unique_id=2068889404]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("font_regular")
 theme_override_font_sizes/font_size = 20
 text = "!"
 horizontal_alignment = 1
@@ -159,12 +161,14 @@ mouse_filter = 2
 [node name="AppLabel" type="Label" parent="ButtonPanel/VBoxContainer" unique_id=1447248097]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0.9, 1, 1)
+theme_override_fonts/font = ExtResource("font_regular")
 text = "MODULE"
 horizontal_alignment = 1
 
 [node name="ClickButton" type="Button" parent="." unique_id=371028117]
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxEmpty_click")
+theme_override_fonts/font = ExtResource("font_regular")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_click")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_click")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_click")

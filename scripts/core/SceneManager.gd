@@ -5,9 +5,13 @@ signal scene_loaded
 signal transition_finished
 
 @onready var color_rect: ColorRect = $ColorRect
+@onready var transition_label: RichTextLabel = $CenterContainer/TransitionLabel
+@onready var typewriter_audio: AudioStreamPlayer = $TypewriterSoundPlayer
 
 var _next_scene_path: String = ""
 var _current_fade_duration: float = 0.5
+var _transition_text: String = ""
+var typewriter_audio_fade_tween: Tween = null
 
 func _ready():
 	process_mode = Node.PROCESS_MODE_ALWAYS
@@ -20,6 +24,13 @@ func change_scene_to_file(path: String, fade_duration: float = 0.5):
 	if _next_scene_path != "":
 		return
 	
+	_start_transition(path, fade_duration)
+
+func change_scene_with_text(path: String, text: String, fade_duration: float = 0.5):
+	if _next_scene_path != "":
+		return
+	
+	_transition_text = text
 	_start_transition(path, fade_duration)
 
 func _start_transition(path: String, fade_duration: float):
@@ -43,6 +54,50 @@ func _start_transition(path: String, fade_duration: float):
 		_on_fade_out_finished()
 
 func _on_fade_out_finished():
+	if _transition_text != "":
+		_play_transition_text()
+	else:
+		_continue_after_fade_out()
+
+func _play_transition_text():
+	transition_label.text = "[center]" + _transition_text + "[/center]"
+	transition_label.visible_characters = 0
+	
+	await get_tree().create_timer(1.0).timeout
+	
+	transition_label.show()
+	
+	var total_chars = transition_label.get_total_character_count()
+	var duration = total_chars * 0.05
+	
+	var tween = create_tween()
+	tween.tween_property(transition_label, "visible_characters", total_chars, duration)
+	tween.finished.connect(_on_text_finished)
+	
+	_start_typewriter_sound()
+
+func _on_text_finished():
+	_stop_typewriter_sound()
+	await get_tree().create_timer(3.0).timeout
+	transition_label.hide()
+	_continue_after_fade_out()
+
+func _start_typewriter_sound() -> void:
+	if typewriter_audio_fade_tween and typewriter_audio_fade_tween.is_valid():
+		typewriter_audio_fade_tween.kill()
+	typewriter_audio.volume_db = 0.0
+	if not typewriter_audio.playing:
+		typewriter_audio.play()
+
+func _stop_typewriter_sound() -> void:
+	if typewriter_audio.playing:
+		if typewriter_audio_fade_tween and typewriter_audio_fade_tween.is_valid():
+			typewriter_audio_fade_tween.kill()
+		typewriter_audio_fade_tween = create_tween()
+		typewriter_audio_fade_tween.tween_property(typewriter_audio, "volume_db", -60.0, 0.15).set_trans(Tween.TRANS_SINE)
+		typewriter_audio_fade_tween.tween_callback(typewriter_audio.stop)
+
+func _continue_after_fade_out():
 	var load_status = ResourceLoader.load_threaded_get_status(_next_scene_path)
 	
 	if load_status == ResourceLoader.THREAD_LOAD_LOADED:
@@ -97,7 +152,11 @@ func _on_fade_in_finished():
 
 func _reset_transition():
 	_next_scene_path = ""
+	_transition_text = ""
 	
 	color_rect.modulate.a = 0
 	color_rect.hide()
 	color_rect.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	
+	if transition_label:
+		transition_label.hide()

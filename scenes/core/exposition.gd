@@ -23,6 +23,7 @@ var _canvas    : CanvasLayer   # story text
 var _ui_canvas : CanvasLayer   # prompt — layer 10, always on top
 var _pool      : Array[Control] = []
 
+
 # Set by _unhandled_input on Space. Consumed by _continue().
 # _type() reads it too (to skip the typewriter) but does NOT consume it —
 # that way one press skips the current typewriter AND advances to next section.
@@ -43,6 +44,10 @@ var _f_med  : FontFile
 func _ready() -> void:
 	if GameGlobal:
 		GameGlobal.advance_story_state(GameGlobal.StoryState.PHASE1_EXPOSITION)
+
+	if MusicManager:
+		MusicManager.play_music("exposition", true, 4.0)
+
 
 	_canvas = CanvasLayer.new()
 	add_child(_canvas)
@@ -432,6 +437,11 @@ func _run() -> void:
 	await _b6()
 	await _b7()
 	await _b8()
+
+	if MusicManager:
+		MusicManager.stop_music(false, 3.0)
+		await MusicManager.music_stopped
+
 
 	if GameGlobal:
 		GameGlobal.advance_story_state(GameGlobal.StoryState.PHASE1_APARTMENT)

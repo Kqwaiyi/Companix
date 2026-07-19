@@ -22,6 +22,8 @@ var _rainbow_hue: float = 0.0
 @onready var _bot_div = $Panel/VBox/BotDiv
 @onready var _panel = $Panel
 
+var _sfx_player: AudioStreamPlayer
+
 var dummy_names = ["GamerPro99", "SnakeKing", "EmberSnek", "FastBoi", "SpeedRunner", "SnekMaster", "SlipperySnek", "Venom", "Ouroboros", "GridWalker", "LongSnek", "PixelSnake", "AppleEater", "TombRaider", "GhostSnek"]
 
 func _ready():
@@ -40,21 +42,33 @@ func _ready():
 	for character in _time_str:
 		_digit_chars.append(character)
 		
+	_sfx_player = AudioStreamPlayer.new()
+	_sfx_player.stream = load("res://assets/music/snake tower/leaderboard.mp3")
+	add_child(_sfx_player)
+	
 	_build_digits()
 	_animate()
 
 func _calculate_place(time: float) -> int:
 	if time <= 480.0: # 8 mins
 		return 1
-	elif time <= 600.0: # 10 mins
+	elif time <= 540.0: # 9 mins
 		return 2
-	elif time <= 720.0: # 12 mins
+	elif time <= 660.0: # 11 mins
 		return 3
-	elif time <= 900.0: # 15 mins
+	elif time <= 780.0: # 13 mins
 		return 4
+	elif time <= 900.0: # 15 mins
+		return 5
+	elif time <= 1050.0: # 17.5 mins
+		return 6
+	elif time <= 1200.0: # 20 mins
+		return 7
+	elif time <= 1500.0: # 25 mins
+		return 8
 	else:
-		var place = 4 + floor(pow((time - 900.0) / 60.0, 2.0) * 5.0)
-		return clampi(int(place), 5, 10000)
+		var place = 8 + floor(pow((time - 1500.0) / 60.0, 2.0) * 5.0)
+		return clampi(int(place), 9, 10000)
 
 func _format_time(t: float) -> String:
 	var mins = int(t) / 60
@@ -84,7 +98,9 @@ func _build_digits() -> void:
 			_digit_labels.append(label)
 
 func _animate() -> void:
+	MusicManager.stop_music(true)
 	await get_tree().create_timer(0.3).timeout
+	_sfx_player.play()
 	
 	var total_steps: int = 12
 	var temp_idx: int = 0
@@ -94,7 +110,7 @@ func _animate() -> void:
 		total_steps += maxi(4, 10 - temp_idx * 2)
 		temp_idx += 1
 		
-	var step_delay: float = 3.0 / float(total_steps)
+	var step_delay: float = 4.0 / float(total_steps)
 
 	# Shuffle all digits together.
 	for _shuffle_step in range(12):
@@ -138,10 +154,10 @@ func _apply_color() -> void:
 
 	var time_color: Color
 
-	if _place <= 3:
-		time_color = _GOLD
-	elif _place <= 10:
+	if _place == 2:
 		time_color = _GREEN
+	elif _place <= 5:
+		time_color = _GOLD
 	else:
 		time_color = _RED
 

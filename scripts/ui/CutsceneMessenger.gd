@@ -390,6 +390,14 @@ func _create_bubble(line: Dictionary) -> Control:
 
 	# Message text
 	var msg_label = RichTextLabel.new()
+	var _custom_font = load("res://assets/fonts/Chakra_Petch/ChakraPetch-Regular.ttf")
+	var _font_bold = load("res://assets/fonts/Chakra_Petch/ChakraPetch-Bold.ttf")
+	var _font_italic = load("res://assets/fonts/Chakra_Petch/ChakraPetch-Italic.ttf")
+	var _font_bold_italic = load("res://assets/fonts/Chakra_Petch/ChakraPetch-BoldItalic.ttf")
+	msg_label.add_theme_font_override("normal_font", _custom_font)
+	msg_label.add_theme_font_override("bold_font", _font_bold)
+	msg_label.add_theme_font_override("italics_font", _font_italic)
+	msg_label.add_theme_font_override("bold_italics_font", _font_bold_italic)
 	msg_label.name = "MessageLabel"
 	msg_label.bbcode_enabled = true
 	msg_label.text = text
@@ -411,6 +419,8 @@ func _create_bubble(line: Dictionary) -> Control:
 
 	# Decorative timestamp
 	var time_label = Label.new()
+	var _custom_font_time = load("res://assets/fonts/Chakra_Petch/ChakraPetch-Regular.ttf")
+	time_label.add_theme_font_override("font", _custom_font_time)
 	time_label.name = "TimeLabel"
 	time_label.text = line.get("timestamp", "00:00")
 	time_label.add_theme_color_override("font_color", COLOR_TIMESTAMP)
@@ -799,6 +809,8 @@ func _build_ui() -> void:
 
 	# Sender name
 	_sender_name = Label.new()
+	var _bold_font = load("res://assets/fonts/Chakra_Petch/ChakraPetch-Bold.ttf")
+	_sender_name.add_theme_font_override("font", _bold_font)
 	_sender_name.text = "Contact"
 	_sender_name.add_theme_color_override("font_color", COLOR_HEADER_TEXT)
 	_sender_name.add_theme_font_size_override("font_size", 16)
@@ -876,6 +888,8 @@ func _build_ui() -> void:
 
 	# ── Advance Indicator ────────────────────────────────────────────
 	_advance_indicator = Label.new()
+	var _custom_font_adv = load("res://assets/fonts/Chakra_Petch/ChakraPetch-Regular.ttf")
+	_advance_indicator.add_theme_font_override("font", _custom_font_adv)
 	_advance_indicator.text = "[ SPACE OR LEFT CLICK_ ]"
 	_advance_indicator.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	_advance_indicator.add_theme_color_override("font_color", COLOR_ADVANCE_IND)

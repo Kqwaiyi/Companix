@@ -2,6 +2,10 @@
 
 [ext_resource type="Script" uid="uid://dofr0vb6vysim" path="res://scripts/ui/TaskOverlay.gd" id="1_overlay"]
 [ext_resource type="Shader" uid="uid://chj6a6rxi66x1" path="res://shaders/ui_scanline.gdshader" id="2_shader"]
+[ext_resource type="FontFile" uid="uid://bcu8orynokf4e" path="res://assets/fonts/Chakra_Petch/ChakraPetch-Bold.ttf" id="font_bold"]
+[ext_resource type="FontFile" uid="uid://kk0iugsfdtpy" path="res://assets/fonts/Chakra_Petch/ChakraPetch-BoldItalic.ttf" id="font_bold_italic"]
+[ext_resource type="FontFile" uid="uid://ordd0aciur0s" path="res://assets/fonts/Chakra_Petch/ChakraPetch-Italic.ttf" id="font_italic"]
+[ext_resource type="FontFile" uid="uid://dy72jq30eobqs" path="res://assets/fonts/Chakra_Petch/ChakraPetch-Regular.ttf" id="font_regular"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel"]
 bg_color = Color(0.05, 0.05, 0.08, 0.95)
@@ -72,6 +76,7 @@ color = Color(0.3, 0.85, 1, 1)
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_colors/font_color = Color(0.3, 0.85, 1, 1)
+theme_override_fonts/font = ExtResource("font_bold")
 theme_override_font_sizes/font_size = 28
 text = "NEW DIRECTIVE"
 
@@ -79,6 +84,10 @@ text = "NEW DIRECTIVE"
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/default_color = Color(0.9, 0.9, 0.9, 1)
+theme_override_fonts/normal_font = ExtResource("font_regular")
+theme_override_fonts/bold_font = ExtResource("font_bold")
+theme_override_fonts/bold_italics_font = ExtResource("font_bold_italic")
+theme_override_fonts/italics_font = ExtResource("font_italic")
 theme_override_font_sizes/normal_font_size = 22
 theme_override_font_sizes/bold_font_size = 22
 theme_override_font_sizes/bold_italics_font_size = 22
@@ -91,12 +100,13 @@ scroll_active = false
 [node name="AdvanceIndicator" type="Label" parent="PopupBox/MarginContainer/VBoxContainer" unique_id=269516952]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.3, 0.85, 1, 0.8)
+theme_override_fonts/font = ExtResource("font_regular")
 theme_override_font_sizes/font_size = 16
 text = "[E] TO ACKNOWLEDGE"
 horizontal_alignment = 1
 
-[node name="TypewriterAudio" type="AudioStreamPlayer" parent="."]
+[node name="TypewriterAudio" type="AudioStreamPlayer" parent="." unique_id=77786619]
 
-[node name="OpenAudio" type="AudioStreamPlayer" parent="."]
+[node name="OpenAudio" type="AudioStreamPlayer" parent="." unique_id=296062553]
 
 [node name="CloseAudio" type="AudioStreamPlayer" parent="." unique_id=2077476750]

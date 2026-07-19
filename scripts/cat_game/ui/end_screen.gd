@@ -18,6 +18,8 @@ var _rainbow_hue: float = 0.0
 var _place: int = 0
 var _is_transitioning: bool = false
 
+var _sfx_player: AudioStreamPlayer
+
 var dummy_names: Array[String] = ["CatLover99", "PawMaster", "PixelCat", "SpeedyPaws", "ScratchKing", "Meowz", "NyanNyan", "FelineGood", "KittyKat", "Purrfect", "NineLives", "MeowMaster", "WhiskerWizard", "TailChaser", "PurrMachine"]
 
 @onready var _score_row: HBoxContainer = $Panel/VBox/ScoreCenter/ScoreRow
@@ -40,21 +42,33 @@ func _ready() -> void:
 	for character: String in score_text:
 		_digit_vals.append(int(character))
 
+	_sfx_player = AudioStreamPlayer.new()
+	_sfx_player.stream = load("res://assets/music/snake tower/leaderboard.mp3")
+	add_child(_sfx_player)
+
 	_build_digits()
 	_animate()
 
 func _calculate_place(score: int) -> int:
-	if score >= 15000:
+	if score >= 15500:
 		return 1
-	elif score >= 13000:
+	elif score >= 14500:
 		return 2
-	elif score >= 10000:
+	elif score >= 14000:
 		return 3
-	elif score >= 8000:
+	elif score >= 13000:
 		return 4
+	elif score >= 12000:
+		return 5
+	elif score >= 10500:
+		return 6
+	elif score >= 9000:
+		return 7
+	elif score >= 7000:
+		return 8
 	else:
-		var place = 4 + floor(pow((8000.0 - float(score)) / 80.0, 2.0))
-		return clampi(int(place), 5, 10000)
+		var place = 8 + floor(pow((7000.0 - float(score)) / 80.0, 2.0))
+		return clampi(int(place), 9, 10000)
 
 
 func _build_digits() -> void:
@@ -78,7 +92,9 @@ func _build_digits() -> void:
 
 
 func _animate() -> void:
+	MusicManager.stop_music(true)
 	await get_tree().create_timer(0.3).timeout
+	_sfx_player.play()
 	
 	var total_steps: int = 12
 	var temp_idx: int = 0
@@ -86,7 +102,7 @@ func _animate() -> void:
 		total_steps += maxi(4, 10 - temp_idx * 2)
 		temp_idx += 1
 		
-	var step_delay: float = 3.0 / float(total_steps)
+	var step_delay: float = 4.0 / float(total_steps)
 
 	# Shuffle all digits together.
 	for _shuffle_step: int in range(12):
@@ -124,23 +140,18 @@ func _animate() -> void:
 	_generate_leaderboard(_place, _total)
 	_leaderboard_list.show()
 
-	await get_tree().create_timer(0.9).timeout
-	_show_continue_button()
-
 
 func _apply_color() -> void:
-	if _total >= 15000:
+	if _place == 1:
 		_rainbow_active = true
 		return
 
 	var score_color: Color
 
-	if _total >= 15000:
+	if _place == 2:
 		score_color = _GREEN
-	elif _total >= 13000:
+	elif _place <= 5:
 		score_color = _YELLOW
-	elif _total >= 11000:
-		score_color = _ORANGE
 	else:
 		score_color = _RED
 
@@ -179,45 +190,6 @@ func _process(delta: float) -> void:
 			rainbow_color
 		)
 
-func _show_continue_button() -> void:
-	var btn := Button.new()
-	btn.text = "Continue to Ending  ▶"
-	btn.add_theme_font_size_override("font_size", 18)
-	btn.add_theme_color_override("font_color",         Color(0.18, 0.12, 0.07, 1.0))
-	btn.add_theme_color_override("font_hover_color",   Color(0.18, 0.12, 0.07, 1.0))
-	btn.add_theme_color_override("font_pressed_color", Color(0.18, 0.12, 0.07, 1.0))
-
-	var style := StyleBoxFlat.new()
-	style.bg_color            = Color(0.898, 0.816, 0.663, 1.0)
-	style.border_color        = Color(0.216, 0.149, 0.086, 1.0)
-	style.border_width_left   = 3
-	style.border_width_top    = 3
-	style.border_width_right  = 3
-	style.border_width_bottom = 3
-	style.corner_radius_top_left     = 4
-	style.corner_radius_top_right    = 4
-	style.corner_radius_bottom_right = 4
-	style.corner_radius_bottom_left  = 4
-	style.content_margin_left   = 16.0
-	style.content_margin_top    = 10.0
-	style.content_margin_right  = 16.0
-	style.content_margin_bottom = 10.0
-	btn.add_theme_stylebox_override("normal", style)
-
-	btn.modulate.a = 0.0
-	$Panel/VBox.add_child(btn)
-	btn.pressed.connect(_on_continue_pressed)
-
-	var tw := create_tween()
-	tw.tween_property(btn, "modulate:a", 1.0, 0.5)
-
-func _on_continue_pressed() -> void:
-	# Transition to the cinematic ending sequence.
-	# Score is read directly from GameState inside ending_sequence.gd.
-	if SceneManager:
-		SceneManager.change_scene_to_file("res://scenes/core/ending_sequence.tscn", 1.0)
-	else:
-		get_tree().change_scene_to_file("res://scenes/core/ending_sequence.tscn")
 
 func _create_entry(rank: String, username: String, score_val: int, is_player: bool = false) -> void:
 	var hbox: HBoxContainer = HBoxContainer.new()
