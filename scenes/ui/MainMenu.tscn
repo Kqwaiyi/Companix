@@ -14,7 +14,7 @@
 shader = ExtResource("6_fluid")
 shader_parameter/grid_size = 6.0
 shader_parameter/line_thickness = 0.005
-shader_parameter/grid_color = Color(1, 1, 1, 0.06)
+shader_parameter/grid_color = Color(0.376, 0.847, 0.937, 0.06)
 shader_parameter/wave_strength = 0.06
 shader_parameter/parallax_offset = Vector2(0, 0)
 
@@ -35,7 +35,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 1)
+color = Color(0.02, 0.04, 0.08, 1)
 
 [node name="PlexusBackground" type="Node2D" parent="." unique_id=374007467]
 script = ExtResource("8_plexus")
@@ -61,10 +61,10 @@ size_flags_horizontal = 3
 
 [node name="Title" type="Label" parent="MarginContainer/HBoxContainer/LeftSection" unique_id=1054618394]
 layout_mode = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_color = Color(0.376, 0.847, 0.937, 1)
 theme_override_fonts/font = ExtResource("4_font_bold")
 theme_override_font_sizes/font_size = 64
-text = "Companix"
+text = "> Companix"
 
 [node name="Spacer" type="Control" parent="MarginContainer/HBoxContainer/LeftSection" unique_id=1090340196]
 layout_mode = 2
@@ -73,8 +73,8 @@ size_flags_vertical = 3
 [node name="PlayButton" type="Button" parent="MarginContainer/HBoxContainer/LeftSection" unique_id=819749160]
 layout_mode = 2
 size_flags_horizontal = 0
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_hover_color = Color(0, 0.9, 1, 1)
+theme_override_colors/font_color = Color(0.918, 0.91, 0.894, 1)
+theme_override_colors/font_hover_color = Color(0.376, 0.847, 0.937, 1)
 theme_override_fonts/font = ExtResource("5_font_medium")
 theme_override_font_sizes/font_size = 32
 text = "> PLAY"
@@ -85,8 +85,8 @@ script = ExtResource("7_cyber")
 [node name="CreditsButton" type="Button" parent="MarginContainer/HBoxContainer/LeftSection" unique_id=30138106]
 layout_mode = 2
 size_flags_horizontal = 0
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_hover_color = Color(0, 0.9, 1, 1)
+theme_override_colors/font_color = Color(0.918, 0.91, 0.894, 1)
+theme_override_colors/font_hover_color = Color(0.376, 0.847, 0.937, 1)
 theme_override_fonts/font = ExtResource("5_font_medium")
 theme_override_font_sizes/font_size = 32
 text = "> CREDITS"
@@ -105,7 +105,7 @@ theme_override_constants/margin_bottom = 0
 [node name="CreditsTerminal" type="RichTextLabel" parent="MarginContainer/HBoxContainer/RightSection" unique_id=1225809953]
 layout_mode = 2
 size_flags_vertical = 8
-theme_override_colors/default_color = Color(0.8, 0.8, 0.8, 0.7)
+theme_override_colors/default_color = Color(0.918, 0.91, 0.894, 0.7)
 theme_override_fonts/normal_font = ExtResource("5_font_medium")
 theme_override_font_sizes/normal_font_size = 13
 fit_content = true
