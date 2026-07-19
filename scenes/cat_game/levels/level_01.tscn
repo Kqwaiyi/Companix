@@ -137,7 +137,7 @@ script = ExtResource("199_level")
 starting_score = 0
 maximum_time_bonus = 1000
 optimal_time_seconds = 40.0
-time_penalty_per_second = 100.0
+time_penalty_per_second = 50.0
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1863082518]
 visible = false
